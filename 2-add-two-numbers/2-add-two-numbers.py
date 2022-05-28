@@ -7,20 +7,15 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         curr = dummy = ListNode()
         carryover = 0
-        while l1 and l2:
-            total = l1.val + l2.val + carryover
-            carryover = total // 10
-            curr.next = ListNode(total % 10)
+        while l1 or l2 or carryover:
+            total = carryover
+            if l1:
+                total += l1.val
+                l1 = l1.next
+            if l2:
+                total += l2.val
+                l2 = l2.next
+            carryover, val = divmod(total, 10)
+            curr.next = ListNode(val)
             curr = curr.next
-            l1 = l1.next
-            l2 = l2.next
-        rem = l1 if not l2 else l2
-        while rem:
-            total = rem.val + carryover
-            carryover = total // 10
-            curr.next = ListNode(total % 10)
-            curr = curr.next
-            rem = rem.next
-        if carryover:
-            curr.next = ListNode(carryover)
         return dummy.next
