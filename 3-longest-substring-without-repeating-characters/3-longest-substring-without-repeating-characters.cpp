@@ -3,14 +3,19 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        vector<int> vi(256, -1);
-        int max_len = 0, start = -1;
-        for (int i = 0; i != s.length(); i++) {
-            if (vi[s[i]] > start)
-                start = vi[s[i]];
-            vi[s[i]] = i;
-            max_len = max(max_len, i - start);
+        int store[256] = {0};
+        int l = 0;
+        int r = 0;
+        int ans = 0;
+        while (r < s.length()) {
+            store[s[r]]++;
+            while (store[s[r]] > 1) { 
+                store[s[l]]--;
+                l++;
+            }
+            ans = max(ans, r - l + 1);
+            r++;
         }
-        return max_len;
+        return ans;
     }
 };
