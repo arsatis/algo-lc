@@ -14,17 +14,16 @@ class Solution {
         ListNode curr = dummy;
         int carryover = 0;
         while (l1 != null || l2 != null || carryover != 0) {
-            int total = carryover;
             if (l1 != null) {
-                total += l1.val;
+                carryover += l1.val;
                 l1 = l1.next;
             }
             if (l2 != null) {
-                total += l2.val;
+                carryover += l2.val;
                 l2 = l2.next;
             }
-            carryover = total / 10;
-            curr.next = new ListNode(total % 10);
+            curr.next = new ListNode(carryover % 10);
+            carryover /= 10;
             curr = curr.next;
         }
         return dummy.next;
