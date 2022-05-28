@@ -1,24 +1,15 @@
-#include <unordered_set>
+#include <vector>
 
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        int left = 0;
-        int right = 0;
-        size_t max_len = 0;
-        unordered_set<char> sc;
-        while (right < s.size()) {
-            if (sc.find(s[right]) == sc.end()) {
-                sc.insert(s[right]);
-                max_len = max(max_len, sc.size());
-            } else {
-                while (sc.find(s[right]) != sc.end()) {
-                    sc.erase(s[left]);
-                    left += 1;
-                }
-                sc.insert(s[right]);
-            }
-            right += 1;
+        vector<int> vi(256, -1);
+        int max_len = 0, start = -1;
+        for (int i = 0; i != s.length(); i++) {
+            if (vi[s[i]] > start)
+                start = vi[s[i]];
+            vi[s[i]] = i;
+            max_len = max(max_len, i - start);
         }
         return max_len;
     }
