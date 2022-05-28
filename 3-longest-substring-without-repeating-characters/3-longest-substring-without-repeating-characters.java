@@ -6,7 +6,7 @@ class Solution {
         Arrays.fill(curr, -1);
         int maxLen = 0;
         int start = -1;
-        for (int i = 0; i < s.length(); ++i) {
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (curr[c] > start)
                 start = curr[c];
