@@ -3,21 +3,19 @@
 class Solution {
 public:
     int maxProduct(vector<string>& words) {
-        unordered_map<long, int> d;
+        unordered_map<int, int> d;
         for (string &word : words) {
-            long mask = 0;
+            int mask = 0;
             for (auto &c : word) {
-                mask |= (1 << (c - 97));
+                mask |= 1 << (c - 'a');
             }
-            d[mask] = max((int) word.size(), d.find(mask) == d.end() ? 0 : d[mask]);
+            d[mask] = max((int) word.size(), d[mask]);
         }
         int output = 0;
-        for (auto i = d.begin(); i != d.end(); ++i) {
-            for (auto j = ++d.begin(); j != d.end(); ++j) {
-                if (!(i->first & j->first))
-                    output = max(output, i->second * j->second);
-            }
-        }
+        for (auto i : d)
+            for (auto j : d)
+                if (!(i.first & j.first))
+                    output = max(output, i.second * j.second);
         return output;
     }
 };
