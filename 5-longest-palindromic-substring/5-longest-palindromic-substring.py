@@ -1,9 +1,9 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         output = ""
-        for i in range(2 * len(s) - 1): # O(n)
+        for i in range(2 * len(s) - 1):
             left, right = i // 2, (i + 1) // 2
-            while left >= 0 and right < len(s): # O(n)
+            while left >= 0 and right < len(s):
                 if s[left] != s[right]:
                     break
                 if right - left + 1 > len(output):
