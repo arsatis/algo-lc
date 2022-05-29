@@ -3,6 +3,7 @@ class Solution:
         max_len = 1
         start = 0
         for i in range(len(s)):
+            # this approach is fastest in py because strcomp is amortized O(1) here
         	if i - max_len >= 1 and s[i - max_len - 1:i + 1] == s[i - max_len - 1:i + 1][::-1]:
         		start = i - max_len - 1
         		max_len += 2
