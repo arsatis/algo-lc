@@ -1,22 +1,24 @@
 class Solution {
     public String longestPalindrome(String s) {
-        int n = s.length();
-        String res = null;
-        int palindromeStartsAt = 0, maxLen = 0;
-        boolean[][] dp = new boolean[n][n]; // dp[i][j] indicates whether substring s starting at index i and ending at j is palindrome
-        
-        for (int i = n - 1; i >= 0; --i) { // keep increasing the possible palindrome string
-            for (int j = i; j < n; ++j) { // find the max palindrome within this window of (i,j)
-                //check if substring between (i,j) is palindrome
-                dp[i][j] = (s.charAt(i) == s.charAt(j)) && (j - i < 3|| dp[i+1][j-1]);
-                
-                //update max palindrome string
-                if (dp[i][j] && (j - i + 1 > maxLen)) {
-                    palindromeStartsAt = i;
-                    maxLen = j - i + 1;
-                }
+        int start = 0;
+        int end = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            char c = s.charAt(i);
+            int left = i;
+            int right = i;
+            while (left >= 0 && s.charAt(left) == c) --left;
+            while (right < s.length() && s.charAt(right) == c) ++right;
+            while (left >= 0 && right < s.length()) {
+                if (s.charAt(left) != s.charAt(right)) break;
+                --left;
+                ++right;
+            }
+            ++left;
+            if (end - start < right - left) {
+                start = left;
+                end = right;
             }
         }
-        return s.substring(palindromeStartsAt, palindromeStartsAt + maxLen);
+        return s.substring(start, end);
     }
 }
