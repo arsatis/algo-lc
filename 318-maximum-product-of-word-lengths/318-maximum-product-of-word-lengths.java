@@ -5,13 +5,13 @@ class Solution {
         HashMap<Integer, Integer> hm =  new HashMap<>();
         for (String word : words) {
             int mask = 0;
-            for (int i = 0; i < word.length(); i++)
+            for (int i = 0; i < word.length(); ++i)
                 mask |= 1 << (word.charAt(i) - 'a');
             hm.put(mask, Math.max(hm.getOrDefault(mask, 0), word.length()));
         }
         int output = 0;
-        for (int i : hm.keySet()) {
-            for (int j : hm.keySet()) {
+        for (Integer i : hm.keySet()) {
+            for (Integer j : hm.keySet()) {
                 if ((i & j) == 0) {
                     output = Math.max(output, hm.get(i) * hm.get(j));
                 }
