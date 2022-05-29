@@ -3,8 +3,8 @@ class Solution {
         int max = (1 << 26) - 1;
         int mask[] = new int[words.length];
         for (int i = 0; i < words.length; ++i)
-            for (int j = 0; j < words[i].length(); ++j) {
-                mask[i] |= 1 << (words[i].charAt(j) - 'a');
+            for (char c : words[i].toCharArray()) {
+                mask[i] |= 1 << (c - 'a');
                 if (mask[i] == max)
                     break;
             }
