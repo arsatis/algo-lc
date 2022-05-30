@@ -9,7 +9,8 @@ public:
         }
         
         if (dividend == INT_MIN) {
-            if (divisor == -1) return INT_MAX;
+            if (divisor == -1)
+                return INT_MAX;
             if (divisor > 0)
                 return -1 + divide(dividend + divisor, divisor);
             else if (divisor < 0)
