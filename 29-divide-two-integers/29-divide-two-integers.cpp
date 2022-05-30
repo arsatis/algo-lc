@@ -11,7 +11,7 @@ public:
             if (divisor > 0)
                 return -1 + divide(dividend + divisor, divisor);
             else if (divisor < 0)
-                return 1 + divide(dividend-divisor, divisor);
+                return 1 + divide(dividend - divisor, divisor);
         }
         
         int a = abs(dividend), b = abs(divisor), quotient = 0;
