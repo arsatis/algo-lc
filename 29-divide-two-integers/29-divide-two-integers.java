@@ -2,11 +2,13 @@ class Solution {
     public int divide(int dividend, int divisor) {
         if (dividend == 1 << 31 && divisor == -1)
             return (1 << 31) - 1;
-        int a = Math.abs(dividend), b = Math.abs(divisor), quotient = 0, x = 0;
+        int a = Math.abs(dividend), b = Math.abs(divisor), quotient = 0, x = 31;
         while (a - b >= 0) {
-            for (x = 0; a - (b << x << 1) >= 0; ++x);
-            quotient += 1 << x;
-            a -= b << x;
+            if ((a >>> x) - b >= 0) {
+                quotient += 1 << x;
+                a -= b << x;
+            }
+            --x;
         }
         return (dividend > 0) == (divisor > 0) ? quotient : -quotient;
     }
