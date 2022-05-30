@@ -1,5 +1,9 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
+        # idea: find largest x = (divisor) * 2^n <= dividend
+        #       then iteratively add to quotient when dividend is divisible by x
+        # time: O(n), where n is defined in the first line
+        # space: O(1)
         neg = (dividend < 0) ^ (divisor < 0)
         divisor, dividend = abs(divisor), abs(dividend)
         
