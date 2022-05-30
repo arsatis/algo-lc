@@ -13,7 +13,7 @@ class Solution:
             curr <<= 1
             n <<= 1
 
-        # repeatedly add current_quotient
+        # repeatedly add curr to quotient
         quotient = 0
         while dividend >= divisor:
             if dividend >= curr:
