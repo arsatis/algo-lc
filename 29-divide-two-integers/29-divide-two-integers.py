@@ -1,8 +1,8 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        # idea: find largest x = (divisor) * 2^n <= dividend
-        #       then iteratively add to quotient when dividend is divisible by x
-        # time: O(n), where n is defined in the first line
+        # idea: find largest y = (divisor) * 2^x <= dividend
+        #       then iteratively add to quotient when dividend < y
+        # time: O(x), where x is defined in the first line
         # space: O(1)
         if (dividend == -2147483648 and divisor == -1):
             return 2147483647
