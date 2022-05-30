@@ -1,7 +1,7 @@
 class Solution {
     public String longestPalindrome(String s) {
         int start = 0, end = 0;
-        char[] ca = s.toCharArray();
+        char[] ca = s.toCharArray(); // apparently array access >> string random access
         for (int i = 0; i < ca.length; ++i) {
             char c = ca[i];
             int left = i;
