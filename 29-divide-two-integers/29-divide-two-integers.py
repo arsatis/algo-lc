@@ -23,5 +23,5 @@ class Solution:
             n >>= 1
 
         if not neg:
-            return min(quotient, 2147483647)
+            return quotient if quotient != 2147483648 else 2147483647
         return -quotient
