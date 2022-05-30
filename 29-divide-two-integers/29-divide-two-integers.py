@@ -22,7 +22,5 @@ class Solution:
             curr >>= 1
             n >>= 1
 
-        if neg:
-            return max(-quotient, -2147483648)
-        else:
-            return min(quotient, 2147483647)
+        if neg: return max(-quotient, -2147483648)
+        else: return min(quotient, 2147483647)
