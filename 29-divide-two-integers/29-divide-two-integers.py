@@ -4,24 +4,10 @@ class Solution:
         #       then iteratively add to quotient when dividend is divisible by x
         # time: O(n), where n is defined in the first line
         # space: O(1)
-        neg = (dividend < 0) != (divisor < 0)
-        divisor, dividend = abs(divisor), abs(dividend)
-
-        # find largest (divisor) * 2^n <= dividend
-        curr, n = divisor, 1
-        while dividend >= (curr << 1):
-            curr <<= 1
-            n <<= 1
-
-        # repeatedly add curr to quotient
-        quotient = 0
-        while dividend >= divisor:
-            if dividend >= curr:
-                dividend -= curr
-                quotient += n
-            curr >>= 1
-            n >>= 1
-
-        if not neg:
-            return quotient if quotient != 2147483648 else 2147483647
-        return -quotient
+        if (dividend == -2147483648 and divisor == -1): return 2147483647
+        a, b, quotient = abs(dividend), abs(divisor), 0
+        for x in range(32)[::-1]:
+            if (a >> x) - b >= 0:
+                quotient += 1 << x
+                a -= b << x
+        return quotient if (dividend > 0) == (divisor > 0) else -quotient
