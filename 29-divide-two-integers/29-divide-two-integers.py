@@ -4,7 +4,8 @@ class Solution:
         #       then iteratively add to quotient when dividend is divisible by x
         # time: O(n), where n is defined in the first line
         # space: O(1)
-        if (dividend == -2147483648 and divisor == -1): return 2147483647
+        if (dividend == -2147483648 and divisor == -1):
+            return 2147483647
         a, b, quotient = abs(dividend), abs(divisor), 0
         for x in range(32)[::-1]:
             if (a >> x) - b >= 0:
