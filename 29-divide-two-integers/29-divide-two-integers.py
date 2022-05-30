@@ -6,13 +6,13 @@ class Solution:
         # space: O(1)
         neg = (dividend < 0) != (divisor < 0)
         divisor, dividend = abs(divisor), abs(dividend)
-        
+
         # find largest (divisor) * 2^n <= dividend
         curr, n = divisor, 1
         while dividend >= (curr << 1):
             curr <<= 1
             n <<= 1
-            
+
         # repeatedly add current_quotient
         quotient = 0
         while dividend >= divisor:
@@ -21,5 +21,8 @@ class Solution:
                 quotient += n
             curr >>= 1
             n >>= 1
-            
-        return min(2147483647, max(-quotient if neg else quotient, -2147483648))
+
+        if neg:
+            return max(-quotient, -2147483648)
+        else:
+            return min(quotient, 2147483647)
