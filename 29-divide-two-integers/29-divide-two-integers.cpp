@@ -9,9 +9,9 @@ public:
         if (dividend == INT_MIN) {
             if (divisor == -1) return INT_MAX;
             if (divisor > 0)
-                return -1 + divide(dividend + divisor, divisor);
+                return divide(dividend + divisor, divisor) - 1;
             else if (divisor < 0)
-                return 1 + divide(dividend - divisor, divisor);
+                return divide(dividend - divisor, divisor) + 1;
         }
         
         int a = abs(dividend), b = abs(divisor), quotient = 0;
