@@ -1,6 +1,5 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        neg, x = (x < 0), abs(x)
-        y = int(str(x)[::-1])
-        if not neg: return y if y <= 2147483648 else 0
-        else: return -y if y < 2147483648 else 0
+        sign = [1,-1][x < 0]
+        y = sign * int(str(abs(x))[::-1])
+        return y if -2147483647 < y < 2147483648 else 0
