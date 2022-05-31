@@ -5,9 +5,9 @@ class Solution:
         # Space: O(n), for the buckets
         if numRows == 1 or numRows >= len(s): return s
 
-        buckets = [''] * numRows
-        idx, step = 0, 1
-        for c in s: # O(n)
+        buckets = list(s[:numRows])
+        idx, step = numRows - 2, -1
+        for c in s[numRows:]: # O(n)
             buckets[idx] += c # >O(1)
             if idx == 0:
                 step = 1
