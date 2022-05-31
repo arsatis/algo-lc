@@ -14,8 +14,8 @@ class Solution:
                     return True
         return False
     
+    # set, O(sk)
     # def hasAllCodes(self, s: str, k: int) -> bool:
-        # set, O(sk)
         # d = set()
         # for i in range(len(s) - k + 1):
         #     d.add(s[i:i + k])
