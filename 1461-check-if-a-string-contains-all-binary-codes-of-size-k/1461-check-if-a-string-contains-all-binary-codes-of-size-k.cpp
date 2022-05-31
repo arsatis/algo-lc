@@ -1,18 +1,19 @@
-#include <unordered_set>
+#include <vector>
 
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
         // rolling hash
-        int d = 0;
-        unordered_set<int> hset;
-        for (int i = 0; i < s.length(); i++) {
-            d = (d << 1) | (s[i] - '0');
+        vector<bool> found(1 << k);
+        int num = 0, mask = (1 << k) - 1, cnt = 0;
+        for (auto i = 0; i < s.size(); ++i) {
+            num = mask & ((num << 1) + s[i] - '0');
             if (i >= k - 1) {
-                hset.insert(d);
-                d -= (s[i - (k - 1)] - '0') << (k - 1);
+                if (found[num] == false)
+                    ++cnt;
+                found[num] = true;
             }
         }
-        return hset.size() == (1 << k);
+        return cnt == found.size();
     }
 };
