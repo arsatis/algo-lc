@@ -6,7 +6,7 @@ public:
         // rolling hash
         int d = 0;
         unordered_set<int> hset;
-        for (int i = 0; i < s.length(); ++i) {
+        for (int i = 0; i < s.length(); i++) {
             d = (d << 1) | (s[i] - '0');
             if (i >= k - 1) {
                 hset.insert(d);
