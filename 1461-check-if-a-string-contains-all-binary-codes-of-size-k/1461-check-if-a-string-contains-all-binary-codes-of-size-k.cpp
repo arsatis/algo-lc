@@ -3,16 +3,11 @@
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
-        // rolling hash
-        int d = 0;
-        unordered_set<int> hset;
-        for (int i = 0; i < s.length(); i++) {
-            d = (d << 1) | (s[i] - '0');
-            if (i >= k - 1) {
-                hset.insert(d);
-                d -= (s[i - (k - 1)] - '0') << (k - 1);
-            }
-        }
-        return hset.size() == (1 << k);
+        // hashset
+        if (k > s.size()) return false;
+        unordered_set<string> my_set;
+        for (int i = 0; i <= s.size() - k; ++i)
+            my_set.insert(s.substr(i, k));
+        return my_set.size() == pow(2, k);
     }
 };
