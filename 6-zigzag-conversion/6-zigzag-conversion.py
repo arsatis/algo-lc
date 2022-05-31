@@ -8,7 +8,7 @@ class Solution:
         buckets = list(s[:numRows])
         idx, step = numRows - 2, -1
         for c in s[numRows:]: # O(n)
-            buckets[idx] += c # >O(1)
+            buckets[idx] += c # O(1)?
             if idx == 0:
                 step = 1
             elif idx == numRows -1:
