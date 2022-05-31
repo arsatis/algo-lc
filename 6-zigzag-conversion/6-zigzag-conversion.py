@@ -3,12 +3,13 @@ class Solution:
         # Idea: use buckets and trace the zigzag movement
         # Time: O(n), two passes
         # Space: O(n), for the buckets
-        if numRows == 1 or numRows >= len(s): return s
+        if numRows == 1 or numRows >= len(s):
+            return s
 
         buckets = [''] * numRows
         idx, step = 0, 1
         for c in s: # O(n)
-            buckets[idx] += c # O(1)?
+            buckets[idx] += c
             if idx == 0:
                 step = 1
             elif idx == numRows -1:
