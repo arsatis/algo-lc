@@ -1,12 +1,6 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
-        ls = list(s.strip())
-        if len(ls) == 0 : return 0
-        
-        sign = -1 if ls[0] == '-' else 1
-        if ls[0] in ['-','+'] : del ls[0]
-        ret, i = 0, 0
-        while i < len(ls) and ls[i].isdigit() :
-            ret = ret*10 + ord(ls[i]) - ord('0')
-            i += 1
-        return max(-2**31, min(sign * ret,2**31-1))
+        r = re.match(r'\s*[+-]?\d+', s)
+        if not r: return 0
+        r = int(r.group(0))
+        return -2147483648 if r < -2147483648 else (r if r < 2147483647 else 2147483647)
