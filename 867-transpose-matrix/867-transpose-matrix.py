@@ -1,3 +1,3 @@
 class Solution:
     def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
-        return list(zip(*matrix))
+        return tuple(zip(*matrix))
