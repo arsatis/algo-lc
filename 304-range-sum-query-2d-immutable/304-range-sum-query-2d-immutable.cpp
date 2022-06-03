@@ -2,7 +2,7 @@ class NumMatrix {
     vector<vector<int>> vvi;
 public:
     NumMatrix(vector<vector<int>>& matrix) {
-        int row = matrix.size() + 1, col = matrix[0].size() + 1;
+        int row = 1 + matrix.size(), col = 1 + matrix[0].size();
         vvi.reserve(row);
         vvi.push_back(vector<int>(col, 0));
         for (int i = 1; i < row; ++i) {
