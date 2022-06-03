@@ -8,8 +8,8 @@ class NumMatrix:
                 self.sum[r][c] = self.sum[r - 1][c] + self.sum[r][c - 1] - self.sum[r - 1][c - 1] + matrix[r - 1][c - 1]
 
     def sumRegion(self, r1: int, c1: int, r2: int, c2: int) -> int:
-        r1, c1, r2, c2 = r1 + 1, c1 + 1, r2 + 1, c2 + 1
-        return self.sum[r2][c2] - self.sum[r2][c1 - 1] - self.sum[r1 - 1][c2] + self.sum[r1 - 1][c1 - 1]
+        r2, c2 = r2 + 1, c2 + 1
+        return self.sum[r2][c2] - self.sum[r2][c1] - self.sum[r1][c2] + self.sum[r1][c1]
 
 # Your NumMatrix object will be instantiated and called as such:
 # obj = NumMatrix(matrix)
