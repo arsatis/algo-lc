@@ -2,13 +2,14 @@ class NumMatrix {
     vector<vector<int>> vvi;
 public:
     NumMatrix(vector<vector<int>>& matrix) {
-        int row = matrix.size(), col = matrix[0].size();
-        vvi.reserve(row + 1);
-        vvi.push_back(vector<int>(col + 1, 0));
-        for (int i = 1; i <= row; ++i) {
-            vector<int> vi(1, 0);
-            vi.reserve(col + 1);
-            for (int j = 1; j <= col; ++j) {
+        int row = matrix.size() + 1, col = matrix[0].size() + 1;
+        vvi.reserve(row);
+        vvi.push_back(vector<int>(col, 0));
+        for (int i = 1; i < row; ++i) {
+            vector<int> vi;
+            vi.reserve(col);
+            vi.push_back(0);
+            for (int j = 1; j < col; ++j) {
                 int pi = i - 1, pj = j - 1;
                 vi.push_back(matrix[pi][pj] + vvi[pi][j] + vi[pj] - vvi[pi][pj]);
             }
