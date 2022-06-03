@@ -2,13 +2,12 @@ class NumMatrix {
     vector<vector<int>> sums;
 public:
     NumMatrix(vector<vector<int>>& matrix) {
-        const int row = matrix.size();
-        const int col = matrix[0].size();
-        sums = vector<vector<int>>(row + 1, vector<int>(col + 1, 0));
-        for(int i = 1; i <= row; ++i) {
-            for(int j = 1; j <= col; ++j) {
+        int row = matrix.size() + 1, col = matrix[0].size() + 1;
+        sums = vector<vector<int>>(row, vector<int>(col, 0));
+        for(int i = 1; i < row; ++i) {
+            for(int j = 1; j < col; ++j) {
                 int pi = i - 1, pj = j - 1;
-                sums[i][j] = matrix[pi][pj] + sums[pi][j] + sums[i][pj] - sums[pi][pj] ;
+                sums[i][j] = matrix[pi][pj] + sums[pi][j] + sums[i][pj] - sums[pi][pj];
             }
         }
     }
