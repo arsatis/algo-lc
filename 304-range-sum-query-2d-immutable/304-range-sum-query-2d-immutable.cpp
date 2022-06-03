@@ -1,19 +1,23 @@
 class NumMatrix {
-    vector<vector<int>> sums;
+    vector<vector<int>> vvi;
 public:
     NumMatrix(vector<vector<int>>& matrix) {
         int row = matrix.size(), col = matrix[0].size();
-        sums = vector<vector<int>>(row + 1, vector<int>(col + 1, 0));
+        vvi.reserve(row + 1);
+        vvi.push_back(vector<int>(col + 1, 0));
         for (int i = 1; i <= row; ++i) {
+            vector<int> vi(1, 0);
+            vi.reserve(col + 1);
+            vvi.push_back(vi);
             for (int j = 1; j <= col; ++j) {
                 int pi = i - 1, pj = j - 1;
-                sums[i][j] = matrix[pi][pj] + sums[pi][j] + sums[i][pj] - sums[pi][pj];
+                vvi[i].push_back(matrix[pi][pj] + vvi[pi][j] + vvi[i][pj] - vvi[pi][pj]);
             }
         }
     }
 
     int sumRegion(int row1, int col1, int row2, int col2) {
-        return sums[++row2][++col2] - sums[row2][col1] - sums[row1][col2] + sums[row1][col1];
+        return vvi[++row2][++col2] - vvi[row2][col1] - vvi[row1][col2] + vvi[row1][col1];
     }
 };
 
