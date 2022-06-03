@@ -2,19 +2,14 @@ class NumMatrix:
 
     def __init__(self, matrix: List[List[int]]):
         m, n = len(matrix), len(matrix[0])
-        self.acc = [[0] * n for _ in range(m)]
-        for row in range(m):
-            row_sum = 0
-            for col in range(n):
-                upper_rect_sum = 0 if row == 0 else self.acc[row - 1][col]
-                row_sum += matrix[row][col]
-                self.acc[row][col] = row_sum + upper_rect_sum
+        self.sum = [[0] * (n + 1) for _ in range(m + 1)]
+        for r in range(1, m + 1):
+            for c in range(1, n + 1):
+                self.sum[r][c] = self.sum[r - 1][c] + self.sum[r][c - 1] - self.sum[r - 1][c - 1] + matrix[r - 1][c - 1]
 
-    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        upper_rect = 0 if row1 == 0 else self.acc[row1 - 1][col2]
-        left_rect = 0 if col1 == 0 else self.acc[row2][col1 - 1]
-        diag_rect = 0 if col1 == 0 or row1 == 0 else self.acc[row1 - 1][col1 - 1]
-        return self.acc[row2][col2] - upper_rect - left_rect + diag_rect
+    def sumRegion(self, r1: int, c1: int, r2: int, c2: int) -> int:
+        r1, c1, r2, c2 = r1 + 1, c1 + 1, r2 + 1, c2 + 1
+        return self.sum[r2][c2] - self.sum[r2][c1 - 1] - self.sum[r1 - 1][c2] + self.sum[r1 - 1][c1 - 1]
 
 # Your NumMatrix object will be instantiated and called as such:
 # obj = NumMatrix(matrix)
