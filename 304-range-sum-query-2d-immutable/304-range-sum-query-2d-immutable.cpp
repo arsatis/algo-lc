@@ -8,11 +8,11 @@ public:
         for (int i = 1; i <= row; ++i) {
             vector<int> vi(1, 0);
             vi.reserve(col + 1);
-            vvi.push_back(vi);
             for (int j = 1; j <= col; ++j) {
                 int pi = i - 1, pj = j - 1;
-                vvi[i].push_back(matrix[pi][pj] + vvi[pi][j] + vvi[i][pj] - vvi[pi][pj]);
+                vi.push_back(matrix[pi][pj] + vvi[pi][j] + vi[pj] - vvi[pi][pj]);
             }
+            vvi.push_back(vi);
         }
     }
 
