@@ -1,30 +1,27 @@
 class Solution {
 public:
     vector<vector<string>> solveNQueens(int n) {
-        std::vector<std::vector<std::string>> res;
-        std::vector<std::string> nQueens(n, std::string(n, '.'));
-        /*
-        flag[0] to flag[n - 1] indicates if the column had a queen before.
-        flag[n] to flag[3 * n - 2] indicates if the 45° diagonal had a queen before.
-        flag[3 * n - 1] to flag[5 * n - 3] indicates if the 135° diagonal had a queen before.
-        */
-        std::vector<int> flag(5 * n - 2, 1);
-        solveNQueens(res, nQueens, flag, 0, n);
-        return res;
+        vector<vector<string>> ans;
+        dfs(n, 0, vector<bool>(n), vector<bool>(2 * n - 1), vector<bool>(2 * n - 1),
+            vector<string>(n, string(n, '.')), ans);
+        return ans;
     }
 private:
-    void solveNQueens(std::vector<std::vector<std::string>> &res, std::vector<std::string> &nQueens, std::vector<int> &flag, int row, int &n) {
-        if (row == n) {
-            res.push_back(nQueens);
+    void dfs(int n, int i, vector<bool>&& cols, vector<bool>&& diag1,
+        vector<bool>&& diag2, vector<string>&& board,
+        vector<vector<string>>& ans) {
+        if (i == n) {
+            ans.push_back(board);
             return;
         }
-        for (int col = 0; col != n; ++col)
-            if (flag[col] && flag[n + row + col] && flag[4 * n - 2 + col - row]) {
-                flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 0;
-                nQueens[row][col] = 'Q';
-                solveNQueens(res, nQueens, flag, row + 1, n);
-                nQueens[row][col] = '.';
-                flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 1;
-            }
+        for (int j = 0; j < n; ++j) {
+            if (cols[j] || diag1[i + j] || diag2[j - i + n - 1])
+                continue;
+            board[i][j] = 'Q';
+            cols[j] = diag1[i + j] = diag2[j - i + n - 1] = true;
+            dfs(n, i + 1, move(cols), move(diag1), move(diag2), move(board), ans);
+            cols[j] = diag1[i + j] = diag2[j - i + n - 1] = false;
+            board[i][j] = '.';
+        }
     }
 };
