@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ans;
-        dfs(n, 0, vector<bool>(n), vector<bool>(2 * n - 1), vector<bool>(2 * n - 1),
+        dfs(n, 0, vector<bool>(n), vector<bool>(n << 1 - 1), vector<bool>(n << 1 - 1),
             vector<string>(n, string(n, '.')), ans);
         return ans;
     }
