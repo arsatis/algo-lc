@@ -12,8 +12,8 @@ public:
         if (headA == NULL || headB == NULL) return NULL;
         ListNode *ptr1 = headA, *ptr2 = headB;
 		while (ptr1 != ptr2) {
-			ptr1 = ptr1 == NULL ? headB : ptr1->next;
-            ptr2 = ptr2 == NULL ? headA : ptr2->next;
+			ptr1 = ptr1 ? ptr1->next : headB;
+            ptr2 = ptr2 ? ptr2->next : headA;
 		}
 		return ptr1;
     }
