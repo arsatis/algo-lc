@@ -5,3 +5,4 @@ class Solution:
             if target - num in d:
                 return [d[target - num] + 1, i + 1]
             d[num] = i
+        return []
