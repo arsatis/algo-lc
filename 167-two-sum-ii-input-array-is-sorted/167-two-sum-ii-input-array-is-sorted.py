@@ -3,5 +3,6 @@ class Solution:
         d = {}
         for i, num in enumerate(numbers):
             c = target - num
-            if c in d: return [d[c] + 1, i + 1]
+            if c in d:
+                return [d[c] + 1, i + 1]
             d[num] = i
