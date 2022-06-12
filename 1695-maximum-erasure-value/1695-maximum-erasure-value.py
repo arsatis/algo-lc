@@ -1,19 +1,14 @@
 class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
-        q, rolling, rolling_sum = deque([]), set(), 0
-        maximal = 0
-        for num in nums:
-            if num not in rolling:
-                q.append(num)
-                rolling.add(num)
-                rolling_sum += num
-            else:
-                while q[0] != num:
-                    popped = q.popleft()
-                    rolling.discard(popped)
-                    rolling_sum -= popped
-                popped = q.popleft()
-                q.append(num)
-            if rolling_sum > maximal:
-                maximal = rolling_sum
-        return maximal
+        s = set()
+        l, r, output, rolling_sum = 0, 0, 0, 0
+        while r < len(nums):
+            while nums[r] in s:
+                s.remove(nums[l])
+                rolling_sum -= nums[l]
+                l += 1
+            s.add(nums[r])
+            rolling_sum += nums[r]
+            output = max(output, rolling_sum)
+            r += 1
+        return output
