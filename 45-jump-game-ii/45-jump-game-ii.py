@@ -1,12 +1,11 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        n, start, end, step = len(nums), 0, 0, 0
-        while end < n - 1:
-            step += 1
-            maxend = end + 1
-            for i in range(start, end + 1):
-                if i + nums[i] >= n - 1:
-                    return step
-                maxend = max(maxend, i + nums[i])
-            start, end = end + 1, maxend
-        return step
+        l, r, steps = 0, 0, 0
+        while r < len(nums) - 1:
+            steps += 1
+            new_r = r
+            for i in range(l, r + 1):
+                if i == len(nums): return steps
+                new_r = max(new_r, i + nums[i])
+            l, r = r + 1, new_r
+        return steps
