@@ -7,5 +7,6 @@ class Solution:
             while dq and nums[dq[-1]] <= nums[i]:
                 dq.pop()
             dq.append(i)
-            if i - dq[0] >= k: dq.popleft()
+            if i - dq[0] >= k:
+                dq.popleft()
         return nums[n - 1]
