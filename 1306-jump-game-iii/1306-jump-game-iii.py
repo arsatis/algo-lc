@@ -1,7 +1,7 @@
 class Solution:
     def canReach(self, arr: List[int], start: int) -> bool:
         visited = set([start])
-        stack = [start]
+        stack = deque([start])
         while stack:
             idx = stack.pop()
             if arr[idx] == 0: return True
