@@ -1,6 +1,7 @@
 class Solution:
     def longestStrChain(self, words: List[str]) -> int:
-        dp, result = {}, 1
+        dp = {}
+        result = 1
         for word in sorted(words, key=len):
             dp[word] = 1
             for i in range(len(word)):
