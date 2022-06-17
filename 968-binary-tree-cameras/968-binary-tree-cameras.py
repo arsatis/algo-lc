@@ -13,6 +13,5 @@ class Solution:
                 self.res += 1
                 return 1
             return 2 if l == 1 or r == 1 else 0
-        
         self.res = 0
         return (dfs(root) == 0) + self.res
