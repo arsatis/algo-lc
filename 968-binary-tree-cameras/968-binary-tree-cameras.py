@@ -7,7 +7,8 @@
 class Solution:
     def minCameraCover(self, root: Optional[TreeNode]) -> int:
         def dfs(root):
-            if not root: return 2
+            if not root:
+                return 2
             l, r = dfs(root.left), dfs(root.right)
             if l == 0 or r == 0:
                 self.res += 1
