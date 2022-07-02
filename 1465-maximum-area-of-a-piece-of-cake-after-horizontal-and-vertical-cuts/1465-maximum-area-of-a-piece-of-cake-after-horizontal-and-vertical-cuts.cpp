@@ -17,8 +17,8 @@ public:
             vcurr = i;
         }
         
-        long long int hz = (long long int) h_max_diff;
-        long long int vz = (long long int) v_max_diff;
-        return (int) ((hz * vz) % 1000000007);
+        long long int h_max_long = (long long int) h_max_diff;
+        long long int v_max_long = (long long int) v_max_diff;
+        return (int) ((h_max_long * v_max_long) % 1000000007);
     }
 };
