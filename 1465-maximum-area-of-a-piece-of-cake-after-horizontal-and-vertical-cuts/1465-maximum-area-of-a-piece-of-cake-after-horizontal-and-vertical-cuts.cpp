@@ -1,10 +1,4 @@
 class Solution {
-    int prod_mod(int &h_max, int &v_max) {
-        long long int h = (long long int) h_max;
-        long long int v = (long long int) v_max;
-        return (int) ((h * v) % 1000000007);
-    }
-    
 public:
     int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
         int hcurr = h, vcurr = w,
@@ -23,6 +17,8 @@ public:
             vcurr = i;
         }
         
-        return prod_mod(h_max_diff, v_max_diff);
+        long long int hz = (long long int) h_max_diff;
+        long long int vz = (long long int) v_max_diff;
+        return (int) ((hz * vz) % 1000000007);
     }
 };
