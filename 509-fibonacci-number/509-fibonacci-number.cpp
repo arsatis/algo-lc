@@ -1,7 +1,8 @@
 class Solution {
 public:
     int fib(int n) {
-        if (!n) return 0;
+        if (!n)
+            return 0;
         int a[n + 1];
         a[0] = 0;
         a[1] = 1;
