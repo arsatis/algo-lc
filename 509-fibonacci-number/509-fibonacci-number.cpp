@@ -1,12 +1,12 @@
 class Solution {
 public:
     int fib(int n) {
-        if (n == 0) return 0;
-        int x = 0, y = 1;
-        for (; n > 1; --n) {
-            y += x;
-            x = y - x;
-        }
-        return y;
+        if (!n) return 0;
+        int a[n + 1];
+        a[0] = 0;
+        a[1] = 1;
+        for (int i = 2; i <= n; ++i)
+            a[i] = a[i - 1] + a[i - 2];
+        return a[n];
     }
 };
