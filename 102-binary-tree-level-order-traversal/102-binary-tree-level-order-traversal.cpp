@@ -17,7 +17,6 @@ public:
         q.push_back(pair<TreeNode*, int>(root, 0));
         vector<vector<int>> output(1, vector<int>());
         int curr = 0;
-        
         while (q.size() > 0) {
             auto &hi = q.front();
             if (curr != hi.second) {
