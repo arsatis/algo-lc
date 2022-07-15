@@ -12,8 +12,7 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        if (!root)
-            return vector<vector<int>>();
+        if (!root) return vector<vector<int>>();
         
         deque<pair<TreeNode*, int>> q;
         q.push_back(pair<TreeNode*, int>(root, 0));
