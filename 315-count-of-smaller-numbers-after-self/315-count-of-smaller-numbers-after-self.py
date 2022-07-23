@@ -1,16 +1,10 @@
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
-        def sort(indexes):
-            half = len(indexes) // 2
-            if half:
-                left, right = sort(indexes[:half]), sort(indexes[half:])
-                for i in range(len(indexes))[::-1]:
-                    if not right or left and nums[left[-1]] > nums[right[-1]]:
-                        smaller[left[-1]] += len(right)
-                        indexes[i] = left.pop()
-                    else:
-                        indexes[i] = right.pop()
-            return indexes
-        smaller = [0] * len(nums)
-        sort(list(range(len(nums))))
-        return smaller
+        n = len(nums)
+        ans = [0] * n
+        sorted_list = [nums[-1]]
+        for i in range(n - 2, -1, -1):
+            idx = bisect.bisect_left(sorted_list, nums[i])
+            ans[i] = idx
+            bisect.insort_left(sorted_list, nums[i])
+        return ans
