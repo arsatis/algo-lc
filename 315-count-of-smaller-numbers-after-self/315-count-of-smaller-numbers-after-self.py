@@ -1,16 +1,16 @@
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
-        def sort(enum):
-            half = len(enum) // 2
+        def sort(indexes):
+            half = len(indexes) // 2
             if half:
-                left, right = sort(enum[:half]), sort(enum[half:])
-                for i in range(len(enum))[::-1]:
-                    if not right or left and left[-1][1] > right[-1][1]:
-                        counts[left[-1][0]] += len(right)
-                        enum[i] = left.pop()
+                left, right = sort(indexes[:half]), sort(indexes[half:])
+                for i in range(len(indexes))[::-1]:
+                    if not right or left and nums[left[-1]] > nums[right[-1]]:
+                        smaller[left[-1]] += len(right)
+                        indexes[i] = left.pop()
                     else:
-                        enum[i] = right.pop()
-            return enum
-        counts = [0] * len(nums)
-        sort(list(enumerate(nums)))
-        return counts
+                        indexes[i] = right.pop()
+            return indexes
+        smaller = [0] * len(nums)
+        sort(list(range(len(nums))))
+        return smaller
