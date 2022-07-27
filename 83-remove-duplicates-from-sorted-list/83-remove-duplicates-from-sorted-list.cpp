@@ -11,7 +11,6 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        // iterative
         ListNode* curr = head;
         while (curr) {
             ListNode* temp = curr->next;
