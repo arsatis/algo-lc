@@ -11,9 +11,13 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        // recursive
-        if (!head || !head->next) return head;
-        head->next = deleteDuplicates(head->next);
-        return head->val == head->next->val ? head->next : head;
+        // iterative
+        ListNode* curr = head;
+        while (curr) {
+            ListNode* temp = curr->next;
+            while (temp && temp->val == curr->val) temp = temp->next;
+            curr = curr->next = temp;
+        }
+        return head;
     }
 };
