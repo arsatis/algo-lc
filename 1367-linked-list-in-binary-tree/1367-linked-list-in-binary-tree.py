@@ -11,15 +11,21 @@
 #         self.right = right
 class Solution:
     def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
-        def checkValidity(listnode, treenode):
-            if not listnode: return True
-            if not treenode or listnode.val != treenode.val: return False
-            return checkValidity(listnode.next, treenode.left) or checkValidity(listnode.next, treenode.right)
+        head_list = []
+        while head:
+            head_list.append(head.val)
+            head = head.next
+        m = len(head_list)
+        seen = []
+        def dfs(node):
+            if node == None:
+                return False
+            seen.append(node.val)
+            if seen[-m:] == head_list:
+                return True
+            elif dfs(node.left) or dfs(node.right):
+                return True
+            seen.pop()
+            return False
         
-        q = deque([root])
-        while q:
-            node = q.popleft()
-            if node.val == head.val and checkValidity(head, node): return True
-            if node.left: q.append(node.left)
-            if node.right: q.append(node.right)
-        return False
+        return dfs(root)
