@@ -21,8 +21,8 @@
  */
 class Solution {
     bool checkValidity(ListNode* ln, TreeNode* tn) {
-        if (ln == nullptr) return true;
-        if (tn == nullptr || ln->val != tn->val) return false;
+        if (!ln) return true;
+        if (!tn || ln->val != tn->val) return false;
         return checkValidity(ln->next, tn->left) || checkValidity(ln->next, tn->right);
     }
 public:
