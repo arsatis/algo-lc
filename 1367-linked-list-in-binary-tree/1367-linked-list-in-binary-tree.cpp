@@ -27,15 +27,7 @@ class Solution {
     }
 public:
     bool isSubPath(ListNode* head, TreeNode* root) {
-        std::deque<TreeNode*> q;
-        q.push_back(root);
-        while (q.size() > 0) {
-            TreeNode* node = q.front();
-            q.pop_front();
-            if (node->val == head->val && checkValidity(head, node)) return true;
-            if (node->left) q.push_back(node->left);
-            if (node->right) q.push_back(node->right);
-        }
-        return false;
+        if (!root) return false;
+        return checkValidity(head, root) || isSubPath(head, root->left) || isSubPath(head, root->right);
     }
 };
