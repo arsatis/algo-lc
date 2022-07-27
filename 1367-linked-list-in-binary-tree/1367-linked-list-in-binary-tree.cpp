@@ -20,12 +20,12 @@
  * };
  */
 class Solution {
+public:
     bool checkValidity(ListNode* ln, TreeNode* tn) {
         if (!ln) return true;
         if (!tn || ln->val != tn->val) return false;
         return checkValidity(ln->next, tn->left) || checkValidity(ln->next, tn->right);
     }
-public:
     bool isSubPath(ListNode* head, TreeNode* root) {
         if (!root) return false;
         return checkValidity(head, root) || isSubPath(head, root->left) || isSubPath(head, root->right);
