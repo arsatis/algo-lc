@@ -12,6 +12,7 @@
 class Solution {
 public:
     int minDepth(TreeNode* root) {
+        ios_base::sync_with_stdio(false);
         if (!root) return 0;
         return helper(root);
     }
