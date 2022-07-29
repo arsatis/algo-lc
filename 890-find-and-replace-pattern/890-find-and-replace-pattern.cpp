@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<string> findAndReplacePattern(vector<string> &words, string p) {
+        ios_base::sync_with_stdio(false);
         vector<string> res;
         string s = F(p);
         for (string &w : words) if (F(w) == s) res.push_back(w);
