@@ -1,7 +1,7 @@
 class Solution {
 public:
     int romanToInt(string s) {
-        char prev = '\0';
+        char prev;
         int output = 0;
         for (auto it = s.end() - 1; it != s.begin() - 1; --it) {
             if (*it == 'M') output += 1000;
