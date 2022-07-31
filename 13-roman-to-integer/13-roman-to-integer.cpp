@@ -16,7 +16,7 @@ public:
                 else output += 10;
             }
             else if (s[i] == 'V') output += 5;
-            else if (s[i] == 'I') {
+            else {
                 if (prev == 'X' || prev == 'V') output -= 1;
                 else output += 1;
             }
