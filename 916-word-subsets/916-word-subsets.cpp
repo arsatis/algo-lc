@@ -1,19 +1,17 @@
 class Solution {
 public:
-    vector<string> wordSubsets(vector<string>& A, vector<string>& B) {
+    vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
+        ios_base::sync_with_stdio(false);
         vector<int> count(26), tmp(26);
         int i;
-        for (string b : B) {
+        for (string& b : words2) {
             tmp = counter(b);
-            for (i = 0; i < 26; ++i)
-                count[i] = max(count[i], tmp[i]);
+            for (i = 0; i < 26; ++i) count[i] = max(count[i], tmp[i]);
         }
         vector<string> res;
-        for (string a : A) {
+        for (string& a : words1) {
             tmp = counter(a);
-            for (i = 0; i < 26; ++i)
-                if (tmp[i] < count[i])
-                    break;
+            for (i = 0; i < 26; ++i) if (tmp[i] < count[i]) break;
             if (i == 26) res.push_back(a);
         }
         return res;
