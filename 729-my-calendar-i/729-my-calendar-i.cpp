@@ -1,6 +1,12 @@
 class MyCalendar {
     map<int, int> books;
 public:
+    MyCalendar() {
+        ios_base::sync_with_stdio(false);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     bool book(int start, int end) {
         auto next = books.lower_bound(start);
         if (next != books.end() && next->first < end) return false;
