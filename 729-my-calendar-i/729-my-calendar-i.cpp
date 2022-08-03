@@ -8,9 +8,22 @@ public:
     }
     
     bool book(int start, int end) {
-        auto next = books.lower_bound(start);
-        if (next != books.end() && next->first < end) return false;
-        if (next != books.begin() && start < (--next)->second) return false;
+        auto it = books.lower_bound(start);
+        
+        if (it != books.end()) {
+            int left = max(start, it->first);
+            int right = min(end, it->second);
+            if (left < right) return false;
+        }
+        
+        if (it != books.begin()) {
+            it--;
+            int left = max(start, it->first);
+            int right = min(end, it->second);
+            if (left < right) return false;
+            it++;
+        }
+        
         books[start] = end;
         return true;
     }
