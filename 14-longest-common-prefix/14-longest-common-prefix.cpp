@@ -1,7 +1,7 @@
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
-        ios_base::sync_with_stdio(false);
+        ios_base::sync_with_stdio(0);
 
         int idx = 0;
         while (idx < strs[0].size()) {
