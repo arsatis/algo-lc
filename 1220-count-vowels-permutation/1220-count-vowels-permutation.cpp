@@ -2,7 +2,6 @@ class Solution {
 public:
     int countVowelPermutation(int n) {
         if (n == 1) return 5;
-        
         int mod = 1e9 + 7, i = 0;
         long dp[2][5];
         
