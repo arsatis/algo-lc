@@ -6,12 +6,8 @@ public:
     }
     
     bool book(int start, int end) {
-        for (auto &date : overlap)
-            if (start < date.second && end > date.first)
-                return false;
-        for (auto &date : calendar)
-            if (start < date.second && end > date.first)
-                overlap.emplace_back(max(start, date.first), min(end, date.second));
+        for (auto &date : overlap) if (start < date.second && end > date.first) return false;
+        for (auto &date : calendar) if (start < date.second && end > date.first) overlap.emplace_back(max(start, date.first), min(end, date.second));
         calendar.emplace_back(start, end);
         return true;
     }
