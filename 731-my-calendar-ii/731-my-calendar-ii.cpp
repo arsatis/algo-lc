@@ -1,20 +1,20 @@
 class MyCalendarTwo {
-    map<int, int> books;
+    vector<pair<int,int>> overlap, calendar;
 public:
     MyCalendarTwo() {
         ios_base::sync_with_stdio(false);
     }
     
     bool book(int start, int end) {
-        ++books[start]; --books[end];
-        int booked = 0;
-        for (auto it = books.begin(); it != books.end(); ++it) {
-            booked += it->second;
-            if (booked >= 3) {
-                --books[start]; ++books[end];
+        for (auto &date : overlap)
+            if (start < date.second && end > date.first)
                 return false;
-            }
-        }
+        
+        for (auto &date : calendar)
+            if (start < date.second && end > date.first)
+                overlap.emplace_back(max(start, date.first), min(end, date.second));
+        
+        calendar.emplace_back(start,end);
         return true;
     }
 };
