@@ -1,8 +1,8 @@
 class Solution {
 public:
     int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
-        int pigs = 0;
-        while (pow(minutesToTest / minutesToDie + 1, pigs) < buckets) ++pigs;
-        return pigs;
+        int days = minutesToTest / minutesToDie, x = days + 1;
+        double a = log10(buckets), b = log10(x);
+        return ceil(a / b);
     }
 };
