@@ -14,6 +14,7 @@ public:
             dp[1 - i][4] = (dp[i][2] + dp[i][3]) % mod;
             i = 1 - i;
         }
+        
         for (int j = 1; j < 5; ++j) dp[i][0] += dp[i][j];
         return dp[i][0] % mod;
     }
