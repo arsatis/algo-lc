@@ -10,21 +10,21 @@
  * };
  */
 class Solution {
-    vector<int> nums;
+    vector<int> x;
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        this->nums = nums;
+        this->x = nums;
         return helper(0, nums.size());
     }
     
     TreeNode* helper(int left, int right) {
         if (right <= left) return NULL;
-        if (right - left == 1) return new TreeNode(nums[left]);
+        if (right - left == 1) return new TreeNode(x[left]);
         
         int mid = (left + right) / 2;
         TreeNode* l = helper(left, mid);
         TreeNode* r = helper(mid + 1, right);
-        TreeNode* node = new TreeNode(nums[mid], l, r);
+        TreeNode* node = new TreeNode(x[mid], l, r);
         return node;
     }
 };
