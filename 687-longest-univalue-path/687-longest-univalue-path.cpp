@@ -12,18 +12,14 @@
 class Solution {
 public:
     int longestUnivaluePath(TreeNode* root) {
-        int mx = 0;
-        helper(root, mx);
-        return mx;
+        if (!root) return 0;
+        int lh = helper(root->left, root->val);
+        int rh = helper(root->right, root->val);
+        return max(lh + rh, max(longestUnivaluePath(root->left), longestUnivaluePath(root->right)));
     }
     
-    int helper(TreeNode* node, int& mx) {
-        if (!node) return 0;
-        int leftPath = helper(node->left, mx),
-            rightPath = helper(node->right, mx);
-        int left = node->left && node->left->val == node->val ? leftPath + 1 : 0,
-            right = node->right && node->right->val == node->val ? rightPath + 1 : 0;
-        mx = max(mx, left + right);
-        return max(left, right);
+    int helper(TreeNode* node, int val) {
+        if (!node || node->val != val) return 0;
+        return 1 + max(helper(node->left, val), helper(node->right, val));
     }
 };
