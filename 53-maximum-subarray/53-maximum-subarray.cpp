@@ -1,9 +1,11 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int currSum = 0;
-        int maxSum = INT_MIN;
-        
+        ios_base::sync_with_stdio(0);
+        cout.tie(0);
+        cin.tie(0);
+
+        int currSum = 0, maxSum = INT_MIN;
         for (auto& n : nums) {
             currSum += n;
             maxSum = max(maxSum, currSum);
