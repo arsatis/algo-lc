@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        ios_base::sync_with_stdio(false);
+        ios_base::sync_with_stdio(0);
         cin.tie(0);
         cout.tie(0);
         vector<int> m1(29, 0), m2(29, 0);
