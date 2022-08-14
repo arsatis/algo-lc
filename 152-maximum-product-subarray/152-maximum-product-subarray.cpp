@@ -1,27 +1,19 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        int maxPos = nums[0], currPos = 1, currNeg = 1;
+        int maxPos = nums[0], currPos = -20, currNeg = 20;
         for (auto& n : nums) {
-            if (n == 0) {
-                currPos = 1;
-                currNeg = 1;
-                maxPos = max(maxPos, 0);
-            } else if (n > 0) {
-                currPos *= n;
-                currNeg *= n;
-                maxPos = max(maxPos, currPos);
+            int newPos, newNeg;
+            if (n < 0) {
+                newPos = max(n, n * currNeg);
+                newNeg = min(n, n * currPos);
             } else {
-                if (currNeg > 0) {
-                    currNeg *= n;
-                    currPos = 1;
-                } else {
-                    int temp = currPos * n;
-                    currPos = currNeg * n;
-                    currNeg = temp;
-                    maxPos = max(maxPos, currPos);
-                }
+                newPos = max(n, n * currPos);
+                newNeg = min(n, n * currNeg);
             }
+            currPos = newPos;
+            currNeg = newNeg;
+            maxPos = max(maxPos, currPos);
         }
         return maxPos;
     }
