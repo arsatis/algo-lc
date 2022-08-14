@@ -2,8 +2,6 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         sort(intervals.begin(), intervals.end(), [](auto& i, auto& j) {
             return i[1] < j[1];
@@ -15,7 +13,6 @@ public:
             else
                 output.back()[0] = min(output.back()[0], intervals[i][0]);
         }
-        reverse(output.begin(), output.end());
         return output;
     }
 };
