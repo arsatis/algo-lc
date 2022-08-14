@@ -1,6 +1,10 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         sort(intervals.begin(), intervals.end(), [](auto& i, auto& j) {
             return i[1] < j[1];
         });
