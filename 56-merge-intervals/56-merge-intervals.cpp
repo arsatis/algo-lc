@@ -15,6 +15,7 @@ public:
             else
                 output.back()[0] = min(output.back()[0], intervals[i][0]);
         }
+        reverse(output.begin(), output.end());
         return output;
     }
 };
