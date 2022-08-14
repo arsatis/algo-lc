@@ -1,27 +1,17 @@
 class Solution {
 public:
-    vector<vector<int>> merge(vector<vector<int>>& v) {
-        sort(v.begin(), v.end());
-        vector<vector<int>> res;
-        stack<pair<int, int>> s;
-        
-        for (int i = 0; i < v.size(); ++i) {
-            int cs = v[i][0], ce = v[i][1];
-            if (s.size() == 0) s.push({cs, ce});
-            else {
-                int ps = s.top().first, pe = s.top().second;
-                if (pe >= cs) {
-                    s.pop();
-                    s.push({ps, max(ce,pe)});
-                }
-                else s.push({cs, ce});
-            }
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(), intervals.end(), [](auto& i, auto& j) {
+            return i[1] < j[1];
+        });
+        vector<vector<int>> output;
+        for (int i = intervals.size() - 1; i >= 0; --i) {
+            if (output.size() == 0 || output.back()[0] > intervals[i][1])
+                output.push_back(intervals[i]);
+            else
+                output.back()[0] = min(output.back()[0], intervals[i][0]);
         }
-        while (s.size()) {
-            res.push_back({s.top().first, s.top().second});
-            s.pop();
-        }
-        reverse(res.begin(), res.end()); 
-        return res;
+        reverse(output.begin(), output.end());
+        return output;
     }
 };
