@@ -5,8 +5,8 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        unordered_map<int, int> charCount;
-        for (auto& c : s) ++charCount[c];
+        int charCount[128] = { 0 };
+        for (char& c : s) ++charCount[c];
         for (int i = 0; i < s.size(); ++i)
             if (charCount[s[i]] == 1) return i;
         return -1;
