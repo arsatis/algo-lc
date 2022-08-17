@@ -2,8 +2,6 @@ class Solution {
 public:
     int uniqueMorseRepresentations(vector<string>& words) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         string mappings[26] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
         unordered_set<string> unique;
