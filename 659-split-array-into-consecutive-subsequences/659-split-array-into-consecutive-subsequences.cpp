@@ -2,6 +2,8 @@ class Solution {
 public:
     bool isPossible(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
         pq.push({nums[0], 1});
