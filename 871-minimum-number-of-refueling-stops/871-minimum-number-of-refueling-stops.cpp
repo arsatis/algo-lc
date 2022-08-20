@@ -6,7 +6,7 @@ public:
         cout.tie(0);
         
         priority_queue<int> q;
-        long f = startFuel, ans = 0;
+        int f = startFuel, ans = 0;
         for (int i = 0; i < s.size(); ++i) {
              if (f >= s[i][0]) q.push(s[i][1]);
              else {
