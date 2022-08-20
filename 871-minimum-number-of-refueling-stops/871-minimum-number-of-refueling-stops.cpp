@@ -1,6 +1,10 @@
 class Solution {
 public:
     int minRefuelStops(int target, int startFuel, vector<vector<int>>& s) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         priority_queue<int> q;
         long f = startFuel, ans = 0;
         for (int i = 0; i < s.size(); ++i) {
