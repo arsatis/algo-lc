@@ -9,6 +9,10 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         ListNode *fast = head, *slow = head;
         while (fast && fast->next) {
             fast = fast->next->next;
