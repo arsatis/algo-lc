@@ -12,15 +12,23 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        return helper(nullptr, head);
-    }
-    
-    ListNode* helper(ListNode* prev, ListNode* curr) {
-        if (!curr) return prev;
-        ListNode* temp = curr->next;
-        curr->next = prev;
-        return helper(curr, temp);
+        
+        if (!head) return nullptr;
+        
+        stack<ListNode*> s;
+        while (head) {
+            s.push(head);
+            head = head->next;
+        }
+        
+        ListNode* dummy = new ListNode();
+        ListNode* curr = dummy;
+        while (s.size() > 0) {
+            curr->next = s.top();
+            s.pop();
+            curr = curr->next;
+        }
+        curr->next = nullptr;
+        return dummy->next;
     }
 };
