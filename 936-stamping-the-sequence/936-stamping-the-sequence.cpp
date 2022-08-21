@@ -19,6 +19,8 @@ public:
 	}
     
 	vector<int> movesToStamp(string &s, string &t) {
+        ios_base::sync_with_stdio(0);
+        
 		int st = 0;
 		vector<bool> visited(t.size(), false);
 		vector<int> res;
