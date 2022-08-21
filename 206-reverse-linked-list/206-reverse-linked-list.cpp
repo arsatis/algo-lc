@@ -11,16 +11,12 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        return helper(nullptr, head);
-    }
-    
-    ListNode* helper(ListNode* prev, ListNode* curr) {
-        if (!curr) return prev;
-        ListNode* temp = curr->next;
-        curr->next = prev;
-        return helper(curr, temp);
+        if (!head || !head->next) return head;
+        
+        ListNode* newHead = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        
+        return newHead;
     }
 };
