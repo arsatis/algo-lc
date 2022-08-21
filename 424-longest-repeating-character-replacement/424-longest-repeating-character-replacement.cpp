@@ -1,16 +1,18 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        unordered_map<char, int> charCounts;
-        int curr = 0, maxCount = 0;
-        for (int i = 0; i < s.size(); ++i) {
-            ++charCounts[s[i]];
-            maxCount = max(maxCount, charCounts[s[i]]);
-            while (i - curr + 1 - maxCount > k) {
-                --charCounts[s[curr]];
-                ++curr;
+        int count[26];
+        fill(count, count + 26, 0);
+        
+        int start = 0, max_count = 0, max_length = 0;
+        for (int end = 0; end < s.size(); ++end) {
+            max_count = max(max_count, ++count[s[end] - 'A']);
+            if (end - start + 1 - max_count > k) {
+                --count[s[start] - 'A'];
+                ++start;
             }
+            max_length = max(max_length, end - start + 1);
         }
-        return s.size() - curr;
+        return max_length;
     }
 };
