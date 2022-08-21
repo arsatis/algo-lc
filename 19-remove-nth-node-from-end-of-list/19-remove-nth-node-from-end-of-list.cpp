@@ -11,6 +11,8 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ios_base::sync_with_stdio(0);
+        
         ListNode *slow = head, *fast = head, *prev = head;
         for (int i = 1; i < n; ++i) fast = fast->next;
         
@@ -21,7 +23,6 @@ public:
         }
         if (slow == head) head = head->next;
         else if (prev->next) prev->next = slow->next;
-        delete slow;
         return head;
     }
 };
