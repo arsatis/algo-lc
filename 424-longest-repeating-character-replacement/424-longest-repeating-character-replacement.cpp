@@ -1,6 +1,10 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         int count[26];
         fill(count, count + 26, 0);
         
