@@ -3,9 +3,8 @@ public:
     int missingNumber(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
         
-        int ans = 0;
-        for (int& num : nums) ans ^= num;
-        for (int i = 1; i <= nums.size(); ++i) ans ^= i;
+        int ans = nums.size();
+        for (int i = 0; i < nums.size(); ++i) ans ^= (nums[i] ^ i);
         return ans;
     }
 };
