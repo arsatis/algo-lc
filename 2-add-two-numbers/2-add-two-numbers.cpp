@@ -11,6 +11,10 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         ListNode* head = new ListNode((l1->val + l2->val) % 10);
         ListNode *p = l1->next, *q = l2->next, *r = head;
         int C = (l1->val + l2->val) / 10;
