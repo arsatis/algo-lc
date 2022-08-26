@@ -1,6 +1,8 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
+        ios_base::sync_with_stdio(0);
+        
         int len = 0, sum1 = 0, sum2 = 0;
     
         for (int i = 0; i < nums.size(); ++i) sum2 += nums[i];
