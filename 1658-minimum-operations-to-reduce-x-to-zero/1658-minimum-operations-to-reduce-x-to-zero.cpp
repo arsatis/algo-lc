@@ -2,6 +2,8 @@ class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int len = 0, sum1 = 0, sum2 = 0;
     
