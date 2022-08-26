@@ -1,8 +1,35 @@
 class Solution {
 public:
-    bool isMatch(string s, string p) {
-        if (p.empty()) return s.empty();
-        if ('*' == p[1]) return (isMatch(s, p.substr(2)) || !s.empty() && (s[0] == p[0] || '.' == p[0]) && isMatch(s.substr(1), p));
-        else return !s.empty() && (s[0] == p[0] || '.' == p[0]) && isMatch(s.substr(1), p.substr(1));
+    bool check(int i, int j, const string &text, const string &pattern, vector<vector<int>> &lookupTable){
+        if (i >= text.size() && j >= pattern.size()) return true;
+        if (i >= text.size()) {
+            if (pattern[j] == '*') return check(i, j + 1, text, pattern, lookupTable);
+            else if (j + 1 < pattern.size() && pattern[j + 1] == '*') return check(i, j + 2, text, pattern, lookupTable);
+            else return false;
+        }
+        if (j >= pattern.size()) return false;
+        if (lookupTable[i][j] != -1) return lookupTable[i][j] == 1 ? true : false;
+        
+        bool match = false;
+        if (j + 1 < pattern.size() && pattern[j + 1]=='*') {
+            if (text[i] == pattern[j] || pattern[j] == '.') {
+                match |= check(i + 1, j + 2, text, pattern, lookupTable);
+                match |= check(i + 1, j, text, pattern, lookupTable);
+            }
+            match |= check(i, j + 2, text, pattern, lookupTable);
+        } else if (pattern[j] == '.' || text[i] == pattern[j]) {
+            match |= check(i + 1, j + 1, text, pattern, lookupTable);
+        } else {
+            lookupTable[i][j] = match ? 1 : 0; 
+            return lookupTable[i][j] == 1 ? true: false;
+        }
+        
+        lookupTable[i][j] = match ? 1 : 0; 
+        return lookupTable[i][j] == 1 ? true : false;
+    }
+    
+    bool isMatch(string &s, string &p) {
+        vector<vector<int>> lookupTable(s.size(), vector<int>(p.size(), -1));
+        return check(0, 0, s, p, lookupTable);   
     }
 };
