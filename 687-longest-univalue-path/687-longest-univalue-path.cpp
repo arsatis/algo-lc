@@ -11,9 +11,9 @@
  */
 class Solution {
 public:
-    pair<int, int> sol(TreeNode* root, int& ans) {
+    pair<int, int> f(TreeNode* root, int& ans) {
         if (!root) return { -1001, -1 };
-        pair<int, int> p1 = sol(root->left, ans), p2 = sol(root->right, ans);
+        pair<int, int> p1 = f(root->left, ans), p2 = f(root->right, ans);
         int l = 0, r = 0;
         
         if (root->val == p1.first) l += (p1.second + 1);
@@ -28,7 +28,7 @@ public:
         cout.tie(0);
         
         int ans = 0;
-        sol(root, ans);
+        f(root, ans);
         return ans;
     }
 };
