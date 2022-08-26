@@ -1,14 +1,13 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
-        int i, len = 0, sum1 = 0, sum2 = 0;
+        int len = 0, sum1 = 0, sum2 = 0;
     
-        for (i = 0; i < nums.size(); ++i) sum2 += nums[i];
+        for (int i = 0; i < nums.size(); ++i) sum2 += nums[i];
         sum2 -= x;
         if (sum2 == 0) return nums.size();
 
-        i = 0;
-        for (int j = 0; j < nums.size(); ++j) {
+        for (int i = 0, j = 0; j < nums.size(); ++j) {
             sum1 += nums[j];
             while (i < nums.size() && sum1 > sum2) sum1 -= nums[i++];
             if (sum1 == sum2) len = max(len, j - i + 1);
