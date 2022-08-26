@@ -11,16 +11,20 @@
  */
 class Solution {
 public:
-    int height(TreeNode* root, int data){
-        if (!root) return 0;
-        if (root->val != data) return 0;
-        return 1 + max(height(root->left, data), height(root->right, data));
+    pair<int, int> sol(TreeNode* root, int& ans) {
+        if (!root) return { -1001, -1 };
+        pair<int, int> p1 = sol(root->left, ans), p2 = sol(root->right, ans);
+        int l = 0, r = 0;
+        
+        if (root->val == p1.first) l += (p1.second + 1);
+        if (root->val == p2.first) r += (p2.second + 1);
+        ans = max(ans, l + r);
+        return { root->val, max(l, r) };
     }
     
     int longestUnivaluePath(TreeNode* root) {
-        if (!root) return 0;
-        int lh = height(root->left, root->val);
-        int rh = height(root->right, root->val);
-        return max(lh + rh, max(longestUnivaluePath(root->left), longestUnivaluePath(root->right)));
+        int ans = 0;
+        sol(root, ans);
+        return ans;
     }
 };
