@@ -29,6 +29,10 @@ public:
     }
     
     bool isMatch(string &s, string &p) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         vector<vector<int>> lookupTable(s.size(), vector<int>(p.size(), -1));
         return check(0, 0, s, p, lookupTable);   
     }
