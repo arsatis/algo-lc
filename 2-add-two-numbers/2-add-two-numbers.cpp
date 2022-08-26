@@ -11,24 +11,19 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* temp = new ListNode(), *curr = temp;
-        int carry = 0, sum = 0, n1 = 0, n2 = 0;
+        ListNode* head = new ListNode((l1->val + l2->val) % 10);
+        ListNode *p = l1->next, *q = l2->next, *r = head;
+        int C = (l1->val + l2->val) / 10;
         
-        while (l1 || l2 || carry != 0) {
-            if (!l1) n1 = 0;
-            else n1 = l1->val;
-            
-            if (!l2) n2 = 0;
-            else n2 = l2->val;
-            
-            sum = carry + n2 + n1;
-            carry = sum / 10;
-            curr->next = new ListNode(sum % 10);
-            curr = curr->next;
-            
-            if (l1) l1 = l1->next;
-            if (l2) l2 = l2->next;
+        while (p || q || C) {
+            int val = (p ? p->val : 0) + (q ? q->val : 0) + C;
+            C = val / 10;
+            r->next = new ListNode(val % 10);
+            r = r->next;
+            p = p ? p->next : p;
+            q = q ? q->next : q;
         }
-        return temp->next;
+        
+        return head;
     }
 };
