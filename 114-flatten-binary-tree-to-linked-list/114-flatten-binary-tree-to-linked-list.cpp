@@ -10,17 +10,21 @@
  * };
  */
 class Solution {
+    TreeNode* head = nullptr, *prev = nullptr;
 public:
-    void flatten(TreeNode* root) {
-        while (root) {
-            if (root->left && root->right) {
-                TreeNode* t = root->left;
-                while (t->right) t = t->right;
-                t->right = root->right;
-            } 
-            if (root->left) root->right = root->left;
+    void dfs(TreeNode* root) {
+        if (!root) return;
+        dfs(root->right);
+        dfs(root->left);
+        if (!prev) head = root;
+        else {
+            root->right = prev;
             root->left = nullptr;
-            root = root->right;
         }
+        prev = root;
+    }
+    
+    void flatten(TreeNode* root) {
+        dfs(root);
     }
 };
