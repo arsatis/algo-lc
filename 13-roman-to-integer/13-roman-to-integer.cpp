@@ -11,6 +11,10 @@ class Solution {
     }
 public:
     int romanToInt(string s)  {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         int output = 0;
         for (int i = 0; i < s.size(); ++i) {
            if (i < s.size() - 1 && f(s[i]) < f(s[i + 1])) output -= f(s[i]);
