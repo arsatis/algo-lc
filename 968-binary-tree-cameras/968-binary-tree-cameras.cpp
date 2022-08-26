@@ -11,12 +11,7 @@
  */
 class Solution {
     int res = 0;
-public:
-    int minCameraCover(TreeNode* root) {
-        ios_base::sync_with_stdio(0);
-        return (dfs(root) < 1 ? 1 : 0) + res;
-    }
-
+    
     int dfs(TreeNode* root) {
         if (!root) return 2;
         int left = dfs(root->left), right = dfs(root->right);
@@ -25,5 +20,10 @@ public:
             return 1;
         }
         return left == 1 || right == 1 ? 2 : 0;
+    }
+public:
+    int minCameraCover(TreeNode* root) {
+        ios_base::sync_with_stdio(0);
+        return (dfs(root) < 1 ? 1 : 0) + res;
     }
 };
