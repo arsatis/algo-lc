@@ -12,6 +12,8 @@
 class Solution {
 public:
     void flatten(TreeNode *root) {
+        ios_base::sync_with_stdio(0);
+        
         while (root) {
             if (root->left && root->right) {
                 TreeNode* t = root->left;
