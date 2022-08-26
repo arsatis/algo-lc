@@ -19,6 +19,8 @@ public:
     
     int longestUnivaluePath(TreeNode* root) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         if (!root) return 0;
         int lh = height(root->left, root->val);
