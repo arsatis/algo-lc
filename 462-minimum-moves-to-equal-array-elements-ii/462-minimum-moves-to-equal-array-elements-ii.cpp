@@ -2,6 +2,8 @@ class Solution {
 public:
     int minMoves2(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int n = nums.size(), steps = 0;
         nth_element(nums.begin(), nums.begin() + (n / 2), nums.end());
