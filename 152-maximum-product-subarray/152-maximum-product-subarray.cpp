@@ -1,8 +1,6 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        ios_base::sync_with_stdio(0);
-        
         int ans = nums[0], maxProd = ans, minProd = ans;
 
         for (int i = 1; i < nums.size(); ++i) {
