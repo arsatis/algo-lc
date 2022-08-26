@@ -10,33 +10,20 @@
  * };
  */
 class Solution {
+    int res = 0;
 public:
-    int traverse(TreeNode* node, bool header, int& numCam) {
-        if (!node) return 0;
-        if (!node->right && !node->left) { 
-            if (header) ++numCam;
-            return 1;
-        }
-        
-        int leftVal = -1, rightVal = -1;
-        if (node->left) leftVal = traverse(node->left, false, numCam);
-        if (node->right) rightVal = traverse(node->right, false, numCam);
-        if (leftVal == 1 || rightVal == 1) {
-            ++numCam;
-            return 2;
-        } else if (leftVal == 2 || rightVal == 2) {            
-            return 3;
-        } else if (!header) {
-            return 1;
-        } else {
-            ++numCam;
-            return 0;
-        }
-    }
-    
     int minCameraCover(TreeNode* root) {
-        int numCam = 0;
-        traverse(root, true, numCam);
-        return numCam;
+        ios_base::sync_with_stdio(0);
+        return (dfs(root) < 1 ? 1 : 0) + res;
+    }
+
+    int dfs(TreeNode* root) {
+        if (!root) return 2;
+        int left = dfs(root->left), right = dfs(root->right);
+        if (left == 0 || right == 0) {
+            ++res;
+            return 1;
+        }
+        return left == 1 || right == 1 ? 2 : 0;
     }
 };
