@@ -23,6 +23,8 @@ public:
     }
     
     int longestUnivaluePath(TreeNode* root) {
+        ios_base::sync_with_stdio(0);
+        
         int ans = 0;
         sol(root, ans);
         return ans;
