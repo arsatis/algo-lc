@@ -1,6 +1,10 @@
 class Solution {
 public:
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         vector<string> ans;
         
         for (string& i : words) {
