@@ -10,25 +10,18 @@
  * };
  */
 class Solution {
-    TreeNode* head = nullptr, *prev = nullptr;
 public:
-    void dfs(TreeNode* root) {
-        if (!root) return;
-        dfs(root->right);
-        dfs(root->left);
-        if (!prev) head = root;
-        else {
-            root->right = prev;
+    void flatten(TreeNode *root) {
+        while (root) {
+            if (root->left && root->right) {
+                TreeNode* t = root->left;
+                while (t->right) t = t->right;
+                t->right = root->right;
+            }
+
+            if (root->left) root->right = root->left;
             root->left = nullptr;
+            root = root->right;
         }
-        prev = root;
-    }
-    
-    void flatten(TreeNode* root) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
-        dfs(root);
     }
 };
