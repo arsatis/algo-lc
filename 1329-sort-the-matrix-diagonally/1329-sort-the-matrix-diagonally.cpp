@@ -19,6 +19,8 @@ public:
     
     vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         for (int i = 0, j = 0; j < mat[0].size(); ++j)
             f(mat[0].size(), mat.size(), i, j, mat);
