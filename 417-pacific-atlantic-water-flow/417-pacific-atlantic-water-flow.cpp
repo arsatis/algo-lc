@@ -22,8 +22,6 @@ class Solution {
     }
 public:
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
-        ios_base::sync_with_stdio(0);
-        
         vector<vector<int>> matrix(heights.size(), vector<int>(heights[0].size()));
         for (int i = 0; i < matrix.size(); ++i) {
             bfs(heights, matrix, 1, i, 0);
