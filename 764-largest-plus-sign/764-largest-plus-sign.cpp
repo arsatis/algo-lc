@@ -1,8 +1,6 @@
 class Solution {
 public:
     int orderOfLargestPlusSign(int n, vector<vector<int>>& mines) {
-        ios_base::sync_with_stdio(0);
-        
         vector<vector<int>> grid(n, vector<int>(n, n));
         for (auto& mine : mines) grid[mine[0]][mine[1]] = 0;
         for (int i = 0; i < n; ++i) {
