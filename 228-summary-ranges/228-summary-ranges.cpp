@@ -2,6 +2,8 @@ class Solution {
 public:
     vector<string> summaryRanges(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         vector<string> result;
         int n = nums.size();
