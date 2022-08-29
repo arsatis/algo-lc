@@ -2,6 +2,8 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         unordered_map<int, int> counts;
         for (int& i : nums) ++counts[i];
