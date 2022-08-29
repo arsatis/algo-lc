@@ -6,16 +6,19 @@ public:
         unordered_map<string, int> counts;
         for (string& word : words) ++counts[word];
         
-        priority_queue<string, deque<string>, greater<string>> buckets[words.size() + 1];
-        for (auto& pair : counts) buckets[pair.second].push(pair.first);
+        vector<string> buckets[words.size() + 1];
+        for (auto& pair : counts) buckets[pair.second].push_back(pair.first);
         
         vector<string> mostFreq(k);
-        int idx = words.size();
+        int outerIdx = words.size(), innerIdx = 0;
         for (int i = 0; i < k; ++i) {
-            while (buckets[idx].size() == 0) --idx;
-            mostFreq[i] = buckets[idx].top();
-            buckets[idx].pop();
-            if (buckets[idx].size() == 0) --idx;
+            while (buckets[outerIdx].size() == 0) --outerIdx;
+            sort(buckets[outerIdx].begin(), buckets[outerIdx].end());
+            mostFreq[i] = buckets[outerIdx][innerIdx];
+            if (buckets[outerIdx].size() <= ++innerIdx) {
+                --outerIdx;
+                innerIdx = 0;
+            }
         }
         return mostFreq;
     }
