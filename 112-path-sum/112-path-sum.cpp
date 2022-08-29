@@ -11,11 +11,15 @@
  */
 class Solution {
 public:
-    bool hasPathSum(TreeNode* root, int sum) {
-        ios_base::sync_with_stdio(0);
-        
+    bool solve(TreeNode* root, int targetSum) {
         if (!root) return false;
-        if (root->val == sum && !root->left && !root->right) return true;
-        return hasPathSum(root->left, sum - root->val) || hasPathSum(root->right, sum - root->val);
+        if (!root->left && !root->right && targetSum - root->val == 0) return true;
+        bool leftside = solve(root->left, targetSum - root->val);
+        bool rightside = solve(root->right, targetSum - root->val);
+        return leftside || rightside;
+    }
+    
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        return solve(root, targetSum);
     }
 };
