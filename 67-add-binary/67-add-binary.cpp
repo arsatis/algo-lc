@@ -2,6 +2,8 @@ class Solution {
 public:
     string addBinary(string a, string b) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         string res;
         int i = a.length() - 1, j = b.length() - 1, carry = 0;
