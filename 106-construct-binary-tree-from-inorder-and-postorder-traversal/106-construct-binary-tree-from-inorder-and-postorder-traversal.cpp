@@ -22,8 +22,6 @@ class Solution {
 public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         int pIdx = postorder.size() - 1;
         unordered_map<int, int> idx;
