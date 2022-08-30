@@ -1,8 +1,6 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        ios_base::sync_with_stdio(0);
-        
         unordered_map<char, int> counts;
         for (char c : s) ++counts[c];
         
