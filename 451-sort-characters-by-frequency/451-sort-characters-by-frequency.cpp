@@ -3,22 +3,16 @@ public:
     string frequencySort(string s) {
         ios_base::sync_with_stdio(0);
         
-        unordered_map<char, int> counts;
-        for (char c : s) ++counts[c];
-        
-        int n = counts.size(), i = 0;
-        string ss = "";
-        vector<pair<int, char>> arr(n);
-        for (auto& p : counts) {
-            arr[i] = { p.second, p.first };
-            ++i;
+        vector<int> freq(128, 0);
+        for (char c : s) freq[c]++;
+        string res;
+        int sz = 0;
+        while(sz < s.size()) {
+            auto it = max_element(freq.begin(), freq.end());
+            sz += *it;
+            int ch = it - freq.begin();
+            while(freq[ch]-- > 0) res.push_back(ch);
         }
-        sort(arr.begin(), arr.end(), [](auto& x, auto& y) {
-            return x.first > y.first;
-        });
-        for (i = 0; i < n; ++i)
-            for (int j = 0; j < arr[i].first; ++j)
-                ss += arr[i].second;
-        return ss;
+        return res;
     }
 };
