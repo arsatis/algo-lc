@@ -8,30 +8,37 @@
  * };
  */
 class Codec {
-    string data;
-public:
-    Codec() {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
+    void ser(TreeNode* root, ostringstream& out) {
+        if (root) {
+            out << root->val << " ";
+            ser(root->left, out);
+            ser(root->right, out);
+        } else {
+            out << "# ";
+        }
     }
-
+    
+    TreeNode* deser(istringstream& in) {
+        string t;
+        in >> t;
+        if (t == "#") return NULL;
+        TreeNode* root = new TreeNode(stoi(t));
+        root->left = deser(in);
+        root->right = deser(in);
+        return root;
+    }
+public:
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        if (!root) return "x";
-        stringstream ss;
-        ss << root->val << "," << serialize(root->left) << "," << serialize(root->right);
-        return ss.str();
+        ostringstream out;
+        ser(root, out);
+        return out.str();
     }
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
-        this->data = data;
-        if (data[0] == 'x') return nullptr;
-        TreeNode* node = new TreeNode(stoi(this->data.substr(0, this->data.find(","))));
-        node->left = deserialize(this->data.erase(0, this->data.find(",") + 1));
-        node->right = deserialize(this->data.erase(0, this->data.find(",") + 1));
-        return node;
+        istringstream in(data);
+        return deser(in);
     }
 };
 
