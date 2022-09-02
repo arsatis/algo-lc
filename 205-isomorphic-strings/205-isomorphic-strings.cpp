@@ -2,6 +2,8 @@ class Solution {
 public:
     bool isIsomorphic(string s, string t) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int sMap[128] = { 0 }, tMap[128] = { 0 };
         for (int i = 0; i < s.size(); ++i) {
