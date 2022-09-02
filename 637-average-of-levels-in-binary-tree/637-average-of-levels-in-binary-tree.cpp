@@ -14,29 +14,52 @@ public:
     vector<double> averageOfLevels(TreeNode* root) {
         ios_base::sync_with_stdio(0);
         
-        vector<double> v;
-        queue<TreeNode*> q;
-        q.push(root);
+        vector<double> res;
+        if(root == NULL) return res;
         
-        while (!q.empty()) {
-            vector<int> temp;
-            int s = q.size();
-            double sum = 0;
-            double size = q.size();
-            while (s--) {
-            TreeNode* t=q.front();
-                sum+=t->val;
-                q.pop();
-             if(t->left)
-                 q.push(t->left);
-                if(t->right)
-                    q.push(t->right);
-                temp.push_back(t->val);
-                
-            }
-            v.push_back(sum/size);
+        res.push_back(root->val);
+        queue<TreeNode *> q;
+        q.push(root);
+        q.push(NULL);
+        
+        double levelSum = 0;
+        double levelCount = 0;
+        
+        while(!q.empty())
+        {
+            TreeNode *currNode = q.front();
+            q.pop();
             
+            if(currNode != NULL)
+            {
+                if(currNode->left != NULL)
+                {
+                    q.push(currNode->left);
+                    levelSum += currNode->left->val;
+                    levelCount++;
+                }
+                if(currNode->right != NULL)
+                {
+                    q.push(currNode->right);
+                    levelSum += currNode->right->val;
+                    levelCount++;
+                }
+            }
+            
+            if(q.front() == NULL)
+            {
+                q.pop();
+                if(q.empty()) break;
+                
+                double sum = levelSum/levelCount;
+                res.push_back(sum);
+                levelSum = 0;
+                levelCount = 0;
+                
+                q.push(NULL);
+            }
         }
-        return v;
+        
+        return res;
     }
 };
