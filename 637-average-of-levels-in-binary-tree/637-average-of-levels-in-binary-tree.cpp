@@ -13,28 +13,32 @@ class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
         ios_base::sync_with_stdio(0);
-        
-        int nodesInLevel = 0;
-        vector<double> averages;
-        queue<pair<TreeNode*, int>> q;
-        q.emplace(root, 0);
-        
-        while (!q.empty()) {
-            auto node = q.front(); q.pop();
-            
-            if (averages.size() == node.second) {
-                if (node.second > 0) averages[node.second - 1] /= nodesInLevel;
-                nodesInLevel = 1;
-                averages.push_back(node.first->val);
-            } else {
-                averages[node.second] += node.first->val;
-                ++nodesInLevel;
+        vector<double> v;
+         if(root==0)
+            return v;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            vector<int> temp;
+            int s=q.size();
+            double sum=0;
+        double  size=q.size();
+            while(s--){
+                
+            TreeNode* t=q.front();
+                sum+=t->val;
+                q.pop();
+             if(t->left)
+                 q.push(t->left);
+                if(t->right)
+                    q.push(t->right);
+                temp.push_back(t->val);
+                
             }
+            v.push_back(sum/size);
             
-            if (node.first->left) q.emplace(node.first->left, node.second + 1);
-            if (node.first->right) q.emplace(node.first->right, node.second + 1);
         }
-        averages[averages.size() - 1] /= nodesInLevel;
-        return averages;
+        return v;
     }
 };
