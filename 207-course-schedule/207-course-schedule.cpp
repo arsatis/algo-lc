@@ -8,8 +8,6 @@ public:
          * "bfs": for each course without a prereq, mark them as read, and traverse courses requiring this prereq if all the prereqs of that course have been read
          */
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         vector<vector<int>> adj(n, vector<int>());
         vector<int> degree(n, 0);
