@@ -20,11 +20,10 @@ public:
         
         while (!q.empty()) {
             vector<int> temp;
-            int s=q.size();
-            double sum=0;
-        double  size=q.size();
-            while(s--){
-                
+            int s = q.size();
+            double sum = 0;
+            double size = q.size();
+            while (s--) {
             TreeNode* t=q.front();
                 sum+=t->val;
                 q.pop();
