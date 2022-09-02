@@ -13,13 +13,12 @@ class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
         ios_base::sync_with_stdio(0);
+        
         vector<double> v;
-         if(root==0)
-            return v;
         queue<TreeNode*> q;
         q.push(root);
-        while(!q.empty())
-        {
+        
+        while (!q.empty()) {
             vector<int> temp;
             int s=q.size();
             double sum=0;
