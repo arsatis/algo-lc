@@ -7,9 +7,9 @@ public:
         
         unordered_map<int, int> comp;
         for (int i = 0; i < nums.size(); ++i) {
-            if (comp.find(target - nums[i]) != comp.end())
-                return { i, comp[target - nums[i]] };
-            comp[nums[i]] = i;
+            if (comp.find(nums[i]) != comp.end())
+                return { i, comp[nums[i]] };
+            comp[target - nums[i]] = i;
         }
         return {};
     }
