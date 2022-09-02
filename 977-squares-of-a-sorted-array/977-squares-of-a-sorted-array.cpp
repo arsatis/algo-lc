@@ -2,6 +2,8 @@ class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         vector<int> output(nums.size());
         auto posIt = lower_bound(nums.begin(), nums.end(), 0),
