@@ -13,53 +13,30 @@ class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
-        vector<double> res;
-        if(root == NULL) return res;
+        int nodesInLevel = 0;
+        vector<double> averages;
+        queue<pair<TreeNode*, int>> q;
+        q.emplace(root, 0);
         
-        res.push_back(root->val);
-        queue<TreeNode *> q;
-        q.push(root);
-        q.push(NULL);
-        
-        double levelSum = 0;
-        double levelCount = 0;
-        
-        while(!q.empty())
-        {
-            TreeNode *currNode = q.front();
-            q.pop();
+        while (!q.empty()) {
+            auto node = q.front(); q.pop();
             
-            if(currNode != NULL)
-            {
-                if(currNode->left != NULL)
-                {
-                    q.push(currNode->left);
-                    levelSum += currNode->left->val;
-                    levelCount++;
-                }
-                if(currNode->right != NULL)
-                {
-                    q.push(currNode->right);
-                    levelSum += currNode->right->val;
-                    levelCount++;
-                }
+            if (averages.size() == node.second) {
+                if (node.second > 0) averages[node.second - 1] /= nodesInLevel;
+                nodesInLevel = 1;
+                averages.push_back(node.first->val);
+            } else {
+                averages[node.second] += node.first->val;
+                ++nodesInLevel;
             }
             
-            if(q.front() == NULL)
-            {
-                q.pop();
-                if(q.empty()) break;
-                
-                double sum = levelSum/levelCount;
-                res.push_back(sum);
-                levelSum = 0;
-                levelCount = 0;
-                
-                q.push(NULL);
-            }
+            if (node.first->left) q.emplace(node.first->left, node.second + 1);
+            if (node.first->right) q.emplace(node.first->right, node.second + 1);
         }
-        
-        return res;
+        averages[averages.size() - 1] /= nodesInLevel;
+        return averages;
     }
 };
