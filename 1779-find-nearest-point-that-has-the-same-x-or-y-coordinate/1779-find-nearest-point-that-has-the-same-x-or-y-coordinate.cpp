@@ -6,7 +6,6 @@ public:
         cout.tie(0);
         
         int idx = -1, dist = INT_MAX;
-        
         for (int i = 0; i < points.size(); ++i) {
             if (x == points[i][0] && abs(y - points[i][1]) < dist) {
                 idx = i;
