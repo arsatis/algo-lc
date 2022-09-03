@@ -3,12 +3,30 @@ public:
     int lengthOfLIS(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
         
-        vector<int> dp(nums.size(), 1);
-        for (int i = 1; i < nums.size(); ++i)
-            for (int j = 0; j < i; ++j)
-                if (nums[i] > nums[j]) dp[i] = max(dp[i], 1 + dp[j]);
-        return accumulate(dp.begin(), dp.end(), 1, [](int& x, int& y) {
-            return x > y ? x : y;
-        });
+        
+        int n = nums.size();
+        if (n == 0) {
+            return 0;
+        }
+        vector<int> increase;
+        increase.push_back(nums[0]);
+        for (int num : nums) {
+            if (num > increase.back()) {
+                increase.push_back(num);
+            } else {
+                int l = 0;
+                int r = increase.size() - 1;
+                while (l < r) {
+                    int mid = l + (r - l) / 2;
+                    if (num > increase[mid]) {
+                        l = mid + 1;
+                    } else {
+                        r = mid;
+                    }
+                }
+                increase[l] = num;
+            }
+        }
+        return increase.size();
     }
 };
