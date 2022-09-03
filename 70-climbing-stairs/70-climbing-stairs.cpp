@@ -4,12 +4,11 @@ public:
         ios_base::sync_with_stdio(0);
         
         if (n <= 2) return n;
-        int prev = 2, prev2 = 1, res;
+        int x = 1, y = 2;
         for (int i = 3; i <= n; ++i) {
-            res = prev + prev2;
-            prev2 = prev;
-            prev = res;
+            x += y;
+            swap(x, y);
         }
-        return res;
+        return y;
     }
 };
