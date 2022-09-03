@@ -2,6 +2,8 @@ class Solution {
 public:
     int nearestValidPoint(int x, int y, vector<vector<int>>& points) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int idx = -1, dist = INT_MAX;
         for (int i = 0; i < points.size(); ++i) {
