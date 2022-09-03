@@ -11,8 +11,6 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ios_base::sync_with_stdio(0);
-        
         ListNode* dummy = new ListNode(), *curr = dummy;
         while (list1 || list2) {
             if (!list1) {
