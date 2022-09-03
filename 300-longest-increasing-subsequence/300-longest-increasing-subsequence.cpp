@@ -8,13 +8,8 @@ public:
         for (int num : nums) {
             if (num > increase.back()) increase.push_back(num);
             else {
-                int l = 0, r = increase.size() - 1;
-                while (l < r) {
-                    int mid = (l + r) >> 1;
-                    if (num > increase[mid]) l = mid + 1;
-                    else r = mid;
-                }
-                increase[l] = num;
+                auto it = lower_bound(increase.begin(), increase.end(), num);
+                *it = num;
             }
         }
         return increase.size();
