@@ -2,6 +2,8 @@ class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         vector<int> dp(amount + 1, -1);
         dp[0] = 0;
