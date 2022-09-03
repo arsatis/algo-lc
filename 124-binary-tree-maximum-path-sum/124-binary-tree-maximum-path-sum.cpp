@@ -10,10 +10,10 @@
  * };
  */
 class Solution {
-    int maxSum = INT_MIN;
-    int dfs(TreeNode* node) {
+    int dfs(TreeNode* node, int& maxSum) {
         if (!node) return 0;
-        int leftSum = max(0, dfs(node->left)), rightSum = max(0, dfs(node->right));
+        int leftSum = max(0, dfs(node->left, maxSum));
+        int rightSum = max(0, dfs(node->right, maxSum));
         maxSum = max(maxSum, leftSum + rightSum + node->val);
         return max(leftSum, rightSum) + node->val;
     }
@@ -23,7 +23,8 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        dfs(root);
+        int maxSum = INT_MIN;
+        dfs(root, maxSum);
         return maxSum;
     }
 };
