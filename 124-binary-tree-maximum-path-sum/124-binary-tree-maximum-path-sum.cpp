@@ -19,6 +19,8 @@ class Solution {
     }
 public:
     int maxPathSum(TreeNode* root) {
+        ios_base::sync_with_stdio(0);
+        
         dfs(root);
         return maxSum;
     }
