@@ -9,26 +9,15 @@
  * };
  */
 class Solution {
+    ListNode* f(ListNode* prev, ListNode* curr) {
+        if (!curr) return prev;
+        ListNode* temp = curr->next;
+        curr->next = prev;
+        return f(curr, temp);
+    }
 public:
     ListNode* reverseList(ListNode* head) {
         ios_base::sync_with_stdio(0);
-        
-        if (!head) return nullptr;
-        
-        stack<ListNode*> s;
-        while (head) {
-            s.push(head);
-            head = head->next;
-        }
-        
-        ListNode* dummy = new ListNode();
-        ListNode* curr = dummy;
-        while (s.size() > 0) {
-            curr->next = s.top();
-            s.pop();
-            curr = curr->next;
-        }
-        curr->next = nullptr;
-        return dummy->next;
+        return f(nullptr, head);
     }
 };
