@@ -8,7 +8,7 @@ public:
         vector<int> increase;
         increase.push_back(nums[0]);
         
-        for (int& num : nums) {
+        for (int num : nums) {
             if (num > increase.back()) increase.push_back(num);
             else {
                 int l = 0, r = increase.size() - 1;
