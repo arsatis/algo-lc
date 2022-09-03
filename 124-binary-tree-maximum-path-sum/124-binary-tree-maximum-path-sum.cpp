@@ -10,25 +10,20 @@
  * };
  */
 class Solution {
-    int f(TreeNode* root, int& ans){
-        if(!root)
-            return 0;
-        
-        int a = f(root->left, ans);
-        if(a < 0) 
-            a = 0;
-        
-        int b = f(root->right, ans);
-        if(b < 0) 
-            b = 0;
-        
-        ans = max(ans, root->val + a + b);
-        return  root->val + max(a, b);
+    int maxSum = INT_MIN;
+    int dfs(TreeNode* node) {
+        if (!node) return 0;
+        int leftSum = max(0, dfs(node->left)), rightSum = max(0, dfs(node->right));
+        maxSum = max(maxSum, leftSum + rightSum + node->val);
+        return max(leftSum, rightSum) + node->val;
     }
 public:
     int maxPathSum(TreeNode* root) {
-        int ans = INT_MIN;
-        f(root, ans);
-        return ans;
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
+        dfs(root);
+        return maxSum;
     }
 };
