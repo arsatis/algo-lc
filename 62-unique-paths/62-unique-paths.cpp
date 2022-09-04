@@ -1,6 +1,8 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
+        ios_base::sync_with_stdio(0);
+        
         vector<vector<int>> dp(m, vector<int>(n));
         dp[0][0] = 1;
         
