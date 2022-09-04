@@ -2,8 +2,6 @@ class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         vector<bool> dp(s.size() + 1);
         dp[0] = true;
