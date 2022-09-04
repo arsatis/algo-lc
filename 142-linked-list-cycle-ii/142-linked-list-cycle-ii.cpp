@@ -11,11 +11,19 @@ public:
     ListNode *detectCycle(ListNode *head) {
         ios_base::sync_with_stdio(0);
         
-        unordered_set<ListNode*> visited;
-        while (head) {
-            if (visited.find(head) != visited.end()) return head;
-            visited.insert(head);
-            head = head->next;
+        ListNode* entry = head, *slow = head, *fast = head;
+        bool flag = false;
+        
+        while (slow && fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) {
+                while (slow != entry) {
+                    slow = slow->next;
+                    entry = entry->next;
+                }
+                return slow;
+            }
         }
         return nullptr;
     }
