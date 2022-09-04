@@ -8,7 +8,7 @@ public:
         bool isNeg = false;
         for (int i : nums) {
             if (i == 0) return 0;
-            if (i < 0) isNeg ^= true;
+            if (i < 0) isNeg = !isNeg;
         }
         return isNeg ? -1 : 1;
     }
