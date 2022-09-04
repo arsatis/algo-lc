@@ -34,8 +34,8 @@ public:
         vector<vector<int>> ans;
         for (auto& p : mpp) {
             vector<int> col;
-            for (auto& q : p.second)
-                col.insert(col.end(), q.second.begin(), q.second.end());
+            for (auto& m : p.second)
+                col.insert(col.end(), m.second.begin(), m.second.end());
             ans.push_back(col);
         }
         return ans;
