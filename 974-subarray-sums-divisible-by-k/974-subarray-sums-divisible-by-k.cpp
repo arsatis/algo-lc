@@ -5,14 +5,13 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        vector<int> count(k, 0);
-        int sum = 0;
-        for (auto& x : nums) {
-            sum += (x % k + k) % k;
-            ++count[sum % k];
+        vector<int> count(k);
+        count[0] = 1;
+        int prefix = 0, res = 0;
+        for (int a : nums) {
+            prefix = (prefix + a % k + k) % k;
+            res += count[prefix]++;
         }
-        int result = count[0];
-        for (auto& c : count) result += (c * (c - 1)) / 2;
-        return result;
+        return res;
     }
 };
