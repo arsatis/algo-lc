@@ -9,6 +9,10 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         ListNode* entry = head, *slow = head, *fast = head;
         bool flag = false;
         
