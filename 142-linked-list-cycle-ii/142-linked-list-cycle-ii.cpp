@@ -9,6 +9,8 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
+        ios_base::sync_with_stdio(0);
+        
         unordered_set<ListNode*> visited;
         while (head) {
             if (visited.find(head) != visited.end()) return head;
