@@ -12,6 +12,8 @@
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
+        ios_base::sync_with_stdio(0);
+        
         map<int, map<int, multiset<int>>> mpp;
         queue<pair<TreeNode*, pair<int, int>>> q;
 
