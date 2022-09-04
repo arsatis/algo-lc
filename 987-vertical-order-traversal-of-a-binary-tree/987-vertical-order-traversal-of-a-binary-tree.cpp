@@ -10,27 +10,44 @@
  * };
  */
 class Solution {
-    map<int, vector<vector<int>>> columnIndex;
-    void bfs(TreeNode* node, int col, int row) {
-        if (!node) return;
-        while (columnIndex[col].size() <= row) columnIndex[col].push_back({});
-        columnIndex[col][row].push_back(node->val);
-        bfs(node->left, col - 1, row + 1);
-        bfs(node->right, col + 1, row + 1);
-    }
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         ios_base::sync_with_stdio(0);
+        map<int,map<int,multiset<int>>> mpp;
+    queue<pair<TreeNode*,pair<int,int>>> q;
+    
+    q.push({root,{0,0}});
+    
+    while(!q.empty())
+    {
+        auto it = q.front();
         
-        vector<vector<int>> output;
-        bfs(root, 0, 0);
-        for (auto& colRowPair : columnIndex) {
-            output.push_back({});
-            for (auto& row : colRowPair.second) {
-                sort(row.begin(), row.end());
-                output.back().insert(output.back().end(), row.begin(), row.end());
-            }
+        TreeNode* node = it.first;
+        int x = it.second.first;
+        int y = it.second.second;
+        
+        mpp[x][y].insert(node->val) ;
+        
+        if(node->left)
+        {
+            q.push({node->left,{x-1,y+1}});
         }
-        return output;
+        if(node->right)
+        {
+            q.push({node->right,{x+1,y+1}});
+        }
+        q.pop();
+      }
+        vector<vector<int>> ans;
+        
+        for(auto p:mpp)
+        {
+            vector<int> col;
+            for (auto q: p.second) {
+      col.insert(col.end(), q.second.begin(), q.second.end());
+    }
+    ans.push_back(col);
+  }
+  return ans;
     }
 };
