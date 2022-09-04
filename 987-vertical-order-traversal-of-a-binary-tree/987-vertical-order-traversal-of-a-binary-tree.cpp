@@ -22,12 +22,10 @@ public:
         q.push({root, {0, 0}});
         while (!q.empty()) {
             auto it = q.front();
-
             TreeNode* node = it.first;
             int x = it.second.first, y = it.second.second;
 
-            mpp[x][y].insert(node->val) ;
-
+            mpp[x][y].insert(node->val);
             if (node->left) q.push({node->left, {x - 1, y + 1}});
             if (node->right) q.push({node->right, {x + 1, y + 1}});
             q.pop();
