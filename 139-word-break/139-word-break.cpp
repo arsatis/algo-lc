@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        if (wordDict.empty()) return false;
+        ios_base::sync_with_stdio(0);
         
         vector<bool> dp(s.size() + 1);
         dp[0] = true;
@@ -16,7 +16,6 @@ public:
                 }
             }
         }
-        
         return dp[s.size()];
     }
 };
