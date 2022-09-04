@@ -26,15 +26,15 @@ public:
 
             mpp[x][y].insert(node->val) ;
 
-            if (node->left) q.push({node->left,{x-1,y+1}});
-            if (node->right) q.push({node->right,{x+1,y+1}});
+            if (node->left) q.push({node->left, {x - 1, y + 1}});
+            if (node->right) q.push({node->right, {x + 1, y + 1}});
             q.pop();
         }
                                     
         vector<vector<int>> ans;
-        for (auto p : mpp) {
+        for (auto& p : mpp) {
             vector<int> col;
-            for (auto q : p.second)
+            for (auto& q : p.second)
                 col.insert(col.end(), q.second.begin(), q.second.end());
             ans.push_back(col);
         }
