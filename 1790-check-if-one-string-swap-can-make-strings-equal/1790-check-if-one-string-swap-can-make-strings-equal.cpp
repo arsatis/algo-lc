@@ -1,6 +1,8 @@
 class Solution {
 public:
     bool areAlmostEqual(string s1, string s2) {
+        ios_base::sync_with_stdio(0);
+        
         int diff = 0;
         char diffChar[2];
         
