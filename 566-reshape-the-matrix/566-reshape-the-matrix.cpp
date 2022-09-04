@@ -5,19 +5,12 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        int m = mat.size(), n = mat[0].size();
+        int n = mat.size() * mat[0].size();
+        if (n != r * c) return mat;
         
-        if (m * n != r * c) return mat;
         vector<vector<int>> output(r, vector<int>(c));
-        for (int rPtr = 0, mPtr = 0, nPtr = 0; rPtr < r; ++rPtr) {
-            for (int cPtr = 0; cPtr < c; ++cPtr) {
-                output[rPtr][cPtr] = mat[mPtr][nPtr];
-                if (++nPtr >= n) {
-                    ++mPtr;
-                    nPtr = 0;
-                }
-            }
-        }
+        for (int i = 0; i < n; ++i)
+            output[i / c][i % c] = mat[i / mat[0].size()][i % mat[0].size()];
         return output;
     }
 };
