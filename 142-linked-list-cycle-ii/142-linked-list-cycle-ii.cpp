@@ -13,13 +13,11 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        ListNode* entry = head, *slow = head, *fast = head;
-        bool flag = false;
-        
-        while (slow && fast && fast->next) {
-            slow = slow->next;
+        ListNode *fast = head, *slow = head, *entry = head;
+        while (fast && fast->next) {
             fast = fast->next->next;
-            if (slow == fast) {
+            slow = slow->next;
+            if (fast == slow) {
                 while (slow != entry) {
                     slow = slow->next;
                     entry = entry->next;
