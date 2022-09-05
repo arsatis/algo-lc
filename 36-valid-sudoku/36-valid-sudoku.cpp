@@ -3,20 +3,32 @@ public:
     bool isValidSudoku(vector<vector<char>>& board) {
         ios_base::sync_with_stdio(0);
         
-        int row[9][9] = {0};
-        int col[9][9] = {0};
-        int sub[9][9] = {0};
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (board[i][j] == '.') continue;
-                int num = board[i][j] - '0' - 1; //convert int and remove off by one error
-                int subBoxNum  = (i/3)*3 + j/3;
-                if (row[i][num] || col[j][num] || sub[subBoxNum][num]) {
+        // row
+        for (int i = 0; i < 9; ++i) {
+            int arr[9] = { 0 };
+            for (int j = 0; j < 9; ++j)
+                if (board[i][j] != '.' && arr[board[i][j] - '1']++ > 0)
                     return false;
-                } else {
-                    row[i][num] = col[j][num] = sub[subBoxNum][num] = 1;
-                }
-            } 
+        }
+        
+        // col
+        for (int j = 0; j < 9; ++j) {
+            int arr[9] = { 0 };
+            for (int i = 0; i < 9; ++i)
+                if (board[i][j] != '.' && arr[board[i][j] - '1']++ > 0)
+                    return false;
+        }
+        
+        // square
+        for (int i = 0; i < 9; i += 3) {
+            for (int j = 0; j < 9; j += 3) {
+                int arr[9] = { 0 };
+                for (int di = 0; di < 3; ++di)
+                    for (int dj = 0; dj < 3; ++dj)
+                        if (board[i + di][j + dj] != '.' &&
+                            arr[board[i + di][j + dj] - '1']++ > 0)
+                            return false;
+            }
         }
         return true;
     }
