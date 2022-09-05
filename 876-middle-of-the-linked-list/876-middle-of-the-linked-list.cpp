@@ -11,8 +11,6 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ios_base::sync_with_stdio(0);
-        
         ListNode* fast = head, *slow = head;
         while (fast && fast->next) {
             fast = fast->next->next;
