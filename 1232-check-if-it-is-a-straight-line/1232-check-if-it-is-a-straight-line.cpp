@@ -16,7 +16,6 @@ public:
                     return false;
             }
         }
-        cout << "\n";
         return true;
     }
 };
