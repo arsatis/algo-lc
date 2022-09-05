@@ -2,6 +2,8 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int top = 0, left = 0, down = matrix.size() - 1, right = matrix[0].size() - 1;
         while (top < down) {
