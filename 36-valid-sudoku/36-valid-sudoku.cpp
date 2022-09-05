@@ -2,6 +2,8 @@ class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int row[9][9] = {0};
         int col[9][9] = {0};
