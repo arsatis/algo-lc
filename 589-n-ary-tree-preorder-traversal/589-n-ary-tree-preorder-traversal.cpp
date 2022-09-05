@@ -22,6 +22,8 @@ class Solution {
     vector<int> output;
 public:
     vector<int> preorder(Node* root) {
+        ios_base::sync_with_stdio(0);
+        
         if (!root) return {};
         output.push_back(root->val);
         for (Node* child : root->children) preorder(child);
