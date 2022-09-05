@@ -21,8 +21,6 @@ public:
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
-        ios_base::sync_with_stdio(0);
-        
         if (!root) return {};
         vector<vector<int>> levels;
         queue<Node*> q;
