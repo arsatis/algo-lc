@@ -19,10 +19,11 @@ public:
 */
 
 class Solution {
-    void f(Node* node, vector<int>& output) {
+    vector<int> output;
+    void f(Node* node) {
         if (!node) return;
         output.push_back(node->val);
-        for (Node* child : node->children) f(child, output);
+        for (Node* child : node->children) f(child);
     }
 public:
     vector<int> preorder(Node* root) {
@@ -30,8 +31,7 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        vector<int> output;
-        f(root, output);
+        f(root);
         return output;
     }
 };
