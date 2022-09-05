@@ -17,6 +17,7 @@ public:
         cout.tie(0);
         
         if (!root) return 0;
-        return 1 + max(maxDepth(root->left), maxDepth(root->right));
+        int l = maxDepth(root->left), r = maxDepth(root->right);
+        return 1 + max(l, r);
     }
 };
