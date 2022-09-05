@@ -12,6 +12,7 @@ public:
             }
             s.push(n);
         }
+        
         vector<int> ans(nums1.size());
         for (int i = 0; i < nums1.size(); ++i)
             ans[i] = m.count(nums1[i]) ? m[nums1[i]] : -1;
