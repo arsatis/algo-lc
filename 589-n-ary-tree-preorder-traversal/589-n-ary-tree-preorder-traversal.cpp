@@ -19,16 +19,19 @@ public:
 */
 
 class Solution {
-    vector<int> output;
+    void f(Node* node, vector<int>& output) {
+        if (!node) return;
+        output.push_back(node->val);
+        for (Node* child : node->children) f(child, output);
+    }
 public:
     vector<int> preorder(Node* root) {
         ios_base::sync_with_stdio(0);
         cin.tie(0);
         cout.tie(0);
         
-        if (!root) return {};
-        output.push_back(root->val);
-        for (Node* child : root->children) preorder(child);
+        vector<int> output;
+        f(root, output);
         return output;
     }
 };
