@@ -28,8 +28,6 @@ class Solution {
 public:
     vector<int> preorder(Node* root) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         f(root);
         return output;
