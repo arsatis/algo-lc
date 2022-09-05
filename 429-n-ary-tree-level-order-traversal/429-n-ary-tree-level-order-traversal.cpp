@@ -25,14 +25,18 @@ public:
         
         if (!root) return {};
         vector<vector<int>> levels;
-        queue<pair<int, Node*>> q;
-        q.emplace(0, root);
+        queue<Node*> q;
+        q.emplace(root);
         
         while (!q.empty()) {
-            auto p = q.front(); q.pop();
-            if (levels.size() == p.first) levels.push_back({p.second->val});
-            else levels.back().push_back(p.second->val);
-            for (Node* child : p.second->children) q.emplace(p.first + 1, child);
+            int size = q.size();
+            levels.push_back({});
+            
+            while (size--) {
+                Node* node = q.front(); q.pop();
+                levels.back().emplace_back(node->val);
+                for (Node* child : node->children) q.emplace(child);
+            }
         }
         return levels;
     }
