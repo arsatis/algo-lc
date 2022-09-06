@@ -1,6 +1,10 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         int chars[26] = { 0 };
         for (char& c : s1) ++chars[c - 'a'];
         for (int l = 0, r = 0; r < s2.size(); ++r) {
