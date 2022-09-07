@@ -16,8 +16,10 @@ public:
         ios_base::sync_with_stdio(0);
         
         string output = to_string(root->val);
-        if (root->right) return output + "(" + (root->left ? tree2str(root->left) : "") + ")(" + tree2str(root->right) + ")";
-        else if (root->left) return output + "(" + tree2str(root->left) + ")";
+        if (root->right)
+            return output + "(" + (root->left ? tree2str(root->left) : "") + ")(" + tree2str(root->right) + ")";
+        else if (root->left)
+            return output + "(" + tree2str(root->left) + ")";
         else return output;
     }
 };
