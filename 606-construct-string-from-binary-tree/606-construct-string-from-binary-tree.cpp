@@ -11,32 +11,27 @@
  */
 
 class Solution {
-public:
-        void helper(TreeNode* root,string &res){
-                if(root==NULL){
-                        return ;
-                }
-                res+=to_string(root->val);
-                if(root->left==NULL && root->right==NULL){
-                        return ;
-                }
-                if( root->right){
-                        res+='(';
-                        helper(root->left,res);
-                        res+=')';
-                        res+='(';
-                        helper(root->right,res);
-                        res+=')';
-                }else if(root->left){
-                        res+='(';
-                        helper(root->left,res);
-                        res+=')';
-                }
-                
+    void f(TreeNode* root,string &res) {
+        if (!root) return;
+
+        res += to_string(root->val);
+        if (!root->left && !root->right) return;
+        if (root->right){
+            res += '(';
+            f(root->left, res);
+            res += ")(";
+            f(root->right, res);
+            res += ')';
+        } else if (root->left){
+            res += '(';
+            f(root->left, res);
+            res += ')';
         }
+    }
+public:
     string tree2str(TreeNode* root) {
-        string res="";
-            helper(root,res);
-            return res;
+        string res = "";
+        f(root, res);
+        return res;
     }
 };
