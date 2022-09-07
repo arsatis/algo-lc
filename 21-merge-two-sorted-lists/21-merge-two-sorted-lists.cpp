@@ -15,8 +15,8 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        ListNode* dummy = new ListNode(), *curr = dummy;
-        while (list1 || list2) {
+        ListNode* dummy = new ListNode();
+        for (ListNode* curr = dummy; list1 || list2;) {
             if (!list1) {
                 curr->next = list2;
                 list2 = list2->next;
