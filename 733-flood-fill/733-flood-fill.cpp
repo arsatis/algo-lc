@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        ios_base::sync_with_stdio(0);
+        
         if (image[sr][sc] == color) return image;
         int origColor = image[sr][sc];
         image[sr][sc] = color;
