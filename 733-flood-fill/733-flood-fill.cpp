@@ -8,6 +8,7 @@ public:
         if (image[sr][sc] == color) return image;
         int origColor = image[sr][sc];
         image[sr][sc] = color;
+        
         if (sr > 0 && origColor == image[sr - 1][sc])
             floodFill(image, sr - 1, sc, color);
         if (sc > 0 && origColor == image[sr][sc - 1])
