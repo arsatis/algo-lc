@@ -11,6 +11,8 @@ class Solution {
     }
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
+        ios_base::sync_with_stdio(0);
+        
         int maxArea = 0;
         for (int i = 0; i < grid.size(); ++i)
             for (int j = 0; j < grid[0].size(); ++j)
