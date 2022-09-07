@@ -2,15 +2,10 @@ class Solution {
 public:
     int diagonalSum(vector<vector<int>>& mat) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
-        int output = 0, n = mat.size();
-        for (int i = 0, j = n - 1; i < n; ++i, --j) {
-            output += mat[i][i];
-            output += mat[i][j];
-        }
-        if (n % 2) output -= mat[n >> 1][n >> 1];
-        return output;
+        int i = 0;
+        int ret = accumulate(mat.begin(), mat.end(), 0, [&i](int val, auto& v) {
+            return val + v[i++] + v[v.size() - i];
+        });
+        return mat.size() % 2 ? ret - mat[i >> 1][i >> 1] : ret;
     }
 };
