@@ -12,12 +12,31 @@
 
 class Solution {
 public:
+        void helper(TreeNode* root,string &res){
+                if(root==NULL){
+                        return ;
+                }
+                res+=to_string(root->val);
+                if(root->left==NULL && root->right==NULL){
+                        return ;
+                }
+                if( root->right){
+                        res+='(';
+                        helper(root->left,res);
+                        res+=')';
+                        res+='(';
+                        helper(root->right,res);
+                        res+=')';
+                }else if(root->left){
+                        res+='(';
+                        helper(root->left,res);
+                        res+=')';
+                }
+                
+        }
     string tree2str(TreeNode* root) {
-        string output = to_string(root->val);
-        if (root->right)
-            return output + "(" + (root->left ? tree2str(root->left) : "") + ")(" + tree2str(root->right) + ")";
-        else if (root->left)
-            return output + "(" + tree2str(root->left) + ")";
-        else return output;
+        string res="";
+            helper(root,res);
+            return res;
     }
 };
