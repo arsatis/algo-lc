@@ -12,11 +12,9 @@ class Solution {
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
         int maxArea = 0;
-        for (int i = 0; i < grid.size(); ++i) {
-            for (int j = 0; j < grid[0].size(); ++j) {
+        for (int i = 0; i < grid.size(); ++i)
+            for (int j = 0; j < grid[0].size(); ++j)
                 if (grid[i][j]) maxArea = max(maxArea, dfs(grid, i, j));
-            }
-        }
         return maxArea;
     }
 };
