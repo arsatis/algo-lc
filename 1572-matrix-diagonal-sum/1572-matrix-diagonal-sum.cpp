@@ -2,6 +2,8 @@ class Solution {
 public:
     int diagonalSum(vector<vector<int>>& mat) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int i = 0;
         return accumulate(mat.begin(), mat.end(), 0, [&i](int val, auto& v) {
