@@ -11,6 +11,8 @@
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
+        ios_base::sync_with_stdio(0);
+        
         if (!head) return nullptr;
         ListNode* dummy = new ListNode(0, head);
         for (ListNode* curr = dummy; curr->next;) {
