@@ -16,13 +16,14 @@ class Solution {
 
         res += to_string(root->val);
         if (!root->left && !root->right) return;
-        if (root->right){
+        
+        if (root->right) {
             res += '(';
             f(root->left, res);
             res += ")(";
             f(root->right, res);
             res += ')';
-        } else if (root->left){
+        } else if (root->left) {
             res += '(';
             f(root->left, res);
             res += ')';
@@ -30,6 +31,8 @@ class Solution {
     }
 public:
     string tree2str(TreeNode* root) {
+        ios_base::sync_with_stdio(0);
+        
         string res = "";
         f(root, res);
         return res;
