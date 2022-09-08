@@ -11,6 +11,12 @@
  */
 class Solution {
 public:
+    Solution() { 
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
         if (!root1) return root2;
         if (!root2) return root1;
