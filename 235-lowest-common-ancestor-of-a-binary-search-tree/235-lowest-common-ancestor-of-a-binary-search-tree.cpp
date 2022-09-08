@@ -13,9 +13,10 @@ public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         ios_base::sync_with_stdio(0);
         
-        if (root->val < p->val && root->val < q->val)
+        int val = root->val;
+        if (val < p->val && val < q->val)
             return lowestCommonAncestor(root->right, p, q);
-        if (root->val > p->val && root->val > q->val)
+        if (val > p->val && val > q->val)
             return lowestCommonAncestor(root->left, p, q);
         return root;
     }
