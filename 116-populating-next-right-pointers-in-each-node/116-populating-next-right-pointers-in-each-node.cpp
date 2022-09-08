@@ -32,7 +32,6 @@ public:
             while (n--) {
                 Node* curr = q.front();
                 q.pop();
-                
                 if (n > 0) curr->next = q.front();
                 if (curr->left) q.push(curr->left);
                 if (curr->right) q.push(curr->right);
