@@ -19,6 +19,8 @@ class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         return f(root, LONG_MIN, LONG_MAX);
     }
