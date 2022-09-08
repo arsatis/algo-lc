@@ -1,6 +1,8 @@
 class Solution {
 public:
     string interpret(string command) {
+        ios_base::sync_with_stdio(0);
+        
         string s = "";
         auto it = command.begin();
         
