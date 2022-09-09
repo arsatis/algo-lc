@@ -4,8 +4,7 @@ public:
         ios_base::sync_with_stdio(0);
         
         unordered_map<char, int> dict;
-        auto it = order.begin();
-        while (it != order.end()) dict[*it] = distance(order.begin(), it++);
+        for (int i = 0; i < order.size(); ++i) dict[order[i]] = i;
         
         auto it1 = words.begin(), it2 = it1 + 1;
         while (it2 != words.end()) {
