@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        ios_base::sync_with_stdio(0);
+        
         int rows = mat.size(), cols = mat[0].size();
         vector<vector<int>> dist(rows, vector<int>(cols, INT_MAX - 1000));
 
