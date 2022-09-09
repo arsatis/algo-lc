@@ -4,8 +4,8 @@ public:
         ios_base::sync_with_stdio(0);
         
         unordered_map<char, int> dict;
-        for (int i = 0; i < order.size(); ++i) dict[order[i]] = i;
         
+        for (int i = 0; i < order.size(); ++i) dict[order[i]] = i;
         for (int i = 0; i < words.size() - 1; ++i) {
             int size = min(words[i].size(), words[i + 1].size());
             for (int j = 0; j < size; ++j) {
