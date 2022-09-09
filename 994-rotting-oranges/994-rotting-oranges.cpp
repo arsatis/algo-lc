@@ -1,41 +1,46 @@
 class Solution {
-    int hash(int i, int j) {
-        return (i << 4) + j;
-    }
 public:
+    bool isValid(vector<vector<int>>& grid, pair<int, int>& tile) {
+        return !(tile.first < 0 || tile.first >= grid.size() || tile.second < 0 || tile.second >= grid[0].size() || grid[tile.first][tile.second] != 1);
+    }
+    
+    
     int orangesRotting(vector<vector<int>>& grid) {
-        ios_base::sync_with_stdio(0);
-        
-        int m = grid.size(), n = grid[0].size();
-        unordered_set<int> fresh;
-        queue<pair<int, int>> rotten;
-        
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (grid[i][j] == 1) fresh.insert(hash(i, j));
-                if (grid[i][j] == 2) rotten.emplace(i, j);
+        // BFS
+        queue<pair<int, int>> q;
+        for (int row = 0; row < grid.size(); row++) {
+            for (int col = 0; col < grid[0].size(); col++) {
+                if (grid[row][col] == 2) q.push({row, col});
             }
         }
         
-        int iter = rotten.empty() ? 0 : -1;
-        while (!rotten.empty()) {
-            int s = rotten.size();
-            while (s--) {
-                int key;
-                auto [i, j] = rotten.front();
-                rotten.pop();
-                
-                if (i > 0 && fresh.find(key = hash(i - 1, j)) != fresh.end())
-                    fresh.erase(key), rotten.emplace(i - 1, j);
-                if (j > 0 && fresh.find(key = hash(i, j - 1)) != fresh.end())
-                    fresh.erase(key), rotten.emplace(i, j - 1);
-                if (i < m - 1 && fresh.find(key = hash(i + 1, j)) != fresh.end())
-                    fresh.erase(key), rotten.emplace(i + 1, j);
-                if (j < n - 1 && fresh.find(key = hash(i, j + 1)) != fresh.end())
-                    fresh.erase(key), rotten.emplace(i, j + 1);
+        int minutes = 0;
+        int xs[] = {0, 1, 0, -1};
+        int ys[] = {-1, 0, 1, 0};
+        while (!q.empty()) {
+            bool incrementMinutes = false;
+            int qSize = q.size();
+            for (int i = 0; i < qSize; i++) {
+                pair<int, int> cur = q.front();
+                if (grid[cur.first][cur.second] == 1) incrementMinutes = true;
+                q.pop();
+                grid[cur.first][cur.second] = 2;
+                for (int t = 0; t < 4; t++) {
+                    pair<int, int> neighbor = {cur.first + ys[t], cur.second + xs[t]};
+                    if (isValid(grid, neighbor)) q.push(neighbor);
+                }
             }
-            ++iter;
+            if (incrementMinutes) minutes++;  // only increment minutes when at least 1 fresh orange in the queue
         }
-        return fresh.empty() ? iter : -1;
+        
+        // if theres any fresh oranges left, return -1 (not all oranges rotted)
+        for (int row = 0; row < grid.size(); row++) {
+            for (int col = 0; col < grid[0].size(); col++) {
+                if (grid[row][col] == 1) return -1;
+            }
+        }
+        
+        // otherwise, return the number of minutes it took to rot all the oranges
+        return minutes;
     }
 };
