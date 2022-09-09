@@ -1,6 +1,8 @@
 class Solution {
 public:
     string freqAlphabets(string s) {
+        ios_base::sync_with_stdio(0);
+        
         string output = "";
         for (auto it = s.begin(); it < s.end();) {
             auto it2 = find(it, s.end(), '#');
