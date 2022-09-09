@@ -20,7 +20,6 @@ public:
         int iter = rotten.empty() ? 0 : -1;
         while (!rotten.empty()) {
             int s = rotten.size();
-            
             while (s--) {
                 int key;
                 auto [i, j] = rotten.front();
