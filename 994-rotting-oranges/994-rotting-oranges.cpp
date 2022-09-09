@@ -5,8 +5,6 @@ class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         int m = grid.size(), n = grid[0].size();
         unordered_set<int> fresh;
