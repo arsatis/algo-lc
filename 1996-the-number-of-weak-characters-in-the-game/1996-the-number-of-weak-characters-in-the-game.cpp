@@ -1,8 +1,6 @@
 class Solution {
 public:
     int numberOfWeakCharacters(vector<vector<int>>& properties) {
-        ios_base::sync_with_stdio(0);
-        
         int count = 0, currMax = INT_MIN;
         sort(properties.begin(), properties.end(), [](auto& x, auto& y) {
             return x.back() == y.back() ? x.front() > y.front() : x.back() < y.back();
