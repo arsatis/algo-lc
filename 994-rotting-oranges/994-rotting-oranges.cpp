@@ -4,7 +4,6 @@ public:
         return !(tile.first < 0 || tile.first >= grid.size() || tile.second < 0 || tile.second >= grid[0].size() || grid[tile.first][tile.second] != 1);
     }
     
-    
     int orangesRotting(vector<vector<int>>& grid) {
         // BFS
         queue<pair<int, int>> q;
