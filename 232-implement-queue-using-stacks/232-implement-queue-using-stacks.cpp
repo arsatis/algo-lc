@@ -1,7 +1,9 @@
 class MyQueue {
     stack<int> s1, s2;
 public:
-    MyQueue() { }
+    MyQueue() {
+        ios_base::sync_with_stdio(0);
+    }
     
     void push(int x) {
         while (!s1.empty()) {
