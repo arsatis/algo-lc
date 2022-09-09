@@ -8,9 +8,7 @@ public:
         
         auto it1 = words.begin(), it2 = it1 + 1;
         while (it2 != words.end()) {
-            int size = (*it1).size() > (*it2).size()
-                ? (*it2).size()
-                : (*it1).size();
+            int size = min(it1->size(), it2->size());
             for (int i = 0; i < size; ++i) {
                 if (dict[(*it1)[i]] != dict[(*it2)[i]]) {
                     if (dict[(*it1)[i]] > dict[(*it2)[i]]) return false;
