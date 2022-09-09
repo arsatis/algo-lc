@@ -24,6 +24,6 @@ public:
                 if (j < cols - 1) dist[i][j] = min(dist[i][j], dist[i][j + 1] + 1);
             }
         }
-        return dist;
+        return move(dist);
     }
 };
