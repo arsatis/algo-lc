@@ -1,6 +1,7 @@
 class Solution {
 public:
     int numberOfWeakCharacters(vector<vector<int>>& properties) {
+        ios_base::sync_with_stdio(0);
         int maxattack=0;
         int weak=0;
         for(auto &property:properties){
