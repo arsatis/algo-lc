@@ -6,7 +6,7 @@ public:
         while (it != order.end())
             letter_map[*it] = std::distance(order.begin(), it++);
         
-        auto it1 = words.begin(), it2 = std::next(it1);
+        auto it1 = words.begin(), it2 = it1 + 1;
         while (it2 != words.end()) {
             int size = (*it1).size() > (*it2).size() ? (*it2).size() : (*it1).size();
             for (int i = 0; i < size; ++i) {
