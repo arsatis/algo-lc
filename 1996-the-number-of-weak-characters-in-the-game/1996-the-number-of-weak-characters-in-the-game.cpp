@@ -2,6 +2,8 @@ class Solution {
 public:
     int numberOfWeakCharacters(vector<vector<int>>& properties) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int maxAtk = 0;
         for (auto& p : properties) maxAtk = max(p[0], maxAtk);
