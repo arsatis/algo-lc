@@ -1,10 +1,6 @@
 class Solution {
 public:
     bool isAlienSorted(vector<string>& words, string order) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
         int dict[26] = { 0 };
         
         for (int i = 0; i < order.size(); ++i) dict[order[i] - 'a'] = i;
