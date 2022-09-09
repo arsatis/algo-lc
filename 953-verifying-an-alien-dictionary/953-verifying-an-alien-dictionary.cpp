@@ -10,10 +10,8 @@ public:
         while (it2 != words.end()) {
             int size = min(it1->size(), it2->size());
             for (int i = 0; i < size; ++i) {
-                if (dict[(*it1)[i]] != dict[(*it2)[i]]) {
-                    if (dict[(*it1)[i]] > dict[(*it2)[i]]) return false;
-                    break;
-                }
+                if (dict[(*it1)[i]] > dict[(*it2)[i]]) return false;
+                if (dict[(*it1)[i]] < dict[(*it2)[i]]) break;
             }
             if (((*it1).size() > (*it2).size()) &&
                 (dict[(*it1)[size-1]] == dict[(*it2)[size-1]]))
