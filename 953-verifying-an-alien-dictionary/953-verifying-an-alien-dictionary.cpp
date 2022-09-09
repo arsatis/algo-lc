@@ -1,7 +1,9 @@
 class Solution {
 public:
     bool isAlienSorted(vector<string>& words, string order) {
-        std::unordered_map<char, int> letter_map;
+        ios_base::sync_with_stdio(0);
+        
+        unordered_map<char, int> letter_map;
         auto it = order.begin();
         while (it != order.end())
             letter_map[*it] = std::distance(order.begin(), it++);
