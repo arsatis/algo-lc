@@ -12,17 +12,14 @@ public:
                 }
             }
         }
-        
         for (int i = m - 1; i >= 0; --i) {
             for (int j = n - 1; j >= 0; --j) {
-                if (mat[i][j] != 0) {
+                if (mat[i][j]) {
                     if (i < m - 1) mat[i][j] = min(mat[i][j], 1 + mat[i + 1][j]);
                     if (j < n - 1) mat[i][j] = min(mat[i][j], 1 + mat[i][j + 1]);
                 }
             }
         }
-        
-        
         return move(mat);
     }
 };
