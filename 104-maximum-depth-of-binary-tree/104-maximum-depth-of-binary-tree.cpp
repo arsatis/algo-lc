@@ -12,10 +12,6 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
         if (!root) return 0;
         int l = maxDepth(root->left), r = maxDepth(root->right);
         return 1 + max(l, r);
