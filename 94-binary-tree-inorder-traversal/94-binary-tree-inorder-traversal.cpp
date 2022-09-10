@@ -10,16 +10,16 @@
  * };
  */
 class Solution {
-    vector<int> vi;
+    vector<int> vals;
+    void f(TreeNode* node) {
+        if (node->left) f(node->left);
+        vals.push_back(node->val);
+        if (node->right) f(node->right);
+    }
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        if (root) helper(root);
-        return vi;
-    }
-    
-    void helper(TreeNode *node) {
-        if (node->left) helper(node->left);
-        vi.push_back(node->val);
-        if (node->right) helper(node->right);
+        if (!root) return {};
+        f(root);
+        return vals;
     }
 };
