@@ -18,6 +18,8 @@ class Solution {
     }
 public:
     int sumOfLeftLeaves(TreeNode* root) {
+        ios_base::sync_with_stdio(0);
+        
         return f(root->left, true) + f(root->right, false);
     }
 };
