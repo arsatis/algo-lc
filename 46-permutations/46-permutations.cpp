@@ -15,6 +15,6 @@ public:
         
 	    vector<vector<int>> perms;
 	    f(perms, nums, 0);
-	    return perms;
+	    return move(perms);
     }
 };
