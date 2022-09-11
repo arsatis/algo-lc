@@ -1,17 +1,19 @@
 class Solution {
     void f(vector<string>& perms, string& s, int begin) {
-        for (int i = begin; i < s.size(); ++i) {
-            if (islower(s[i])) {
-                s[i] -= 32;
-                f(perms, s, i + 1);
-                s[i] += 32;
-            } else if (isalpha(s[i])) {
-                s[i] += 32;
-                f(perms, s, i + 1);
-                s[i] -= 32;
-            }
+        if (begin >= s.size()) {
+            perms.push_back(s);
+            return;
         }
-        perms.push_back(s);
+        while (begin < s.size()) {
+            if (isalpha(s[begin])) break;
+            ++begin;
+        }
+        f(perms, s, begin + 1);
+        if (isalpha(s[begin])) {
+            if (islower(s[begin])) s[begin] -= 32;
+            else s[begin] += 32;
+            f(perms, s, begin + 1);
+        }
     }
 public:
     vector<string> letterCasePermutation(string s) {
