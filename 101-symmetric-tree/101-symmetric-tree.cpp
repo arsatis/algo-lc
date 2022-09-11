@@ -10,19 +10,40 @@
  * };
  */
 class Solution {
-    bool f(TreeNode* left, TreeNode* right) {
-        if (!left && !right) return true;
-        if (!left || !right) return false;
-        return left->val == right->val && f(left->left, right->right)
-            && f(left->right, right->left);
-    }
+    stack<int> leftStack,rightStack;
 public:
+    void recursiveLeft(TreeNode* root)
+    {
+        if(!root) return;
+        if(!root->left ||!root-> right) leftStack.push(-101);
+        recursiveLeft(root->left);
+        leftStack.push(root->val);
+        recursiveLeft(root->right);
+    }
+    void recursiveRight(TreeNode* root)
+    {
+        if(!root) return;
+        if(!root->left ||!root-> right) rightStack.push(-101);
+        recursiveRight(root->right);
+        rightStack.push(root->val);
+        recursiveRight(root->left);
+    }
+    
     bool isSymmetric(TreeNode* root) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
-        if (!root) return true;
-        return f(root->left, root->right);
+        bool result;
+        recursiveLeft(root->left);
+        recursiveRight(root->right);
+        if(leftStack.size()!=rightStack.size()) return false;
+        while(!leftStack.empty()||!rightStack.empty())
+        {
+            cout<<leftStack.top()<<"/"<<rightStack.top()<<endl;
+            if(leftStack.top()!=rightStack.top())
+            {
+                return false;
+            }
+            leftStack.pop();
+            rightStack.pop();
+        }
+        return true;
     }
 };
