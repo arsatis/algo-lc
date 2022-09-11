@@ -11,6 +11,8 @@ class Solution {
     }
 public:
     vector<vector<int>> permute(vector<int>& nums) {
+        ios_base::sync_with_stdio(0);
+        
 	    vector<vector<int>> perms;
 	    f(perms, nums, 0);
 	    return perms;
