@@ -1,6 +1,8 @@
 class Solution {
 public:
     int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
+        ios_base::sync_with_stdio(0);
+        
         vector<pair<int, int>> ess(n);
         for (int i = 0; i < n; ++i)
             ess[i] = {efficiency[i], speed[i]};
