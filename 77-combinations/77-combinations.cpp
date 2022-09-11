@@ -9,9 +9,11 @@ class Solution {
     }
 public:
     vector<vector<int>> combine(int n, int k) {
+        ios_base::sync_with_stdio(0);
+        
         vector<vector<int>> combs;
         vector<int> comb;
         f(n, k, combs, comb);
-        return combs;
+        return move(combs);
     }
 };
