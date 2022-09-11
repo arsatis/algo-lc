@@ -18,8 +18,6 @@ class Solution {
 public:
     vector<string> letterCasePermutation(string s) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         vector<string> perms;
         f(perms, s, 0);
