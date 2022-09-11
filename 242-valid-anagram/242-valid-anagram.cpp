@@ -4,9 +4,10 @@ public:
         ios_base::sync_with_stdio(0);
         cin.tie(0);
         cout.tie(0);
-        vector<int> m1(29, 0), m2(29, 0);
-        for (int i = 0; i < s.size(); ++i) ++m1[s[i] - 'a'];
-        for (int i = 0; i < t.size(); ++i) ++m2[t[i] - 'a'];
-        return m1 == m2;
+        
+        int chars[26] = { 0 };
+        for (char c : s) ++chars[c - 'a'];
+        for (char c : t) if (chars[c - 'a']-- == 0) return false;
+        return !accumulate(chars, chars + 26, 0);
     }
 };
