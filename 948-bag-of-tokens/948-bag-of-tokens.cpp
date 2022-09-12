@@ -1,6 +1,8 @@
 class Solution {
 public:
     int bagOfTokensScore(vector<int>& tokens, int power) {
+        ios_base::sync_with_stdio(0);
+        
         if (tokens.size() < 1) return 0;
         
         int score = 0, maxScore = 0;
