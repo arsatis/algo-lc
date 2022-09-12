@@ -1,6 +1,8 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
+        ios_base::sync_with_stdio(0);
+        
         int count[26] = { 0 };
         int maxCount = 0, maxLength = 0;
         
