@@ -1,6 +1,10 @@
 class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
         vector<int> minlen(triangle.back());
         for (int layer = triangle.size() - 2; layer >= 0; --layer)
             for (int i = 0; i <= layer; ++i)
