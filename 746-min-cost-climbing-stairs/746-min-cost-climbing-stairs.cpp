@@ -2,6 +2,8 @@ class Solution {
 public:
     int minCostClimbingStairs(vector<int>& cost) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int dp[3] = { 0 };
         for (int i = 2; i < cost.size() + 1; ++i)
