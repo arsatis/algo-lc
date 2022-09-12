@@ -1,17 +1,18 @@
 class ParkingSystem {
-    int arr[3];
+    int arr[4];
 public:
     ParkingSystem(int big, int medium, int small) {
         ios_base::sync_with_stdio(0);
         cin.tie(0);
         cout.tie(0);
         
-        arr[0] = big, arr[1] = medium, arr[2] = small;
+        arr[1] = big, arr[2] = medium, arr[3] = small;
     }
     
     bool addCar(int carType) {
-        if (arr[carType - 1]-- > 0) return true;
-        return false;
+        if (arr[carType] == 0) return false;
+        --arr[carType];
+        return true;
     }
 };
 
