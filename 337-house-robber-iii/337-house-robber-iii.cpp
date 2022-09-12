@@ -21,10 +21,6 @@ class Solution {
     }
 public:
     int rob(TreeNode* root) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
         int robMax = 0, notRobMax = 0;
         return f(root, robMax, notRobMax);
     }
