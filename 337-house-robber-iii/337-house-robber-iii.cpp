@@ -10,28 +10,23 @@
  * };
  */
 class Solution {
-    
-    pair<int,int> sum_robber_tree(TreeNode* node) {
-        if(!node) {
-            return {0,0};
+public:
+    int sum = 0;
+    int rob(TreeNode* root) {
+        
+        if(!root){
+            sum = 0;
+            return 0;
         }
         
-        auto&& left = sum_robber_tree(node->left);
-        auto&& right = sum_robber_tree(node->right);
-         
-        int&& not_robbed = max(left.first, left.second) + max(right.first, right.second);
+        int l = rob(root->left);
+        int preSum = sum;
         
-        int&& robbed =  node->val + left.second + right.second;
-         
-        return { robbed, not_robbed };
-    }
-    
-    
-public:
-    int rob(TreeNode* root) {
-         
-        auto&& [robbed, not_robbed] = sum_robber_tree(root);
+        int r = rob(root->right);
+        preSum += sum;
         
-        return max(robbed, not_robbed);
+        sum = l + r;
+        
+        return max(root->val + preSum, sum);
     }
 };
