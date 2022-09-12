@@ -3,8 +3,6 @@ class ParkingSystem {
 public:
     ParkingSystem(int big, int medium, int small) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         arr[0] = big, arr[1] = medium, arr[2] = small;
     }
