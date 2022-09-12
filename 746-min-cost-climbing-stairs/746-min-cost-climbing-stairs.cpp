@@ -1,8 +1,6 @@
 class Solution {
 public:
     int minCostClimbingStairs(vector<int>& cost) {
-        ios_base::sync_with_stdio(0);\
-        
         if (cost.size() < 2) return 0;
         int i = 0, j = 0, k;
         for (int x = 2; x < cost.size() + 1; ++x) {
