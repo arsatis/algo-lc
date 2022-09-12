@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
+        ios_base::sync_with_stdio(0);
+        
         if (s.size() < p.size()) return {};
         int chars[26] = { 0 };
         vector<int> indices;
