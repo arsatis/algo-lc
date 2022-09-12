@@ -2,6 +2,8 @@ class NumArray {
     vector<int> sums;
 public:
     NumArray(vector<int>& nums) {
+        ios_base::sync_with_stdio(0);
+        
         sums.reserve(nums.size());
         sums[0] = nums[0];
         for (int i = 1; i < nums.size(); ++i)
