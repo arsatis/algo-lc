@@ -10,28 +10,28 @@
  * };
  */
 class Solution {
+    
+    pair<int,int> sum_robber_tree(TreeNode* node) {
+        if(!node) {
+            return {0,0};
+        }
+        
+        auto&& left = sum_robber_tree(node->left);
+        auto&& right = sum_robber_tree(node->right);
+         
+        int&& not_robbed = max(left.first, left.second) + max(right.first, right.second);
+        
+        int&& robbed =  node->val + left.second + right.second;
+         
+        return { robbed, not_robbed };
+    }
+    
+    
 public:
-    unordered_map<TreeNode*,int> mp;
     int rob(TreeNode* root) {
+         
+        auto&& [robbed, not_robbed] = sum_robber_tree(root);
         
-        if(root==NULL)
-            return 0;
-        
-        if(mp.find(root)!=mp.end())
-            return mp[root];
-        //case 1 khud ko include kr rha hai
-        int sum1=root->val;
-        
-        if(root->left !=NULL)
-            sum1+=rob(root->left->left)+rob(root->left->right);
-        if(root->right!=NULL)
-            sum1+=rob(root->right->left)+rob(root->right->right);
-        
-        //case 2 current node not included
-        int sum2=0;
-        sum2+=rob(root->left)+rob(root->right);
-        
-        return mp[root]=max(sum1,sum2);
-        
+        return max(robbed, not_robbed);
     }
 };
