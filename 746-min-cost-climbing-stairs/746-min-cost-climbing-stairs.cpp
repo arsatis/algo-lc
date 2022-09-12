@@ -4,11 +4,11 @@ public:
         ios_base::sync_with_stdio(0);
         
         if (cost.size() < 2) return 0;
-        int i = 0, j = 0, k;
+        int i = 0, j = 0;
         for (int x = 2; x < cost.size() + 1; ++x) {
-            k = min(i + cost[x - 2], j + cost[x - 1]);
-            i = j, j = k;
+            i = min(i + cost[x - 2], j + cost[x - 1]);
+            swap(i, j);
         }
-        return k;
+        return j;
     }
 };
