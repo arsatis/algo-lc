@@ -3,6 +3,8 @@ class NumArray {
 public:
     NumArray(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         sums.reserve(nums.size());
         sums[0] = nums[0];
