@@ -10,18 +10,28 @@
  * };
  */
 class Solution {
-    int f(TreeNode* root, int &robMax, int &notRobMax) {
-        if (!root) return 0;
-        int leftRobMax = 0, leftNotRobMax = 0, rightRobMax = 0, rightNotRobMax = 0;
-        int leftMax = f(root->left, leftRobMax, leftNotRobMax);
-        int rightMax = f(root->right, rightRobMax, rightNotRobMax);
-        robMax = root->val + leftNotRobMax + rightNotRobMax;
-        notRobMax = leftMax + rightMax;
-        return max(robMax, notRobMax);
-    }
 public:
+    unordered_map<TreeNode*,int> mp;
     int rob(TreeNode* root) {
-        int robMax = 0, notRobMax = 0;
-        return f(root, robMax, notRobMax);
+        
+        if(root==NULL)
+            return 0;
+        
+        if(mp.find(root)!=mp.end())
+            return mp[root];
+        //case 1 khud ko include kr rha hai
+        int sum1=root->val;
+        
+        if(root->left !=NULL)
+            sum1+=rob(root->left->left)+rob(root->left->right);
+        if(root->right!=NULL)
+            sum1+=rob(root->right->left)+rob(root->right->right);
+        
+        //case 2 current node not included
+        int sum2=0;
+        sum2+=rob(root->left)+rob(root->right);
+        
+        return mp[root]=max(sum1,sum2);
+        
     }
 };
