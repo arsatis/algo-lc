@@ -1,32 +1,23 @@
 class Solution {
 public:
     bool validUtf8(vector<int>& data) {
-        // Number of bytes in the current UTF-8 character
-        int numberOfBytesToProcess = 0;
-
-        // Masks to check two most significant bits in a byte.
-        int mask1 = 1 << 7, mask2 = 1 << 6;
-
-        for (int i = 0; i < data.size(); ++i) {
-            // If this is the case then we are to start processing a new UTF-8 character.
-            if (numberOfBytesToProcess == 0) {
-                int mask = 1 << 7;
-                 while (mask & data[i]) {
-                    ++numberOfBytesToProcess;
-                    mask >>= 1;
-                 }
-                if (numberOfBytesToProcess == 0) continue;
-                if (numberOfBytesToProcess > 4 || numberOfBytesToProcess == 1) return false;
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
+        int rb = 0;
+        for (int val : data) {
+            if (!rb) {
+                if ((val >> 7) == 0b0) rb = 0;
+                else if ((val >> 5) == 0b110) rb = 1;
+                else if ((val >> 4) == 0b1110) rb = 2;
+                else if ((val >> 3) == 0b11110) rb = 3;
+                else return false;
             } else {
-                // data[i] should have most significant bit set and
-                // second most significant bit unset. So, we use the two masks
-                // to make sure this is the case.
-                if (!((data[i] & mask1) != 0 && (mask2 & data[i]) == 0)) {
-                    return false;
-                }
+                if ((val >> 6) == 0b10) --rb;
+                else return false;
             }
-            --numberOfBytesToProcess;
         }
-        return numberOfBytesToProcess == 0;
+        return rb == 0;
     }
 };
