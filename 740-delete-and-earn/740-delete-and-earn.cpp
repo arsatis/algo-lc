@@ -1,8 +1,6 @@
 class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
-        ios_base::sync_with_stdio(0);
-
         int dp[10001] = { 0 };
         for (int n : nums) dp[n] += n;
      
