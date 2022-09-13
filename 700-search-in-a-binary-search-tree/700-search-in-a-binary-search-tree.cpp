@@ -16,8 +16,7 @@ public:
         cin.tie(0);
         cout.tie(0);
         
-        if (!root) return nullptr;
-        if (root->val == val) return root;
+        if (!root || root->val == val) return root;
         TreeNode* left = root->left ? searchBST(root->left, val) : nullptr;
         return left ? left : (root->right ? searchBST(root->right, val) : nullptr);
     }
