@@ -1,33 +1,30 @@
 class Solution {
-    int N = 10001;
-    int solve(vector<int> &nums,int i,vector<int> &dp){
-        int n = nums.size();
-        // if(i>=n) return 0;
-        
-        if(i==1) return nums[0];
-        if(i==2) return max(nums[0],nums[1]);
-        if(dp[i-1] != -1) return dp[i-1];
-        return dp[i-1] = max((nums[i-1] + solve(nums,i-2,dp)),solve(nums,i-1,dp));
-    }
 public:
     int deleteAndEarn(vector<int>& nums) {
-        int n = 10001;
-
-        //take the total sum by each number
-        vector<int> sum(n, 0);
-        vector<int> dp(n, 0);
-
-        for(auto num: nums){
-            sum[num] += num;
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+        
+        sort(nums.begin(), nums.end());
+        int max_earned = 0, current_sum = nums[0];
+        pair<int, int> earned_vm1{0, 0}, earned_vm2{0, 0};
+        
+        for (int i = 1; i <= nums.size(); ++i) {
+            int v = nums[i - 1];
+            if ((i < nums.size()) && (v == nums[i])) {
+                current_sum += nums[i];
+                continue;
+            }
+            int earned_v = max(current_sum + earned_vm2.second, earned_vm1.second);
+            if (max_earned < earned_v) max_earned = earned_v;
+            if (i < nums.size()) {
+                int v_new = nums[i];
+                current_sum = v_new;
+                if (v == v_new - 1) earned_vm2 = earned_vm1;
+                else earned_vm2 = { v, earned_v };
+                earned_vm1 = { v, earned_v };
+            }
         }
-
-        dp[0] = 0;
-        dp[1] = sum[1];
-        //now apply the house robbing concept
-        for(int i=2; i<n; i++){
-            dp[i] = max(dp[i-2] + sum[i], dp[i-1]);
-        }
-
-        return dp[n-1];
+        return max_earned;
     }
 };
