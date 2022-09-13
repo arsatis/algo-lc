@@ -1,6 +1,8 @@
 class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
+        ios_base::sync_with_stdio(0);
+        
         map<int, int> counts;
         int i = 0, j = 0, prev = 10002;
         
