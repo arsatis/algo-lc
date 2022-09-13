@@ -15,13 +15,22 @@ public:
         ios_base::sync_with_stdio(0);
         
         if (!root) return new TreeNode(val);
-        if (root->val > val) {
-            if (root->left) insertIntoBST(root->left, val);
-            else root->left = new TreeNode(val);
-        } else {
-            if (root->right) insertIntoBST(root->right, val);
-            else root->right = new TreeNode(val);
+        TreeNode* dummy = root;
+        while (1) {
+            if (val > root->val) {
+                if (!root->right) {
+                    root->right = new TreeNode(val);
+                    return dummy;
+                }
+                root = root->right;
+            } else {
+                if (!root->left) {
+                    root->left = new TreeNode(val);
+                    return dummy;
+                }
+                root = root->left;
+            }
         }
-        return root;
+        return dummy;
     }
 };
