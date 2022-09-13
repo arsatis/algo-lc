@@ -2,6 +2,8 @@ class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         sort(nums.begin(), nums.end());
         int max_earned = 0, current_sum = nums[0];
