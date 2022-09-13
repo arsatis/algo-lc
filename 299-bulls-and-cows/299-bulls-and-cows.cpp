@@ -2,6 +2,8 @@ class Solution {
 public:
     string getHint(string secret, string guess) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         int chars[10] = { 0 };
         int bulls = 0, cows = 0;
