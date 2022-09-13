@@ -13,7 +13,6 @@ class Solution {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
         ios_base::sync_with_stdio(0);
-        
         if (!root || root->val == val) return root;
         TreeNode* left = root->left ? searchBST(root->left, val) : nullptr;
         return left ? left : (root->right ? searchBST(root->right, val) : nullptr);
