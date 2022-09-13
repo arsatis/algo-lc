@@ -18,6 +18,6 @@ public:
                 else return false;
             }
         }
-        return rb == 0;
+        return !rb;
     }
 };
