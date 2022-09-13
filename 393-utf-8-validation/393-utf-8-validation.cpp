@@ -1,8 +1,6 @@
 class Solution {
 public:
     bool validUtf8(vector<int>& data) {
-        ios_base::sync_with_stdio(0);
-        
         int rb = 0;
         for (int val : data) {
             if (!rb) {
