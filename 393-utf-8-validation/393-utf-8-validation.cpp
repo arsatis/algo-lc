@@ -18,7 +18,6 @@ public:
                 else return false;
             }
         }
-        if (!rb) return true;
-        else return false;
+        return rb == 0;
     }
 };
