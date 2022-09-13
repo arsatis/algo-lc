@@ -18,11 +18,11 @@ public:
             //cout << v << ":" << earned_v << endl;        
             if (max_earned < earned_v) max_earned = earned_v;
             if (j < nums.size()) {
-                auto& v_new = nums[j];
+                int v_new = nums[j];
                 current_sum = v_new;
                 if (v == v_new - 1) earned_vm2 = earned_vm1;
-                else earned_vm2 = make_pair(v, earned_v);
-                earned_vm1 = make_pair(v, earned_v);
+                else earned_vm2 = { v, earned_v };
+                earned_vm1 = { v, earned_v };
             }
         }
         return max_earned;
