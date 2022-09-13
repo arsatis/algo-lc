@@ -1,18 +1,11 @@
 class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
-        // sort the input in ascending order
+        ios_base::sync_with_stdio(0);
+        
         sort(nums.begin(), nums.end());
-        
-        // given sorted nums, solve sub-problem earned(nums, v)
-        // where v is the largest value that can be taken from nums
-        // start from the smalled value, cache the results as we move up the chain
-        int max_earned = 0;
-        
-        // only need to cache the last two solutions (v, max_earned)
-        std::pair<int, int> earned_vm2{0, 0};
-        std::pair<int, int> earned_vm1{0, 0};
-        int current_sum = nums[0];
+        int max_earned = 0, current_sum = nums[0];
+        pair<int, int> earned_vm1{0, 0}, earned_vm2{0, 0};
         
         for (int j = 1; j <= nums.size(); ++j) {
             const auto& v = nums[j-1];
@@ -30,8 +23,8 @@ public:
                 const auto& v_new = nums[j];
                 current_sum = v_new;
                 if (v == v_new - 1) earned_vm2 = earned_vm1;
-                else earned_vm2 = std::make_pair(v, earned_v);
-                earned_vm1 = std::make_pair(v, earned_v);
+                else earned_vm2 = make_pair(v, earned_v);
+                earned_vm1 = make_pair(v, earned_v);
             }
         }
         return max_earned;
