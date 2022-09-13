@@ -4,25 +4,26 @@ public:
         ios_base::sync_with_stdio(0);
         
         sort(nums.begin(), nums.end());
-        int max_earned = 0, current_sum = nums[0];
-        pair<int, int> earned_vm1{0, 0}, earned_vm2{0, 0};
+        int maxPoints = 0, currPoints = nums[0];
+        pair<int, int> prev1 = {0, 0}, prev2 = {0, 0};
         
         for (int i = 1; i <= nums.size(); ++i) {
             int v = nums[i - 1];
-            if ((i < nums.size()) && (v == nums[i])) {
-                current_sum += nums[i];
+            if (i < nums.size() && v == nums[i]) {
+                currPoints += nums[i];
                 continue;
             }
-            int earned_v = max(current_sum + earned_vm2.second, earned_vm1.second);
-            if (max_earned < earned_v) max_earned = earned_v;
+            
+            int vEarned = max(currPoints + prev2.second, prev1.second);
+            if (maxPoints < vEarned) maxPoints = vEarned;
             if (i < nums.size()) {
-                int v_new = nums[i];
-                current_sum = v_new;
-                if (v == v_new - 1) earned_vm2 = earned_vm1;
-                else earned_vm2 = { v, earned_v };
-                earned_vm1 = { v, earned_v };
+                int vNew = nums[i];
+                currPoints = vNew;
+                if (v == vNew - 1) prev2 = prev1;
+                else prev2 = { v, vEarned };
+                prev1 = { v, vEarned };
             }
         }
-        return max_earned;
+        return maxPoints;
     }
 };
