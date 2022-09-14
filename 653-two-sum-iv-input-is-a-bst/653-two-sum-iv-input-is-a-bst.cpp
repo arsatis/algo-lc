@@ -10,13 +10,17 @@
  * };
  */
 class Solution {
+    int target;
     unordered_set<int> comps;
+    bool f(TreeNode* node) {
+        if (!node) return false;
+        if (comps.find(node->val) != comps.end()) return true;
+        comps.insert(target - node->val);
+        return (node->left ? f(node->left) : false) || (node->right ? f(node->right) : false);
+    }
 public:
     bool findTarget(TreeNode* root, int k) {
-        if (!root) return false;
-        if (comps.find(root->val) != comps.end()) return true;
-        comps.insert(k - root->val);
-        return (root->left ? findTarget(root->left, k) : false) ||
-               (root->right ? findTarget(root->right, k) : false);
+        target = k;
+        return f(root);
     }
 };
