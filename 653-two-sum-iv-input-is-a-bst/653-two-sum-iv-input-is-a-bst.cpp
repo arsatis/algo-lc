@@ -10,19 +10,25 @@
  * };
  */
 class Solution {
-    unordered_set<int> comps;
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-    }
-    
+  vector<int>v;
+  void dfs(TreeNode* root){
+    if(!root) return;
+   
+    dfs(root->left);
+     v.push_back(root->val);
+    dfs(root->right);
+  }
     bool findTarget(TreeNode* root, int k) {
-        if (!root) return false;
-        if (comps.find(root->val) != comps.end()) return true;
-        comps.insert(k - root->val);
-        return (root->left ? findTarget(root->left, k) : false) ||
-               (root->right ? findTarget(root->right, k) : false);
+        if(!root) return false;
+      dfs(root);
+      int i=0;
+      int j=v.size()-1;
+      while(i<j){
+        if(v[i]+v[j]==k) return true;
+        else if(v[i]+v[j]<k) i++;
+        else j--;
+      }
+      return false;
     }
 };
