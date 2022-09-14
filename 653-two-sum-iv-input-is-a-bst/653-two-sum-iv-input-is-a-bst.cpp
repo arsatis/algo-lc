@@ -12,6 +12,10 @@
 class Solution {
     unordered_set<int> comps;
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool findTarget(TreeNode* root, int k) {
         if (!root) return false;
         if (comps.find(root->val) != comps.end()) return true;
