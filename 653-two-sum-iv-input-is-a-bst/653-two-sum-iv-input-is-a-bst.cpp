@@ -21,6 +21,8 @@ class Solution {
 public:
     bool findTarget(TreeNode* root, int k) {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         
         target = k;
         return f(root);
