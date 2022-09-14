@@ -12,6 +12,10 @@
 class Solution {
     int nodes[10] = { 0 };
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int pseudoPalindromicPaths(TreeNode* root) {
         ++nodes[root->val];
         if (!root->left && !root->right) {
