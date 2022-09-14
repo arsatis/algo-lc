@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int jump(vector<int>& nums) {
         int n = nums.size() - 1, count = 0, currIdx = nums[0], maxIdx = nums[0];
         
