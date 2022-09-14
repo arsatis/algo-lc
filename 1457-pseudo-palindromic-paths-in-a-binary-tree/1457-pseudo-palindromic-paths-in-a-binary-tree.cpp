@@ -13,10 +13,6 @@ class Solution {
     int nodes[10] = { 0 };
 public:
     int pseudoPalindromicPaths(TreeNode* root) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
         ++nodes[root->val];
         if (!root->left && !root->right) {
             int oddCount = 0;
