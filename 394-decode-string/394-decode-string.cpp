@@ -15,6 +15,10 @@ class Solution {
         return res;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     string decodeString(string s) {
         int i = 0;
         return f(s, i);
