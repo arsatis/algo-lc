@@ -1,6 +1,8 @@
 class Solution {
 public:
     bool backspaceCompare(string s, string t) {
+        ios_base::sync_with_stdio(0);
+        
         stack<char> st1, st2;
         
         for (char c : s) {
