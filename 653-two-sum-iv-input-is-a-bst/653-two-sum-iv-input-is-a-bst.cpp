@@ -10,41 +10,19 @@
  * };
  */
 class Solution {
+    unordered_set<int> comps;
 public:
-    void inorder(TreeNode*root,vector<int>&in){
-        if(root==NULL){
-            return;
-        }
-        
-        inorder(root->left,in);
-        
-        in.push_back(root->val);
-        
-        inorder(root->right,in);
-        
-        return;
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
+    
     bool findTarget(TreeNode* root, int k) {
-        vector<int>in;
-        
-        inorder(root,in);
-        
-        int n=in.size();
-        int i=0;
-        int j=n-1;
-        
-        while(i<j){
-            if(in[i]+in[j]==k){
-                return true;
-            }
-            
-            else if(in[i]+in[j]>k){
-                j--;
-            }
-            else{
-                i++;
-            }
-        }
-    return false;
+        if (!root) return false;
+        if (comps.find(root->val) != comps.end()) return true;
+        comps.insert(k - root->val);
+        return (root->left ? findTarget(root->left, k) : false) ||
+               (root->right ? findTarget(root->right, k) : false);
     }
 };
