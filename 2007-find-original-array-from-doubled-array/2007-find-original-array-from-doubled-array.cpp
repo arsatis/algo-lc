@@ -1,24 +1,27 @@
 class Solution {
 public:
     vector<int> findOriginalArray(vector<int>& changed) {
-        ios_base::sync_with_stdio(0);
+        ios::sync_with_stdio(false);
         cin.tie(0);
         cout.tie(0);
         
-        if (changed.size() % 2 != 0) return {};
+        if(changed.size() & 1) return {};
         
-        map<int, int> elements;
-        vector<int> original;
-        original.reserve(changed.size() >> 1);
+        int M = *max_element(changed.begin(), changed.end()), size = 1 + (M << 1);
+        int* v = new int[size]{};
+        vector<int> ans;
         
-        for (int i : changed) ++elements[i];
-        for (auto& p : elements) {
-            while (elements[p.first] > 0) {
-                --elements[p.first];
-                if (elements[p.first << 1]-- <= 0) return {};
-                else original.emplace_back(p.first);
-            }
+        for(int &x : changed) v[x]++;
+        
+        if(v[0] & 1) return {};
+        ans.resize(v[0] >> 1);
+        for(int i = 1; i != size; i++){
+            if(!v[i]) continue;
+            if(v[i << 1] < v[i]) return {};
+            v[i << 1] -= v[i];
+            ans.resize(ans.size() + v[i], i);
         }
-        return move(original);
+        
+        return move(ans);
     }
 };
