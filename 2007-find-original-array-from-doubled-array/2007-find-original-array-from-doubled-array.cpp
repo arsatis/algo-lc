@@ -1,8 +1,6 @@
 class Solution {
 public:
     vector<int> findOriginalArray(vector<int>& changed) {
-        ios::sync_with_stdio(0);
-        
         if (changed.size() & 1) return {};
         
         int M = *max_element(changed.begin(), changed.end()), size = 1 + (M << 1);
