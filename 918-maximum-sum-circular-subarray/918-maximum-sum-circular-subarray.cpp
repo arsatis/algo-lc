@@ -2,8 +2,6 @@ class Solution {
 public:
     int maxSubarraySumCircular(vector<int>& nums) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         int total = 0, maxSum = nums[0], curMax = 0, minSum = nums[0], curMin = 0;
         for (int& a : nums) {
