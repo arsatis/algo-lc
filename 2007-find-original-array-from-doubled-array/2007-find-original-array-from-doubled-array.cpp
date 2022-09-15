@@ -2,8 +2,6 @@ class Solution {
 public:
     vector<int> findOriginalArray(vector<int>& changed) {
         ios::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         
         if (changed.size() & 1) return {};
         
