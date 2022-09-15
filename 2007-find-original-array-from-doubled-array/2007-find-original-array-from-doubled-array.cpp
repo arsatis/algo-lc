@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<int> findOriginalArray(vector<int>& changed) {
+        ios_base::sync_with_stdio(0);
+        
         if (changed.size() % 2 != 0) return {};
         
         map<int, int> elements;
