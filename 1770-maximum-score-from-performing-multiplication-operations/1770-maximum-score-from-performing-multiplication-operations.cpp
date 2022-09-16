@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int maximumScore(vector<int>& nums, vector<int>& multipliers) {
         int n = nums.size();
         int m = multipliers.size();
