@@ -9,6 +9,10 @@ class Solution {
         return 1;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int numIslands(vector<vector<char>>& grid) {
         int num = 0;
         for (int i = 0; i < grid.size(); ++i)
