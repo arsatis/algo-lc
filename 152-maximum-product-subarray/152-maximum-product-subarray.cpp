@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     int maxProduct(vector<int>& nums) {
         int minPdt = nums[0], maxPdt = nums[0], mx = nums[0];
         
