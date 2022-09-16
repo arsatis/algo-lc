@@ -7,9 +7,9 @@ public:
     }
     
     int maxProduct(vector<int>& nums) {
-        int minPdt = 1, maxPdt = 1, mx = INT_MIN;
+        int minPdt = nums[0], maxPdt = nums[0], mx = nums[0];
         
-        for (int i = 0; i < nums.size(); ++i) {
+        for (int i = 1; i < nums.size(); ++i) {
             if (nums[i] < 0) swap(minPdt, maxPdt);
             maxPdt = max(nums[i], maxPdt * nums[i]);
             minPdt = min(nums[i], minPdt * nums[i]);
