@@ -24,6 +24,10 @@ class Solution {
     }
     
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<vector<int>> palindromePairs(vector<string>& A) {
         int N = A.size();
         for (int i = 0; i < N; ++i) add(A[i], i);
