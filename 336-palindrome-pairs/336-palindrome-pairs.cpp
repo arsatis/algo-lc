@@ -1,53 +1,56 @@
-struct TrieNode {
-    TrieNode *next[26] = {};
-    int index = -1;
-    vector<int> palindromeIndexes;
-};
+static const auto fastIO = []() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    return 0;
+}();
 
 class Solution {
-    TrieNode root; // Suffix trie
-    void add(string &s, int i) {
-        auto node = &root;
-        for (int j = s.size() - 1; j >= 0; --j) {
-            if (isPalindrome(s, 0, j)) node->palindromeIndexes.push_back(i); // A[i]'s prefix forms a palindrome
-            int c = s[j] - 'a';
-            if (!node->next[c]) node->next[c] = new TrieNode();
-            node = node->next[c];
-        }
-        node->index = i;
-        node->palindromeIndexes.push_back(i); // A[i]'s prefix is empty string here, which is a palindrome.
-    }
-    
-    bool isPalindrome(string &s, int i, int j) {
-        while (i < j && s[i] == s[j]) ++i, --j;
-        return i >= j;
-    }
-    
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
-    vector<vector<int>> palindromePairs(vector<string>& A) {
-        int N = A.size();
-        for (int i = 0; i < N; ++i) add(A[i], i);
-        vector<vector<int>> ans;
-        for (int i = 0; i < N; ++i) {
-            auto s = A[i];
-            auto node = &root;
-            for (int j = 0; j < s.size() && node; ++j) {
-                if (node->index != -1 && node->index != i && isPalindrome(s, j, s.size() - 1)) ans.push_back({ i, node->index }); 
-                // A[i]'s prefix matches this word and A[i]'s suffix forms a palindrome
-                node = node->next[s[j] - 'a'];
+    vector<vector<int>> palindromePairs(vector<string>& words) {
+        map<int,unordered_map<string,int>> memo;
+        for(int g=0;g<words.size();g++){
+            string str = string( words[g].rbegin() , words[g].rend() );
+            memo[ words[g].size() ][ str ] = g;
+        }
+        
+        auto check = [&](string& str,int i,int j) -> bool {
+            while( i < j ){
+                if( str[i] != str[j] ) break;
+                i++;
+                j--;
             }
-            if (!node) continue;
-            for (int j : node->palindromeIndexes) { 
-                // A[i] is exhausted in the matching above. 
-                // If a word whose prefix is palindrome after matching its suffix with A[i], 
-                // then this is also a valid pair
-                if (i != j) ans.push_back({ i, j });
+            return i >= j;
+        };
+        
+        vector<vector<int>> res;
+        for(int g=0;g<words.size();g++){
+            
+            string& str = words[g];
+            
+            for(auto& p : memo){
+                if( p.first > str.size() ) break;
+                
+                if( p.first == str.size() ){
+                    
+                    if( p.second.count(str) && p.second[str] != g ){
+                        res.push_back( { g , p.second[str] } );
+                    }
+                    
+                    continue;
+                }
+                
+                if( check( str , 0 , words[g].size()-1 - p.first ) && p.second.count( words[g].substr(words[g].size()-p.first) ) ){
+                    // cout<<"first"<<endl;
+                    res.push_back( { p.second[ words[g].substr( words[g].size()-p.first ) ] , g } );
+                }
+                
+                if( check( str , words[g].size() - ( words[g].size() - p.first ) , words[g].size()-1 ) && p.second.count( words[g].substr( 0 , p.first ) ) ){
+                    // cout<<"second"<<endl;
+                    res.push_back( { g , p.second[ words[g].substr( 0 , p.first ) ] } );
+                }
             }
         }
-        return ans;
+        return res;\
     }
 };
