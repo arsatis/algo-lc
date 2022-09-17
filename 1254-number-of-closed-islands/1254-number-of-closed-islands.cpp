@@ -4,10 +4,6 @@ class Solution {
         return (g[i][j] = 1) + fill(g, i + 1, j) + fill(g, i, j + 1) + fill(g, i - 1, j) + fill(g, i, j - 1);
     }
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     int closedIsland(vector<vector<int>>& g, int res = 0) {
         for (int i = 0; i < g.size(); ++i)
             for (int j = 0; j < g[i].size(); ++j)
