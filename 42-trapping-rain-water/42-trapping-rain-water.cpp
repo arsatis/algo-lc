@@ -11,8 +11,7 @@ public:
         int l = 0, r = n-1;
         int ans = 0;
         int left = 0, right = 0;
-        while(l<r)
-        {
+        while (l<r) {
             if(height[l]<height[r])
             {
                 if(left<height[l])
