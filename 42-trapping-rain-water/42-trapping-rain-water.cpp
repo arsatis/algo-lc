@@ -2,20 +2,25 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
     int trap(vector<int>& height) {
-        int total = 0, leftMax = 0, rightMax = 0;
-        
-        for (int left = 0, right = height.size() - 1; left < right;) {
-            if (height[left] < height[right]) {
-                if (height[left] >= leftMax) leftMax = height[left++];
-                else total += leftMax - height[left++];
-            } else {
-                if (height[right] >= rightMax) rightMax = height[right--];
-                else total += rightMax - height[right--];
+        int ans = 0, current = 0;
+        stack<int> st;
+        while (current < height.size()) {
+            while (!st.empty() && height[current] > height[st.top()]) {
+                int top = st.top();
+                st.pop();
+                if (st.empty())
+                    break;
+                int distance = current - st.top() - 1;
+                int bounded_height = min(height[current], height[st.top()]) - height[top];
+                ans += distance * bounded_height;
             }
+            st.push(current++);
         }
-        return total;
+        return ans;
     }
 };
