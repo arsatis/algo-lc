@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int trap(vector<int>& height) {
         int total = 0, leftMax = 0, rightMax = 0;
         
