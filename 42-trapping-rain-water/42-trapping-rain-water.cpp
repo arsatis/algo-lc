@@ -5,17 +5,18 @@ public:
     }
     
     int trap(vector<int>& height) {
-        int total = 0, leftMax = 0, rightMax = 0;
-        
-        for (int left = 0, right = height.size() - 1; left < right;) {
-            if (height[left] < height[right]) {
-                if (height[left] >= leftMax) leftMax = height[left++];
-                else total += leftMax - height[left++];
+        int l = 0, r = height.size() - 1;
+        int ans = 0;
+        int left = 0, right = 0;
+        while (l < r) {
+            if (height[l]<height[r]) {
+                if(left<height[l]) left = height[l++];
+                else ans += left - height[l++];
             } else {
-                if (height[right] >= rightMax) rightMax = height[right--];
-                else total += rightMax - height[right--];
+                if(right<height[r]) right = height[r--];
+                else ans += right - height[r--];
             }
         }
-        return total;
+        return ans;
     }
 };
