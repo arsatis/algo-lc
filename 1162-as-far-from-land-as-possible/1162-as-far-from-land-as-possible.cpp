@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int maxDistance(vector<vector<int>>& grid) {
         int n = grid.size(), num = -1;
         queue<pair<int, int>> q;
