@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<vector<string>> findDuplicate(vector<string>& paths) {
         unordered_map<string, vector<string>> dict;
         
