@@ -9,6 +9,10 @@
 
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int guessNumber(int n) {
         for (long l = 0, r = n; l <= r;) {
             int mid = (l + r) >> 1;
