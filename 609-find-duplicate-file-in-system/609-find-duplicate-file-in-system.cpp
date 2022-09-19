@@ -5,26 +5,39 @@ public:
         cin.tie(0);
         cout.tie(0);
     }
-    
     vector<vector<string>> findDuplicate(vector<string>& paths) {
-        unordered_map<string, vector<string>> dict;
         
-        for (string& s : paths) {
-            auto it = find(s.begin(), s.end(), ' ');
-            string path_to_file(s.begin(), it);
-            
-            while (it != s.end()) {
-                auto content_start = find(++it, s.end(), '('),
-                     content_end = find(content_start, s.end(), ')');
-                string file_name(it, content_start++), key(content_start, content_end);
-                
-                dict[key].emplace_back(path_to_file + '/' + file_name);
-                it = find(content_end, s.end(), ' ');
+        unordered_map<string, vector<string>> mp;
+        for (const string& path : paths) {
+            string pathStart;
+            int i = 0;
+            while (path[i] != ' ') {
+                pathStart.push_back(path[i]);
+                i++;
             }
+            i++;
+            
+            while (i < path.size()) {
+                string fileName, fileData;
+                while (path[i] != '(') {
+                    fileName.push_back(path[i]);
+                    i++;
+                }
+                i++;
+                while (path[i] != ')') {
+                    fileData.push_back(path[i]);
+                    i++;
+                }
+                i += 2;
+                mp[fileData].push_back(pathStart + "/" + fileName);
+            }     
         }
         
-        vector<vector<string>> dups;
-        for (auto& p : dict) if (p.second.size() > 1) dups.emplace_back(move(p.second));
-        return move(dups);
+        vector<vector<string>> res;
+        for (const auto& [key, value] : mp)
+            if (value.size() > 1)
+                res.push_back(value);
+        
+        return res;
     }
 };
