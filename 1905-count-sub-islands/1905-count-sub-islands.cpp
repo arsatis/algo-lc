@@ -11,8 +11,6 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
     }
     
     int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
