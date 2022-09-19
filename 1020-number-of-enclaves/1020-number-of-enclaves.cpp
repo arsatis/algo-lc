@@ -1,7 +1,7 @@
 class Solution {
     int dfs(vector<vector<int>>& grid, int i, int j) {
-        int num = 1;
         grid[i][j] = 0;
+        int num = 1;
         if (i > 0 && grid[i - 1][j]) num += dfs(grid, i - 1, j);
         if (j > 0 && grid[i][j - 1]) num += dfs(grid, i, j - 1);
         if (i < grid.size() - 1 && grid[i + 1][j]) num += dfs(grid, i + 1, j);
