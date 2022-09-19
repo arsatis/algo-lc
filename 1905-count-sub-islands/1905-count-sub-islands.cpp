@@ -9,6 +9,10 @@ class Solution {
         return isSubIsland;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
         int m = grid1.size(), n = grid1[0].size(), num = 0;
         for (int i = 0; i < m; ++i)
