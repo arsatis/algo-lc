@@ -8,7 +8,6 @@ class Solution {
         if (j < grid[0].size() - 1 && grid[i][j + 1]) num += dfs(grid, i, j + 1);
         return num;
     }
-    
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
