@@ -27,7 +27,7 @@ public:
         }
         
         vector<vector<string>> dups;
-        for (auto& [key, value] : dict) if (value.size() > 1) dups.emplace_back(move(value));
+        for (auto& [key, value] : dict) if (value.size() > 1) dups.emplace_back(value);
         return move(dups);
     }
 };
