@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     int search(vector<int>& nums, int target) {
         for (int left = 0, right = nums.size() - 1; left <= right;) {
             int mid = (left + right) >> 1;
