@@ -9,6 +9,10 @@ class Solution {
         return num;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int numEnclaves(vector<vector<int>>& grid) {
         int m = grid.size(), n = grid[0].size(), num = 0;
         for (int i = 0; i < m; ++i)
