@@ -2,6 +2,10 @@ class Solution {
     pair<int, int> dir[8] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, 1},
                              {1, 1}, {1, 0}, {1, -1}, {0, -1}};
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         int n = grid.size() - 1, pathLen = 1;
         queue<pair<int, int>> q;
