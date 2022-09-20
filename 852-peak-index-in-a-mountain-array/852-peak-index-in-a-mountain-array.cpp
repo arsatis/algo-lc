@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int peakIndexInMountainArray(vector<int>& arr) {
         for (int n = arr.size() - 1, l = 0, r = n; l <= r;) {
             int m = (l + r) >> 1;
