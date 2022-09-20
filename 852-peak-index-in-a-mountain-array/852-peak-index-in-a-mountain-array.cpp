@@ -7,9 +7,9 @@ public:
     }
     
     int peakIndexInMountainArray(vector<int>& arr) {
-        int s = 0, mid, e=arr.size();
+        int s = 0, e = arr.size();
         while (s < e) {
-            mid = (e + s) / 2;
+            int mid = (e + s) / 2;
             if (arr[mid] >= arr[mid + 1]) e = mid;
             else s = mid + 1;
         }
