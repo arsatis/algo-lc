@@ -1,56 +1,46 @@
-class Solution {
-    const int mod = 1000000009;
-    const int base = 113;
-    long long qPow(long long x, long long n) {
-        long long ret = 1;
-        while (n) {
-            if (n & 1) {
-                ret = ret * x % mod;
-            }
-            x = x * x % mod;
-            n >>= 1;
-        }
-        return ret;
-    }
+typedef unsigned long long ULL;
 
-    bool check(vector<int>& A, vector<int>& B, int len) {
-        long long hashA = 0;
-        for (int i = 0; i < len; i++) {
-            hashA = (hashA * base + A[i]) % mod;
+const int N=1010, P=131;
+
+class Solution {
+    ULL h1[N], h2[N], p[N];
+public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
+    int findLength(vector<int>& nums1, vector<int>& nums2) {
+        int n1=nums1.size(), n2=nums2.size();
+        p[0]=1;
+        for(int i=1; i<=n1; i++){
+            h1[i]=h1[i-1]*P+nums1[i-1];
+            p[i]=p[i-1]*P;
         }
-        unordered_set<long long> bucketA;
-        bucketA.insert(hashA);
-        long long mult = qPow(base, len - 1);
-        for (int i = len; i < A.size(); i++) {
-            hashA = ((hashA - A[i - len] * mult % mod + mod) % mod * base + A[i]) % mod;
-            bucketA.insert(hashA);
+        for(int i=1; i<=n2; i++){
+            h2[i]=h2[i-1]*P+nums2[i-1];
+            p[i]=p[i-1]*P;
         }
-        long long hashB = 0;
-        for (int i = 0; i < len; i++) {
-            hashB = (hashB * base + B[i]) % mod;
+            
+        int l=0, r=min(n1,n2);
+        while(l<r){
+            int mid=l+r+1>>1;
+            if(check(nums1,nums2,mid)) l=mid;
+            else r=mid-1;
         }
-        if (bucketA.count(hashB)) {
-            return true;
+        return l;
+    }
+    
+    bool check(vector<int> nums1, vector<int> nums2, int len){
+        int n1=nums1.size(), n2=nums2.size();
+        unordered_set<ULL> S;
+        for(int i=0; i<=n1-len; i++){
+            ULL x=h1[i+len]-h1[i]*p[len];
+            S.insert(x);
         }
-        for (int i = len; i < B.size(); i++) {
-            hashB = ((hashB - B[i - len] * mult % mod + mod) % mod * base + B[i]) % mod;
-            if (bucketA.count(hashB)) {
-                return true;
-            }
+        for(int j=0; j<=n2-len; j++){
+            ULL y=h2[j+len]-h2[j]*p[len];
+            if(S.count(y)) return true;
         }
         return false;
-    }
-public:
-    int findLength(vector<int>& A, vector<int>& B) {
-        int left = 1, right = min(A.size(), B.size()) + 1;
-        while (left < right) {
-            int mid = (left + right) >> 1;
-            if (check(A, B, mid)) {
-                left = mid + 1;
-            } else {
-                right = mid;
-            }
-        }
-        return left - 1;
     }
 };
