@@ -1,5 +1,5 @@
 class Solution {
-    bool ok(vector<int>& a, int target, int d) {
+    bool f(vector<int>& a, int target, int d) {
         for (int l = 0, r = a.size() - 1; l <= r;) {
             int m = (l + r) >> 1;
             if (abs(a[m] - target) <= d) return 0;
@@ -16,7 +16,7 @@ public:
     int findTheDistanceValue(vector<int>& a, vector<int>& b, int d) {
         sort(b.begin(), b.end());
         int dist = 0;
-        for (auto x : a) if (ok(b, x, d)) ++dist;
+        for (auto x : a) if (f(b, x, d)) ++dist;
         return dist;
     }
 };
