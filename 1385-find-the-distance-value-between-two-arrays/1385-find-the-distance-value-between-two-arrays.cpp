@@ -1,8 +1,7 @@
 class Solution {
     bool ok(vector<int>& a, int target, int d) {
-        int l = 0, r = a.size() - 1, m;
-        while (l <= r) {
-            m = (l + r) >> 1;
+        for (int l = 0, r = a.size() - 1; l <= r;) {
+            int m = (l + r) >> 1;
             if (abs(a[m] - target) <= d) return 0;
             else if (a[m] < target) l = m + 1;
             else r = m - 1;
