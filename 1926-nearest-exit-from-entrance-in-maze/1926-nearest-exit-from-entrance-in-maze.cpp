@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
         int m = maze.size() - 1, n = maze[0].size() - 1, minSteps = 0;
         queue<pair<int, int>> q;
