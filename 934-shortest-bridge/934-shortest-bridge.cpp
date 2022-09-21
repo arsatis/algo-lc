@@ -10,6 +10,10 @@ class Solution {
         if (j < n && grid[i][j + 1] == 1) ++grid[i][j + 1], dfs(grid, i, j + 1);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int shortestBridge(vector<vector<int>>& grid) {
         int n = grid.size(), numFlips = 0;
         
