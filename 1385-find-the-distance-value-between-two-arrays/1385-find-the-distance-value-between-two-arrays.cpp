@@ -3,26 +3,20 @@ public:
     Solution() {
         ios_base::sync_with_stdio(0);
     }
-    
-    int findTheDistanceValue(vector<int>& arr1, vector<int>& arr2, int d) {
-        sort(arr1.begin(), arr1.end());
-        sort(arr2.begin(), arr2.end());
-        
-        int dist = 0;
-        for (int i = 0, j = 0; i < arr1.size(); ++i) {
-            if (j == arr2.size()) ++dist;
-            else {
-                bool hasElement = false;
-                while (j < arr2.size() && arr2[j] - d <= arr1[i]) {
-                    if (abs(arr1[i] - arr2[j]) > d) ++j;
-                    else {
-                        hasElement = true;
-                        break;
-                    }
-                }
-                if (!hasElement) ++dist;
-            }
+    bool ok(vector<int> &a, int target, int d) {
+        int lo=0, hi=a.size()-1, mid, ans;
+        while(lo<=hi) {
+            mid=(lo+hi)>>1;
+            if(abs(a[mid]-target) <= d) return 0;
+            else if(a[mid]<target) lo=mid+1;
+            else hi=mid-1;
         }
+        return 1;
+    }
+    int findTheDistanceValue(vector<int>& a, vector<int>& b, int d) {
+        sort(b.begin(), b.end());
+        int dist = 0;
+        for (auto x : a) if (ok(b, x, d)) ++dist;
         return dist;
     }
 };
