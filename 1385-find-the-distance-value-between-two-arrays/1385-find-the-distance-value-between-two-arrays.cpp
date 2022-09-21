@@ -1,8 +1,7 @@
 class Solution {
     bool ok(vector<int>& a, int target, int d) {
-        int l = 0, r = a.size() - 1, m;
-        while (l <= r) {
-            m = (l + r) >> 1;
+        for (int l = 0, r = a.size() - 1; l <= r;) {
+            int m = (l + r) >> 1;
             if (abs(a[m] - target) <= d) return 0;
             else if (a[m] < target) l = m + 1;
             else r = m - 1;
@@ -12,6 +11,8 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
     int findTheDistanceValue(vector<int>& a, vector<int>& b, int d) {
