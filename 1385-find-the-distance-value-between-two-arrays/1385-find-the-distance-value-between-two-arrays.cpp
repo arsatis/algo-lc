@@ -1,10 +1,10 @@
 class Solution {
-    bool ok(vector<int> &a, int target, int d) {
-        for (int lo=0, hi=a.size()-1; lo <= hi; ) {
-            int mid=(lo+hi)>>1;
-            if(abs(a[mid]-target) <= d) return 0;
-            else if(a[mid]<target) lo=mid+1;
-            else hi=mid-1;
+    bool ok(vector<int>& a, int target, int d) {
+        for (int lo=0, hi = a.size() - 1; lo <= hi; ) {
+            int mid = (lo + hi) >> 1;
+            if (abs(a[mid] - target) <= d) return 0;
+            else if (a[mid] < target) lo = mid + 1;
+            else hi = mid - 1;
         }
         return 1;
     }
