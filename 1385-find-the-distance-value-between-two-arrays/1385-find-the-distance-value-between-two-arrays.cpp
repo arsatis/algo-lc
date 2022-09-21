@@ -12,6 +12,7 @@ public:
     Solution() {
         ios_base::sync_with_stdio(0);
     }
+    
     int findTheDistanceValue(vector<int>& a, vector<int>& b, int d) {
         sort(b.begin(), b.end());
         int dist = 0;
