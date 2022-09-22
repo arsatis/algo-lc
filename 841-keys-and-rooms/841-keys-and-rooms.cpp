@@ -1,13 +1,10 @@
 class Solution {
-    void dfs(vector<vector<int>>& rooms, const int currentRoom, vector<bool>& visited) {
-        
-        for (auto& key : rooms[currentRoom]) {
-            
+    void dfs(vector<vector<int>>& rooms, int currentRoom, vector<bool>& visited) {
+        for (int key : rooms[currentRoom])
             if (!visited[key]) {
                 visited[key] = true;
                 dfs(rooms, key, visited);
             }
-        }
     }
 public:
     Solution() {
