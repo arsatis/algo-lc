@@ -1,8 +1,10 @@
 class Solution {
 public:
-    int mySqrt(int x) {
+    Solution() {
         ios_base::sync_with_stdio(0);
-        
+    }
+    
+    int mySqrt(int x) {
         int low = 1, high = x, mid, ans;
         while (low <= high) {
             mid = low + ((high - low) >> 1);
