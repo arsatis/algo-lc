@@ -17,7 +17,7 @@ public:
         vector<bool> visited (rooms.size(), false);
         visited[0] = true;
         dfs(rooms, 0, visited);
-        for (bool roomVisited : visited) if (!roomVisited) return false;
+        for (bool b : visited) if (!b) return false;
         return true;
     }
 };
