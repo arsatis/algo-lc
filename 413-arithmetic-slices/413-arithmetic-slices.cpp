@@ -1,7 +1,7 @@
 class Solution {
 public:
     Solution() {
-        ios::sync_with_stdio(0);
+        ios_base::sync_with_stdio(0);
     }
     
     int numberOfArithmeticSlices(vector<int>& nums) {
