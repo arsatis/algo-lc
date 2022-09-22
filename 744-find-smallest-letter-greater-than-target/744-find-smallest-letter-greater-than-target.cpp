@@ -15,7 +15,7 @@ public:
                 r = i - 1;
                 ans = letters[i];
             }
-            else l = i+1;
+            else l = i + 1;
         }
         return ans;
     }
