@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
         vector<int> visited(rooms.size());
         queue<int> q;
