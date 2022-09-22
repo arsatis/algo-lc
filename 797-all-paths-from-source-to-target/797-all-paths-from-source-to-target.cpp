@@ -10,6 +10,10 @@ class Solution {
         }
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
         path.emplace_back(0);
         dfs(graph);
