@@ -4,8 +4,6 @@
 class Solution {
 public:
     int firstBadVersion(int n) {
-        ios_base::sync_with_stdio(0);
-        
         long start = 1, end = n;
         while (start < end) {
             int mid = (start + end) >> 1;
