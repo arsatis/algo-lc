@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int findKthPositive(vector<int>& arr, int k) {
         int l = 0, r = arr.size();
         while (l < r) {
