@@ -22,6 +22,10 @@ class Solution {
         path.pop_back();
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         if (!root) return {};
         vector<int> path;
