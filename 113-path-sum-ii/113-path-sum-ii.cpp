@@ -30,6 +30,7 @@ public:
     
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         if (!root) return {};
+        paths.reserve(50);
         vector<int> path;
         f(root, targetSum, path);
         return move(paths);
