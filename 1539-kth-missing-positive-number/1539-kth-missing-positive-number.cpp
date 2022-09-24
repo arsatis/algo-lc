@@ -7,12 +7,13 @@ public:
     }
     
     int findKthPositive(vector<int>& arr, int k) {
-        int l = 0, r = arr.size();
-        while (l < r) {
-            int m = (l + r) >> 1;
-            if (arr[m] - 1 - m < k) l = m + 1;
-            else r = m;
+        int j = 1, i = 0, l = 0;
+        while (k > 0 && i < arr.size()) {
+            if (arr[i] != j) --k;
+            else ++i;
+            if (k == 0) return j;
+            ++j;
         }
-        return l + k;
+        return j + k - 1;
     }
 };
