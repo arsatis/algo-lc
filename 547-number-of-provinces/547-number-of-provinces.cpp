@@ -1,9 +1,9 @@
 class Solution {
-    unordered_set<int> visited;
+    int visited[200] = { 0 };
     void dfs(vector<vector<int>>& mat, int i) {
-        visited.insert(i);
+        visited[i] = 1;
         for (int j = 0; j < mat.size(); ++j)
-            if (mat[i][j] && visited.find(j) == visited.end())
+            if (mat[i][j] && !visited[j])
                 dfs(mat, j);
     }
 public:
@@ -17,7 +17,7 @@ public:
         int n = isConnected.size(), num = 0;
         for (int i = 0; i < n; ++i) isConnected[i][i] = 0;
         for (int i = 0; i < n; ++i)
-            if (visited.find(i) == visited.end())
+            if (!visited[i])
                 dfs(isConnected, i), ++num;
         return num;
     }
