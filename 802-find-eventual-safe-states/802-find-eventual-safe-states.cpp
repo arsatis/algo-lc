@@ -1,8 +1,7 @@
 class Solution {
     vector<int> safe;
     bool dfs(vector<vector<int>>& graph, int i) {
-        if (safe[i] == 1) return true;
-        if (safe[i] == -1) return false;
+        if (safe[i]) return safe[i] == 1;
         if (graph[i].empty()) {
             safe[i] = 1;
             return true;
