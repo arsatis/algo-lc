@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minReorder(int n, vector<vector<int>>& connections) {
         vector<unordered_set<int>> dirEdges(n), undirEdges(n);
         for (auto& v : connections) {
