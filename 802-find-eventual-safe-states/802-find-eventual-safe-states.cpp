@@ -8,7 +8,11 @@ class Solution {
         }
         bool isSafe = true;
         safe[i] = -1;
-        for (int j : graph[i]) if (!dfs(graph, j)) isSafe = false;
+        for (int j : graph[i])
+            if (!dfs(graph, j)) {
+                isSafe = false;
+                break;
+            }
         if (isSafe) safe[i] = 1;
         return isSafe;
     }
