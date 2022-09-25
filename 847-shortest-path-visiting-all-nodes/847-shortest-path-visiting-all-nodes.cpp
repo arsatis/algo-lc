@@ -15,6 +15,7 @@ public:
             q.emplace(t);
             seen[1 << i][i] = true;
         }
+        
         while (!q.empty()) {
             Tuple cur = q.front();
             q.pop();
