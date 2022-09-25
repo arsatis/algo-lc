@@ -9,13 +9,13 @@ public:
     int shortestPathLength(vector<vector<int>>& g) {
         int n = g.size();
         queue<Tuple> q;
+        
         for (int i = 0; i < n; ++i) {
             int temp = 1 << i;
             Tuple t(i, temp, 1);
             q.emplace(t);
             seen[1 << i][i] = true;
         }
-        
         while (!q.empty()) {
             Tuple cur = q.front();
             q.pop();
