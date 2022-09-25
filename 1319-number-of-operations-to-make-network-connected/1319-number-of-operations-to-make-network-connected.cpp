@@ -6,6 +6,10 @@ class Solution {
         for (int j : links[i]) if (!visited[j]) dfs(j);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int makeConnected(int n, vector<vector<int>>& connections) {
         if (connections.size() < n - 1) return -1;
         
