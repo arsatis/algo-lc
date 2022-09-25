@@ -5,24 +5,27 @@ public:
     }
     
     vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& redEdges, vector<vector<int>>& blueEdges) {
-		vector<vector<pair<int, int>>> graph(n);
-        for (auto edge : redEdges) graph[edge[0]].emplace_back(edge[1], 0);
-        for (auto edge : blueEdges) graph[edge[0]].emplace_back(edge[1], 1);
-        vector<int> dist(n, -1); 
-        queue<vector<int>> q;
-        q.emplace(vector<int>{ 0, 0, -1 });
-        
-        while (!q.empty()) {
-            auto front = q.front();
-            q.pop();
-            dist[front[0]] = dist[front[0]] != -1 ? dist[front[0]] : front[1];
-            for (auto& adj : graph[front[0]]) {
-                if (front[2] != adj.second && adj.first!= -1) {
-                    q.emplace(vector<int>{ adj.first, front[1] + 1, adj.second });
-                    adj.first = -1;
-                }
+        vector<vector<pair<int, int>>> graph(n);
+        for(auto& v : redEdges) graph[v[0]].push_back({v[1], 0});
+        for(auto& v : blueEdges) graph[v[0]].push_back({v[1], 1});
+        vector<vector<int>> vis(n, vector<int>(2, 10001));
+        queue<pair<int, int>> q;
+        q.push({0, 0});
+        q.push({0, 1});
+        vis[0][0] = 0, vis[0][1] = 0;
+        while(!q.empty()){
+            auto [i, c1] = q.front(); q.pop();
+            for(auto [j, c2] : graph[i]){
+                if(vis[j][c2] != 10001 || c1 == c2) continue;
+                vis[j][c2] = vis[i][c1] + 1;
+                q.push({j, c2});
             }
         }
-        return move(dist);
+        vector<int> res;
+        for(auto v : vis){
+            int val = v[1] > v[0] ? v[0] : v[1];
+            res.push_back(val == 10001 ? -1 : val);
+        }
+        return move(res);
     }
 };
