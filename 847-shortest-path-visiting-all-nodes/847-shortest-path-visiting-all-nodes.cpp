@@ -1,10 +1,10 @@
 class Solution {
-    bool seen[1 << 12][12];
     class Tuple {
     public:
         int node, path, cost;
         Tuple(int node, int path, int cost) : node(node), path(path), cost(cost) {}
     };
+    bool seen[1 << 12][12];
 public:
     int shortestPathLength(vector<vector<int>>& g) {
         int n = g.size();
