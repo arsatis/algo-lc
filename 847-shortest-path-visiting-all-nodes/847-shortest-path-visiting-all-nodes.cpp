@@ -19,7 +19,6 @@ public:
         while (!q.empty()) {
             Tuple cur = q.front();
             q.pop();
-            
             if (cur.path == (1 << n) - 1) return cur.cost - 1;
             for (int x : g[cur.node]){
                 int nextpath = cur.path | (1 << x);
