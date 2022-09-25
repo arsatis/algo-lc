@@ -3,6 +3,8 @@ class MyCircularQueue {
     int front, back;
 public:
     MyCircularQueue(int k) {
+        ios_base::sync_with_stdio(0);
+        
         buffer.resize(k, -1);
         front = 0;
         back = 0;
