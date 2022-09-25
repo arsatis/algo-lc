@@ -4,11 +4,7 @@ class Solution {
         if (safe[i]) return safe[i] == 1;
         bool isSafe = true;
         safe[i] = graph[i].empty() ? 1 : -1;
-        for (int j : graph[i])
-            if (!dfs(graph, j)) {
-                isSafe = false;
-                break;
-            }
+        for (int j : graph[i]) if (!dfs(graph, j)) isSafe = false;
         if (isSafe) safe[i] = 1;
         return isSafe;
     }
