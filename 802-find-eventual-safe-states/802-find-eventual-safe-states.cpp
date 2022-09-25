@@ -14,6 +14,10 @@ class Solution {
         return isSafe;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
         safe.resize(graph.size(), 0);
         for (int i = 0; i < graph.size(); ++i) dfs(graph, i);
