@@ -9,7 +9,6 @@ public:
     int shortestPathLength(vector<vector<int>>& g) {
         int n = g.size();
         queue<Tuple> q;
-        
         for (int i = 0; i < n; ++i) {
             int temp = 1 << i;
             Tuple t(i, temp, 1);
