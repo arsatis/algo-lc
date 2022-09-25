@@ -7,6 +7,10 @@ class Solution {
                 dfs(mat, j);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n = isConnected.size(), num = 0;
         for (int i = 0; i < n; ++i) isConnected[i][i] = 0;
