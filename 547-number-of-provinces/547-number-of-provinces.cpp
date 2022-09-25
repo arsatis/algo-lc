@@ -13,7 +13,6 @@ public:
     
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n = isConnected.size(), num = 0;
-        for (int i = 0; i < n; ++i) isConnected[i][i] = 0;
         for (int i = 0; i < n; ++i)
             if (!visited[i])
                 dfs(isConnected, i), ++num;
