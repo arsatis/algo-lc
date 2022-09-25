@@ -1,5 +1,11 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     vector<int> shortestAlternatingPaths(int n, vector<vector<int>>& redEdges, vector<vector<int>>& blueEdges) {
 		vector<vector<pair<int, int>>> graph(n);
         for (auto edge : redEdges) graph[edge[0]].emplace_back(edge[1], 0);
@@ -19,6 +25,6 @@ public:
                 }
             }
         }
-        return dist;
+        return move(dist);
     }
 };
