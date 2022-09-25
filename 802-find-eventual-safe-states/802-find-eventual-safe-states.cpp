@@ -2,12 +2,8 @@ class Solution {
     vector<int> safe;
     bool dfs(vector<vector<int>>& graph, int i) {
         if (safe[i]) return safe[i] == 1;
-        if (graph[i].empty()) {
-            safe[i] = 1;
-            return true;
-        }
         bool isSafe = true;
-        safe[i] = -1;
+        safe[i] = graph[i].empty() ? 1 : -1;
         for (int j : graph[i])
             if (!dfs(graph, j)) {
                 isSafe = false;
