@@ -8,6 +8,7 @@ class Solution {
 public:
     int shortestPathLength(vector<vector<int>>& g) {
         queue<Tuple> q;
+        
         for (int i = 0; i < g.size(); ++i) {
             int temp = 1 << i;
             Tuple t(i, temp, 1);
