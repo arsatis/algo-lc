@@ -1,47 +1,39 @@
 class MyCircularQueue {
-    vector<int> buffer;
-    int front, back;
+    list<int> mList;
+    int k;
 public:
     MyCircularQueue(int k) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
-        buffer.resize(k, -1);
-        front = 0;
-        back = 0;
+        this->k = k;
     }
     
     bool enQueue(int value) {
-        if (buffer[back] != -1) return false;
-        buffer[back++] = value;
-        if (back == buffer.size()) back = 0;
+        if (mList.size() >= k) return false;
+        mList.push_back(value);
         return true;
     }
     
     bool deQueue() {
-        if (buffer[front] == -1) return false;
-        int tmp = buffer[front];
-        buffer[front++] = -1;
-        if (front == buffer.size()) front = 0;
+        if (mList.empty()) return false;
+        mList.pop_front();
         return true;
     }
     
     int Front() {
-        return buffer[front];
+        if (mList.empty()) return -1;
+        return mList.front();
     }
     
     int Rear() {
-        int idx = back == 0 ? buffer.size() - 1 : back - 1;
-        return buffer[idx];
+        if (mList.empty()) return -1;
+        return mList.back();
     }
     
     bool isEmpty() {
-        return buffer[front] == -1;
+        return mList.empty();
     }
     
     bool isFull() {
-        return buffer[back] != -1;
+        return mList.size() == k;
     }
 };
 
