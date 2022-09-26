@@ -11,6 +11,6 @@ public:
         for (int layer = triangle.size() - 2; layer >= 0; --layer)
             for (int i = 0; i <= layer; ++i)
                 minlen[i] = min(minlen[i], minlen[i + 1]) + triangle[layer][i];
-        return minlen[0];
+        return minlen.front();
     }
 };
