@@ -1,10 +1,6 @@
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
         int dp[matrix.size()][matrix[0].size()];
         int maxSide = 0;
         
