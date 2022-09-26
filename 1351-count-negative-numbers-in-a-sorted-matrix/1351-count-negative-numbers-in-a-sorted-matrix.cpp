@@ -8,7 +8,7 @@ public:
         int cnt = 0;
         for (int i = 0; i < grid.size(); ++i)
             for (int j = 0; j < grid[i].size(); ++j)
-                if (grid[i][j]<0) ++cnt;
+                if (grid[i][j] < 0) ++cnt;
         return cnt;
     }
 };
