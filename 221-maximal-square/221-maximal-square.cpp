@@ -2,31 +2,28 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
-    int maximalSquare(vector<vector<char>>& matrix) {
-        int dp[matrix.size()][matrix[0].size()];
-        int maxSide = 0;
-        
-        for (int i = 0; i < matrix.size(); ++i) {
-            dp[i][0] = matrix[i][0] - '0';
-            if (dp[i][0]) maxSide = 1;
-        }
-        for (int i = 1; i < matrix[0].size(); ++i) {
-            dp[0][i] = matrix[0][i] - '0';
-            if (dp[0][i]) maxSide = 1;
-        }
-        
-        for (int i = 1; i < matrix.size(); ++i) {
-            for (int j = 1; j < matrix[0].size(); ++j) {
-                if (matrix[i][j] == '1') {
-                    dp[i][j] = 1 + min({dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]});
-                    maxSide = max(maxSide, dp[i][j]);
-                } else {
-                    dp[i][j] = 0;
+    int maximalSquare(vector<vector<char>>& mat) {
+        int n = mat.size(), m = mat[0].size(), ans = 0;
+        int matrix[n][m];
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < m; ++j) {
+                if (mat[i][j] == '0') matrix[i][j] = 0;
+                else {
+                    ans = 1;
+                    matrix[i][j] = 1;
                 }
             }
-        }
-        return maxSide * maxSide;
+        for (int i = 1; i < n; ++i)
+            for (int j = 1; j < m; ++j) {
+                if (matrix[i][j] == 0) continue;
+                matrix[i][j] += min(matrix[i - 1][j - 1],
+                                min(matrix[i][j - 1], matrix[i - 1][j]));
+                ans = max(ans, matrix[i][j] * matrix[i][j]);
+            }
+        return ans;
     }
 };
