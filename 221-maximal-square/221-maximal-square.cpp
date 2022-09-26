@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int maximalSquare(vector<vector<char>>& matrix) {
         int dp[matrix.size()][matrix[0].size()];
         int maxSide = 0;
