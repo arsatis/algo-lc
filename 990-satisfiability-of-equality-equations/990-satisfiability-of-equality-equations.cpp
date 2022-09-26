@@ -5,12 +5,6 @@ class Solution {
         return uf[x];
     }
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-    }
-    
     bool equationsPossible(vector<string>& equations) {
         for (int i = 0; i < 26; ++i) uf[i] = i;
         for (string& e : equations)
