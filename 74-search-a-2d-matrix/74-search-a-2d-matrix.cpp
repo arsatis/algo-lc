@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int top = 0, left = 0, down = matrix.size() - 1, right = matrix[0].size() - 1;
         while (top < down) {
