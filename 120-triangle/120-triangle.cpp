@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minimumTotal(vector<vector<int>>& triangle) {
         vector<int> minlen(triangle.back());
         for (int layer = triangle.size() - 2; layer >= 0; --layer)
