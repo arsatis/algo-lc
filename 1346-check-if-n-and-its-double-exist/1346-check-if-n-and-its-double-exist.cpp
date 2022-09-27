@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool checkIfExist(vector<int>& arr) {
         bool seen[2001] = { false };
         for (int i : arr) {
