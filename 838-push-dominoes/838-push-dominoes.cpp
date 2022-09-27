@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     string pushDominoes(string dominoes) {
         bool hasRight = false;
         int left, right;
