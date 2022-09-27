@@ -17,11 +17,12 @@ public:
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
         priority_queue<pair<int, int>, vector<pair<int, int>>> max_heap;
         for (int i = 0; i < mat.size(); ++i) {
-            max_heap.push({ calculateSoldierCount(mat[i]), i });
+            max_heap.emplace(calculateSoldierCount(mat[i]), i);
             if (max_heap.size() > k) max_heap.pop();
         }
         
         vector<int> ans;
+        ans.reserve(k);
         while (!max_heap.empty()) {
             ans.emplace_back(max_heap.top().second);
             max_heap.pop();
