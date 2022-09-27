@@ -1,5 +1,11 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     bool checkIfExist(vector<int>& arr) {
         unordered_set<int> seen;
         for (int i : arr) {
