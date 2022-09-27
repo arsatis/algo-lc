@@ -21,13 +21,11 @@ public:
             if (max_heap.size() > k) max_heap.pop();
         }
         
-        vector<int> ans;
-        ans.reserve(k);
-        while (!max_heap.empty()) {
-            ans.emplace_back(max_heap.top().second);
+        vector<int> ans(k);
+        for (int i = k - 1; i >= 0; --i) {
+            ans[i] = max_heap.top().second;
             max_heap.pop();
         }
-        reverse(ans.begin(), ans.end());
         return move(ans);
     }
 };
