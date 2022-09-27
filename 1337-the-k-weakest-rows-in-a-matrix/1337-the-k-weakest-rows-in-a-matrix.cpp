@@ -6,19 +6,21 @@ public:
     
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
         int m = mat.size(), n = mat[0].size();
-        vector<pair<int, int>> v(m);
-        for(int i = 0; i < m; ++i){
-            int j = 0;
-            while(j < n && mat[i][j] == 1){
-                j += 1;
-            }
-            v[i] = make_pair(j, i);
+        vector<int> numSoldiers(m);
+        for (int i = 0; i < m; ++i)
+            for (int j = 0; j < n; ++j)
+                numSoldiers[i] += mat[i][j];
+        
+        vector<vector<int>> srMap(n + 1);
+        for (int i = 0; i < m; ++i) srMap[numSoldiers[i]].emplace_back(i);
+        
+        int idx = 0, srOuterIdx = 0, srInnerIdx = 0;
+        vector<int> weakest(k);
+        while (idx < k) {
+            if (srInnerIdx == srMap[srOuterIdx].size()) srInnerIdx = 0, ++srOuterIdx;
+            while (srMap[srOuterIdx].empty()) ++srOuterIdx;
+            weakest[idx++] = srMap[srOuterIdx][srInnerIdx++];
         }
-        sort(v.begin(), v.end());
-        vector<int> ret(k);
-        for(int i = 0; i < k; ++i){
-            ret[i] = v[i].second;
-        }
-        return ret;
+        return move(weakest);
     }
 };
