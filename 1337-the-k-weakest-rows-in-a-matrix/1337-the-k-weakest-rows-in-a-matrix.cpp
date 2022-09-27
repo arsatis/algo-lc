@@ -5,22 +5,25 @@ public:
     }
     
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
-        int m = mat.size(), n = mat[0].size();
-        vector<int> numSoldiers(m);
-        for (int i = 0; i < m; ++i)
-            for (int j = 0; j < n; ++j)
-                numSoldiers[i] += mat[i][j];
-        
-        vector<vector<int>> srMap(n + 1);
-        for (int i = 0; i < m; ++i) srMap[numSoldiers[i]].emplace_back(i);
-        
-        int idx = 0, srOuterIdx = 0, srInnerIdx = 0;
-        vector<int> weakest(k);
-        while (idx < k) {
-            if (srInnerIdx == srMap[srOuterIdx].size()) srInnerIdx = 0, ++srOuterIdx;
-            while (srMap[srOuterIdx].empty()) ++srOuterIdx;
-            weakest[idx++] = srMap[srOuterIdx][srInnerIdx++];
+        vector<int> score;
+        vector<int> ans;
+        for(auto i:mat){
+            int s=0;
+            for(auto j:i){
+                if(j) ++s;
+            }
+            score.push_back(s);
         }
-        return move(weakest);
+        vector<bool> used(score.size(),0);
+        for(int i=0;i<k;++i){
+            int min=1000;
+            int min_index=0;
+            for(int j=0;j<score.size();++j){
+                if(score[j]<min and (!used[j])) {min=score[j]; min_index=j;}
+            }
+            used[min_index]=1;
+            ans.push_back(min_index);
+        }
+        return ans;
     }
 };
