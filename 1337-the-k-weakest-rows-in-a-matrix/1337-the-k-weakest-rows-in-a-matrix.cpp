@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
         int m = mat.size(), n = mat[0].size();
         vector<int> numSoldiers(m);
