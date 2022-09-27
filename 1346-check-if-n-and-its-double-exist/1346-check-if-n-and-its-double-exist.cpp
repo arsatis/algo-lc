@@ -7,11 +7,10 @@ public:
     }
     
     bool checkIfExist(vector<int>& arr) {
-        bool seen[2001] = { false };
-        for (int i : arr) {
-            if ((i & 1) == 0 && seen[(i / 2) + 1000]) return true;
-            if (abs(i * 2) <= 1000 && seen[(i * 2) + 1000]) return true;
-            seen[i + 1000] = true;
+        unordered_set<int> set;
+        for (int i = 0; i < arr.size(); ++i){
+            if (set.count(2 * arr[i]) > 0 || ((arr[i] & 1) == 0 && set.count(arr[i] / 2) > 0)) return true;
+            set.insert(arr[i]);
         }
         return false;
     }
