@@ -21,8 +21,8 @@ public:
             if (max_heap.size() > k) max_heap.pop();
         }
         
-        vector<int>ans;
-        while (max_heap.size()) {
+        vector<int> ans;
+        while (!max_heap.empty()) {
             ans.emplace_back(max_heap.top().second);
             max_heap.pop();
         }
