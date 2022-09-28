@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     bool judgeSquareSum(int c) {
         for (long a = 0, sq; (sq = a * a) <= c; ++a) {
             double b = sqrt(c - sq);
