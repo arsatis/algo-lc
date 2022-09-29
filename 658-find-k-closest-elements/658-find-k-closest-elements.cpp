@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
         int left = 0, right = arr.size() - k;
         while (left < right) {
