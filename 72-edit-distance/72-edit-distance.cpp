@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minDistance(string word1, string word2) {
         int m = word1.size(), n = word2.size(), pre;
         vector<int> cur(n + 1, 0);
