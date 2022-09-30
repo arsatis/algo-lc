@@ -8,13 +8,13 @@ public:
         int n = mat.size(), m = mat[0].size();
         vector<vector<int>> pref(n, vector<int>(m, 0)), ans(n, vector<int>(m, 0));
         
-        for (int i=0; i<n; i++)
-            for (int j=0; j<m; j++)
-                pref[i][j] += (j==0) ? mat[i][j] : pref[i][j-1] + mat[i][j];
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < m; ++j)
+                pref[i][j] += (j == 0) ? mat[i][j] : pref[i][j - 1] + mat[i][j];
         
-        for (int i=1; i<n; i++)
-            for (int j=0; j<m; j++)
-                pref[i][j] += pref[i-1][j];
+        for (int i = 1; i < n; ++i)
+            for (int j = 0; j < m; ++j)
+                pref[i][j] += pref[i - 1][j];
         
         for (int i=0; i<n; i++) {
             for (int j=0; j<m; j++) {
