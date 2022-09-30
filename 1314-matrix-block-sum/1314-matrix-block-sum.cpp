@@ -19,10 +19,10 @@ public:
         
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++) {
-                int left = max(i-k, 0);
-                int right = min(i+k, m-1);
-                int up = max(j-k, 0);
-                int down = min(j+k, n-1);
+                int left = max(i - k, 0);
+                int right = min(i + k, m - 1);
+                int up = max(j - k, 0);
+                int down = min(j + k, n - 1);
 
                 if (left == 0 && up == 0)
                     result[i][j] = mat[right][down];
