@@ -2,13 +2,20 @@ class Solution {
 public:
     int longestPalindromeSubseq(string s) {
         int n = s.size();
-        vector<int> v0(n), v1(n,1), v(n), *i_2=&v0, *i_1=&v1, *i_=&v;
-        for(int i=2;i<=n;i++) {//length
-            for(int j=0;j<n-i+1;j++)//start index
-                i_->at(j) = s[j]==s[i+j-1]?2+i_2->at(j+1):max(i_1->at(j),i_1->at(j+1));
-            swap(i_1,i_2);    
-            swap(i_1,i_); //rotate i_2, i_1, i_
+        string str;
+        str.assign(s.rbegin(), s.rend());
+        if (str == s) return n;
+        if(s.length() == 1) return 1;
+        
+        int dp[n][n];
+        memset(dp, 0, sizeof(dp));
+        for (int i = n-2; i >= 0; i--) {
+            dp[i][i] = 1;
+            for (int j = i + 1; j < n; j++) {
+                if (s[i] == s[j]) dp[i][j] = dp[i+1][j-1]+2;
+                else dp[i][j] = max(dp[i][j-1], dp[i+1][j]);
+            }
         }
-        return i_1->at(0); 
+        return dp[0][n-1];
     }
 };
