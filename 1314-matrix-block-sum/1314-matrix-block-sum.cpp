@@ -11,11 +11,11 @@ public:
         int n = mat[0].size();
         vector<vector<int>> result(m, vector<int>(n));
         
-        for (int i = 1; i < m; i++) mat[i][0] += mat[i-1][0];
-        for (int i = 1; i < n; i++) mat[0][i] += mat[0][i-1];
+        for (int i = 1; i < m; i++) mat[i][0] += mat[i - 1][0];
+        for (int i = 1; i < n; i++) mat[0][i] += mat[0][i - 1];
         for (int i = 1; i < m; i++)
             for (int j = 1; j < n; j++)
-                mat[i][j] += mat[i-1][j] + mat[i][j-1] - mat[i-1][j-1];
+                mat[i][j] += mat[i - 1][j] + mat[i][j - 1] - mat[i - 1][j - 1];
         
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++) {
