@@ -1,8 +1,7 @@
 class Solution {
-    void dfs(vector<int>& killed, unordered_map <int, vector<int>>& adj,int cur){
+    void dfs(vector<int>& killed, unordered_map<int, vector<int>>& adj, int cur){
         killed.push_back(cur);
-        for(int next: adj[cur])
-            dfs(killed, adj, next);
+        for (int next : adj[cur]) dfs(killed, adj, next);
     }
 public:
     Solution() {
@@ -12,12 +11,9 @@ public:
     }
     
     vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {
-        unordered_map <int, vector<int>> adj;
-        int s = pid.size();
-    
-        for (int i = 0; i < s; ++i)
-            if (ppid[i] > 0)
-                adj[ppid[i]].push_back(pid[i]);
+        unordered_map<int, vector<int>> adj;
+        for (int i = 0; i < pid.size(); ++i)
+            if (ppid[i] > 0) adj[ppid[i]].push_back(pid[i]);
         vector<int> killed;
         dfs(killed, adj, kill);
         return killed;
