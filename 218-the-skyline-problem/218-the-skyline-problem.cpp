@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
         priority_queue<pair<int, int>> pq;
         vector<int> boundaries;
