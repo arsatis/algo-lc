@@ -16,10 +16,12 @@ public:
             for (int j = 0; j < m; ++j)
                 pref[i][j] += pref[i - 1][j];
         
-        for (int i=0; i<n; i++) {
-            for (int j=0; j<m; j++) {
-                int minRow = max(0, i-k), maxRow = min(n-1, i+k), minCol = max(0, j-k), maxCol = min(m-1, j+k);
-              
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                int minRow = max(0, i - k),
+                    maxRow = min(n - 1, i + k),
+                    minCol = max(0, j - k),
+                    maxCol = min(m - 1, j + k);
                 int val1 = minCol==0 ? 0 : pref[maxRow][minCol-1];
                 int val2 = minRow==0 ? 0 : pref[minRow-1][maxCol];
                 int val3 = minRow==0 || minCol==0 ? 0 : pref[minRow-1][minCol-1];
