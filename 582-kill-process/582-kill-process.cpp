@@ -17,6 +17,6 @@ public:
         
         vector<int> killed;
         dfs(killed, adj, kill);
-        return move(killed);
+        return killed;
     }
 };
