@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     long long maximumSumScore(vector<int>& nums) {
         long long sum = accumulate(nums.begin(), nums.end(), (long long) 0),
                   prefixSum = 0, maxSum = LLONG_MIN;
