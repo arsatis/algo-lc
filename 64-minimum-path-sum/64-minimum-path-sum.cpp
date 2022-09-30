@@ -1,12 +1,7 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     int minPathSum(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
+        int m = grid.size(), n = grid[0].size();
         vector<int> cur(m, grid[0][0]);
         for (int i = 1; i < m; i++) cur[i] = cur[i - 1] + grid[i][0]; 
         for (int j = 1; j < n; j++) {
