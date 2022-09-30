@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minFallingPathSum(vector<vector<int>>& matrix) {
         int n = matrix.size();
         int m = matrix[0].size();
