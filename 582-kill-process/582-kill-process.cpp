@@ -1,6 +1,6 @@
 class Solution {
     void dfs(vector<int>& killed, unordered_map<int, vector<int>>& adj, int cur){
-        killed.push_back(cur);
+        killed.emplace_back(cur);
         for (int next : adj[cur]) dfs(killed, adj, next);
     }
 public:
@@ -14,8 +14,9 @@ public:
         unordered_map<int, vector<int>> adj;
         for (int i = 0; i < pid.size(); ++i)
             if (ppid[i] > 0) adj[ppid[i]].emplace_back(pid[i]);
+        
         vector<int> killed;
         dfs(killed, adj, kill);
-        return killed;
+        return move(killed);
     }
 };
