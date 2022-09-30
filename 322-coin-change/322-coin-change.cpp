@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int coinChange(vector<int>& coins, int amount) {
         vector<int> dp(amount + 1, -1);
         dp[0] = 0;
