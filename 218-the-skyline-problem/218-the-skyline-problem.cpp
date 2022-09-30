@@ -1,40 +1,40 @@
 class Solution {
 public:
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
+        vector<pair<int, int>> candidates;
+        for (int i = 0; i < buildings.size(); i++) {
+            candidates.push_back({ buildings[i][0], i });
+            candidates.push_back({ buildings[i][1], i });
+        }
+        sort(candidates.begin(), candidates.end());
         
-        int n=buildings.size();
-        vector<pair<int,int>> v;
+        priority_queue<pair<int, int>> active;
         vector<vector<int>> ans;
-        multiset<int,greater<int>> m;
-        
-        for(int i=0;i<n;i++){
-            int s=buildings[i][0];
-            int e=buildings[i][1];
-            int h=buildings[i][2];
-            v.push_back({s,-h});
-            v.push_back({e,h});
-        }
-        
-        sort(v.begin(),v.end());
-        int cur=0;
-        m.insert(0);
-        
-        for(int i=0;i<v.size();i++){
-            int x=v[i].first;
-            int h=v[i].second;
+        for (int i = 0; i < candidates.size(); ) {
+            auto [curX, buildingIndex] = candidates[i];
             
-            // if h is negative its a starting point.
-            if(h<0)m.insert(abs(h));
-            // else its a ending point.
-            else {
-                m.erase(m.find(h));
+            // loop all buildings has edge with curX
+            while(i < candidates.size() && candidates[i].first == curX) {                
+                auto [x, buildingIndex] = candidates[i];
+                if (buildings[buildingIndex][0] == curX) {
+                    // { height, rightX }
+                    active.push({ buildings[buildingIndex][2],  buildings[buildingIndex][1] });
+                }
+                i++;
             }
-            int top=*m.begin();
-            if(cur!=top){
-                ans.push_back({x,top});
-                cur=top;
+            
+            
+            // now, evict all buildings has past curX
+            while(!active.empty() && curX >= active.top().second) {                
+                active.pop();
             }
+            
+            int curHeight = active.empty() ? 0 : active.top().first;
+            if (ans.empty() || ans.back()[1] != curHeight) {
+                ans.push_back( { curX, curHeight } );
+            }            
         }
+        
         return ans;
     }
 };
