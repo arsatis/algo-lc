@@ -2,6 +2,8 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
     vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int k) {
@@ -11,7 +13,6 @@ public:
         
         for (int i = 1; i < m; i++) mat[i][0] += mat[i-1][0];
         for (int i = 1; i < n; i++) mat[0][i] += mat[0][i-1];
-        
         for (int i = 1; i < m; i++)
             for (int j = 1; j < n; j++)
                 mat[i][j] += mat[i-1][j] + mat[i][j-1] - mat[i-1][j-1];
