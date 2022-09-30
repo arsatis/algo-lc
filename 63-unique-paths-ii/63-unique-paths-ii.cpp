@@ -1,8 +1,11 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        int m = obstacleGrid.size();
-        int n = obstacleGrid[0].size();
+        int m = obstacleGrid.size(), n = obstacleGrid[0].size();
         vector<int> cur(m, 0);
         for (int i = 0; i < m; i++) {
             if (!obstacleGrid[i][0])
