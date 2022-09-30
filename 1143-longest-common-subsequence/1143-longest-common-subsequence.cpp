@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int longestCommonSubsequence(string a, string b) {
         short m[2][1000] = {};
         for (int i = 0; i < a.size(); ++i)
