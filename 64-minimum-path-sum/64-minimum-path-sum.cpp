@@ -1,4 +1,12 @@
 class Solution {
+    int func(int i, int j, vector<vector<int>>& grid, vector<vector<int>>& dp) {
+        if(i==0&&j==0)return grid[0][0];
+        if(i<0||j<0)return 1000009;
+        if(dp[i][j]!=-1)return dp[i][j];
+        int up=grid[i][j]+func(i-1,j,grid,dp);
+        int left=grid[i][j]+func(i,j-1,grid,dp);
+        return dp[i][j]=min(left,up);
+    }
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
@@ -7,15 +15,9 @@ public:
     }
     
     int minPathSum(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        vector<int> cur(m, grid[0][0]);
-        for (int i = 1; i < m; i++) cur[i] = cur[i - 1] + grid[i][0]; 
-        for (int j = 1; j < n; j++) {
-            cur[0] += grid[0][j]; 
-            for (int i = 1; i < m; i++)
-                cur[i] = min(cur[i - 1], cur[i]) + grid[i][j];
-        }
-        return cur[m - 1];
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<vector<int>>dp(n,vector<int>(m,-1));
+        return func(n-1,m-1,grid,dp);
     }
 };
