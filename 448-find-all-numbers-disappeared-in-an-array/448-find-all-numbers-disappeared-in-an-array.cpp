@@ -8,6 +8,7 @@ public:
     
     vector<int> findDisappearedNumbers(vector<int>& nums) {
         vector<int> missing;
+        missing.reserve(nums.size());
         for (int i : nums) {
             int tmp = abs(i) - 1;
             if (nums[tmp] > 0) nums[tmp] *= -1;
