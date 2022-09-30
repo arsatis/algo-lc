@@ -27,11 +27,11 @@ public:
                 if (left == 0 && up == 0)
                     result[i][j] = mat[right][down];
                 else if (left == 0)
-                    result[i][j] = mat[right][down] - mat[right][up-1];
+                    result[i][j] = mat[right][down] - mat[right][up - 1];
                 else if(up == 0)
-                    result[i][j] = mat[right][down] - mat[left-1][down];
+                    result[i][j] = mat[right][down] - mat[left - 1][down];
                 else
-                    result[i][j] = mat[right][down] - mat[left-1][down] - mat[right][up-1] + mat[left-1][up-1];
+                    result[i][j] = mat[right][down] - mat[left - 1][down] - mat[right][up - 1] + mat[left - 1][up - 1];
             }
         return result; 
     }
