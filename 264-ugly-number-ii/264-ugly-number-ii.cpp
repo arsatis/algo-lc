@@ -5,14 +5,19 @@ public:
     }
     
     int nthUglyNumber(int n) {
-        vector <int> results(1, 1);
-        int i = 0, j = 0, k = 0;
-        while (results.size() < n) {
-            results.push_back(min(results[i] * 2, min(results[j] * 3, results[k] * 5)));
-            if (results.back() == results[i] * 2) ++i;
-            if (results.back() == results[j] * 3) ++j;
-            if (results.back() == results[k] * 5) ++k;
+        int dp[n + 1];
+        dp[0] = 1;
+        int i2 = 0, i3 = 0, i5 = 0;
+        int n2 = 0, n3 = 0, n5 = 0;
+        for (int i = 1; i < n; ++i) {
+            n2 = dp[i2] * 2;
+            n3 = dp[i3] * 3;
+            n5 = dp[i5] * 5;
+            int j = min(n2, min(n3, n5));
+            if (j == n2) ++i2, dp[i] = n2;
+            if (j == n3) ++i3, dp[i] = n3;
+            if (j == n5) ++i5, dp[i] = n5;
         }
-        return results.back();
+        return dp[n - 1];
     }
 };
