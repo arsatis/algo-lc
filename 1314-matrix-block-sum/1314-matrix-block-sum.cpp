@@ -1,30 +1,36 @@
 class Solution {
-    int sizeX, sizeY;
-    int extractSum(int i, int j, const vector<vector<int>>& sum) {
-        if (i < 0 || j < 0) return 0;
-        if (i >= sizeX) i = sizeX - 1;
-        if (j >= sizeY) j = sizeY - 1;
-        return sum[i][j];
-    }
 public:
-    vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int K) {
-        sizeX = mat.size();
-        sizeY = mat[0].size();
+    Solution(){
+        ios::sync_with_stdio(0);
+    }
+    
+    vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int k) {
+        int n = mat.size(), m = mat[0].size();
+        vector<vector<int>> pref(n, vector<int>(m,0)), ans(n, vector<int>(m,0));
         
-        vector<vector<int>> sum(sizeX, vector<int>(sizeY, 0));
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                sum[i][j] = mat[i][j] + extractSum(i-1, j, sum) + extractSum(i, j-1, sum) - extractSum(i-1, j-1, sum);
+        for (int i=0; i<n; i++){
+            for (int j=0; j<m; j++){
+                pref[i][j] += (j==0) ? mat[i][j] : pref[i][j-1] + mat[i][j];
             }
         }
         
-        vector<vector<int>> ans(sizeX, vector<int>(sizeY, 0));
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                ans[i][j] = extractSum(i+K, j+K, sum) - extractSum(i+K, j-K-1,sum) - extractSum (i-K-1, j+K, sum) + extractSum(i-K-1, j-K-1, sum);
+        for(int i=1; i<n; i++){
+            for(int j=0; j<m; j++){
+                pref[i][j] += pref[i-1][j];
             }
         }
         
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                int minRow = max(0, i-k), maxRow = min(n-1, i+k), minCol = max(0, j-k), maxCol = min(m-1, j+k);
+              
+                int val1 = minCol==0 ? 0 : pref[maxRow][minCol-1];
+                int val2 = minRow==0 ? 0 : pref[minRow-1][maxCol];
+                int val3 = minRow==0 || minCol==0 ? 0 : pref[minRow-1][minCol-1];
+                
+                ans[i][j] = pref[maxRow][maxCol] - val1 - val2 + val3;
+            }
+        }
         return ans;
     }
 };
