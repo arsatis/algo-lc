@@ -8,7 +8,7 @@ public:
     
     vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int k) {
         int n = mat.size(), m = mat[0].size();
-        vector<vector<int>> pref(n, vector<int>(m,0)), ans(n, vector<int>(m,0));
+        vector<vector<int>> pref(n, vector<int>(m, 0)), ans(n, vector<int>(m, 0));
         
         for (int i=0; i<n; i++)
             for (int j=0; j<m; j++)
