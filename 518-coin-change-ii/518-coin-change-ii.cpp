@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int change(int amount, vector<int>& coins) {
         if (amount == 0) return 1;
         
