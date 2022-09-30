@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> findDisappearedNumbers(vector<int>& nums) {
         vector<int> missing;
         for (int i : nums) if (nums[abs(i) - 1] > 0) nums[abs(i) - 1] *= -1;
