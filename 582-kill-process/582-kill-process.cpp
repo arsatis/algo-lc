@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {
         unordered_map<int, vector<int>> children;
         for (int i = 0; i < ppid.size(); ++i) children[ppid[i]].emplace_back(pid[i]);
