@@ -1,9 +1,16 @@
 class Solution {
 public:
-    int minFallingPathSum(vector<vector<int>>& A) {
-        for (auto i = 1; i < A.size(); ++i)
-            for (auto j = 0; j < A.size(); ++j)
-                A[i][j] += min({ A[i-1][j], A[i-1][max(0,j-1)], A[i-1][min((int)A.size()-1,j+1)] });
-        return *min_element(begin(A[A.size() - 1]), end(A[A.size() - 1]));
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        
+        for (int y = 1; y < n; y++)
+            for (int x = 0; x < m; x++) {
+                int up = y-1 >= 0 ? matrix[y-1][x] : INT_MAX;
+                int upLeft = y-1 >= 0 && x-1 >= 0 ? matrix[y-1][x-1] : INT_MAX;
+                int upRight = y-1>= 0 && x+1 < m ? matrix[y-1][x+1] : INT_MAX;
+                matrix[y][x] = min(up, min(upLeft, upRight)) + matrix[y][x];
+            }
+        return *min_element(matrix[n-1].begin(), matrix[n-1].end());
     }
 };
