@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int nthUglyNumber(int n) {
         vector <int> results(1, 1);
         int i = 0, j = 0, k = 0;
