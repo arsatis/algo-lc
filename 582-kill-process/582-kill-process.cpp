@@ -13,7 +13,7 @@ public:
     vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {
         unordered_map<int, vector<int>> adj;
         for (int i = 0; i < pid.size(); ++i)
-            if (ppid[i] > 0) adj[ppid[i]].push_back(pid[i]);
+            if (ppid[i] > 0) adj[ppid[i]].emplace_back(pid[i]);
         vector<int> killed;
         dfs(killed, adj, kill);
         return killed;
