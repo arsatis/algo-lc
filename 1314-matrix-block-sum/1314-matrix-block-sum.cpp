@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int k) {
         int m = mat.size();
         int n = mat[0].size();
