@@ -1,5 +1,11 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     int findMin(vector<int>& nums) {
         int left = 0, right = nums.size() - 1;
         while (left < right) {
