@@ -1,10 +1,8 @@
 class Solution {
 public:
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
-        // pq<{height, right}>, pops taller first
         priority_queue<pair<int, int>> pq;
-
-        vector<int> boundaries; // x points
+        vector<int> boundaries;
         for (auto& building : buildings) {
             boundaries.emplace_back(building[0]);
             boundaries.emplace_back(building[1]);
@@ -14,21 +12,13 @@ public:
         vector<vector<int>> ans;
         int n = buildings.size(), idx = 0;
         for (auto& boundary : boundaries) {
-            // left <= current boundary, then push right & height into pq
-            while (idx < n && buildings[idx][0] <= boundary) {
-                pq.emplace(buildings[idx][2], buildings[idx][1]);
-                idx++;
-            }
-            
-            // pop all right <= boundary
-            while (!pq.empty() && pq.top().second <= boundary) {
-                pq.pop();
-            }
+            while (idx < n && buildings[idx][0] <= boundary)
+                pq.emplace(buildings[idx][2], buildings[idx++][1]);
+            while (!pq.empty() && pq.top().second <= boundary) pq.pop();
 
             int maxn = pq.empty() ? 0 : pq.top().first;
-            if (ans.size() == 0 || maxn != ans.back()[1]) {
+            if (ans.size() == 0 || maxn != ans.back()[1])
                 ans.push_back({boundary, maxn});
-            }
         }
         return ans;
     }
