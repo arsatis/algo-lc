@@ -8,8 +8,8 @@ public:
         string comp =  "";
         for (string& word : words){
             comp += word;
-            if(s == comp) return true;
-            if(word.length() > s.length()) return false;
+            if (s == comp) return true;
+            if (word.length() > s.length()) return false;
         }
         return false;
     }
