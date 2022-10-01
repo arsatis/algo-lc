@@ -4,6 +4,10 @@ class Solution {
         return n == sq * sq;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int numSquares(int n) {
         while (n % 4 == 0) n >>= 2;
         if (n % 8 == 7) return 4;
