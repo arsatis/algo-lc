@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minCostClimbingStairs(vector<int>& cost) {
         if (cost.size() < 2) return 0;
         int prev2 = 0, prev1 = 0;
