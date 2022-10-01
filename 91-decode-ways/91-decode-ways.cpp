@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int numDecodings(string s) {
         int prev1 = 1, prev2, n = s.size();
         for (int i = n - 1; i >= 0; --i) {
