@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int findLonelyPixel(vector<vector<char>>& picture) {
         int m = picture.size(), n = picture[0].size();
         vector<int> rows(m), cols(n);
