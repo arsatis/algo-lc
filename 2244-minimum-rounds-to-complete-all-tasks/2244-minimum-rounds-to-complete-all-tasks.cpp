@@ -7,7 +7,7 @@ public:
         int rounds = 0;
         for (auto& p : taskCount) {
             if (p.second == 1) return -1;
-            rounds += ceil(p.second / 3.);
+            rounds += (p.second + 2) / 3;
         }
         return rounds;
     }
