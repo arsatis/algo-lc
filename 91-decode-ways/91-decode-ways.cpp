@@ -1,19 +1,19 @@
 class Solution {
 public:
     int numDecodings(string s) {
-        int prev = 1, prev2, n = s.size();
+        int prev1 = 1, prev2, n = s.size();
         for (int i = n - 1; i >= 0; --i) {
             // is the single digit s[i] valid?
-            int curr = s[i] == '0' ? 0 : prev;
+            int curr = s[i] == '0' ? 0 : prev1;
             
             // are the two digits s[i:i+1] valid?
-            if (i < n - 1 && (s[i] == '1' || s[i] == '2' && s[i + 1] < '7'))
-                curr += prev2;
+            int twoDigit = stoi(s.substr(i, 2));
+            if (twoDigit >= 10 && twoDigit <= 26) curr += prev2;
             
             // update curr states
-            prev2 = prev;
-            prev = curr;
+            prev2 = prev1;
+            prev1 = curr;
         }
-        return s.empty() ? 0 : prev;  
+        return s.empty() ? 0 : prev1;  
     }
 };
