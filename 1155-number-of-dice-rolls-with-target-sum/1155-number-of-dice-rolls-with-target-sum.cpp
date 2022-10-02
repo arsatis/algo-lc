@@ -22,3 +22,24 @@ public:
         return memo[n][target];
     }
 };
+
+// Solution 1: top-down dp
+//     int mod = 1e9 + 7, k;
+//     vector<vector<int>> memo;
+    
+//     int dp(int n, int rem) {
+//         if (n == 0) return rem == 0;
+//         if (memo[n][rem] != -1) return memo[n][rem];
+//         else {
+//             int numWays = 0;
+//             for (int i = 1; i <= min(k, rem); ++i)
+//                 numWays = (numWays + dp(n - 1, rem - i)) % mod;
+//             return memo[n][rem] = numWays;
+//         }
+//     }
+    
+//     int numRollsToTarget(int n, int k, int target) {
+//         this->k = k;
+//         memo.resize(n + 1, vector<int>(target + 1, -1));
+//         return dp(n, target);
+//     }
