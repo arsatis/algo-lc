@@ -9,10 +9,6 @@ class Solution {
         return totalSum;
     }
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     bool isHappy(int n) {
         int slowRunner = n;
         int fastRunner = getNext(n);
