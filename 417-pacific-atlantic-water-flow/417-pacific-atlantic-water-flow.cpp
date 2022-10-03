@@ -21,6 +21,10 @@ class Solution {
             bfs(heights, matrix, ocean, i, j + 1);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
         vector<vector<int>> matrix(heights.size(), vector<int>(heights[0].size()));
         for (int i = 0; i < matrix.size(); ++i) {
