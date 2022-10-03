@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> findBall(vector<vector<int>>& grid) {
         vector<int> result(grid[0].size());
 
