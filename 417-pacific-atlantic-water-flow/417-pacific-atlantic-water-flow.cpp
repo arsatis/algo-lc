@@ -36,7 +36,6 @@ public:
         for (int i = 0; i < matrix.size(); ++i)
             for (int j = 0; j < matrix[0].size(); ++j)
                 if (matrix[i][j] == 3) result.push_back({ i, j });
-        
-        return result;
+        return move(result);
     }
 };
