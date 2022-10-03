@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minCost(string& colors, vector<int>& neededTime) {
         int totalTime = 0, currMax = 0;
         for (int i = 0; i < colors.size(); ++i) {
