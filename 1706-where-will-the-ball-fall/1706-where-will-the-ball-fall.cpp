@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> findBall(vector<vector<int>>& grid) {
-        vector<int> result(grid[0].size(), 0);
+        vector<int> result(grid[0].size());
 
         for (int i = 0; i < grid[0].size(); ++i) {
             int currentCol = i;
@@ -16,6 +16,6 @@ public:
                 currentCol = nextCol;
             }
         }
-        return result;
+        return move(result);
     }
 };
