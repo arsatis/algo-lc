@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     string addStrings(string num1, string num2) {
         reverse(num1.begin(), num1.end());
         reverse(num2.begin(), num2.end());
