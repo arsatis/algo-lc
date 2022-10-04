@@ -8,9 +8,7 @@ public:
         if (num1 == "0" || num2 == "0") return "0";
         reverse(num1.begin(), num1.end());
         reverse(num2.begin(), num2.end());
-        
-        int n = num1.size() + num2.size();
-        string answer(n, '0');
+        string answer(num1.size() + num2.size(), '0');
         
         for (int place2 = 0; place2 < num2.size(); ++place2) {
             int digit2 = num2[place2] - '0';
