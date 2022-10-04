@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     string multiply(string num1, string num2) {
         if (num1 == "0" || num2 == "0") return "0";
         reverse(num1.begin(), num1.end());
