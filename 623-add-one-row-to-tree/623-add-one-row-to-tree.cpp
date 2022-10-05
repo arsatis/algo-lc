@@ -11,10 +11,6 @@
  */
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     TreeNode* addOneRow(TreeNode* root, int val, int depth) {
         if (depth == 1) return new TreeNode(val, root, nullptr);
         queue<TreeNode*> q;
