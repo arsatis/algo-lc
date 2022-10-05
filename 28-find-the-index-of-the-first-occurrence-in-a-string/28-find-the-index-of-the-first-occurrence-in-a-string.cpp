@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int strStr(string haystack, string needle) {
         int shift = 5, mod = 1e7 + 19, multiplier = 1, n = needle.size();
         int nHash = 0, hHash = 0;
