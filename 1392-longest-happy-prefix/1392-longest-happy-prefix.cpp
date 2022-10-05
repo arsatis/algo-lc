@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     string longestPrefix(string& s) {
         long long l = 0, r = 0, p = 1, mod = 1e9 + 7;
         int k = 0;
