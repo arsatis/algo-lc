@@ -18,6 +18,10 @@ class Solution {
         return false;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int repeatedStringMatch(string& a, string& b) {
         int count = 0;
         string s = "";
