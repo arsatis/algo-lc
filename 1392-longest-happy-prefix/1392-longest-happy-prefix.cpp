@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     string longestPrefix(string& s) {
         int shift = 5, mod = 1e7 + 19, n = s.size();
         int sHash = 0, tHash;
