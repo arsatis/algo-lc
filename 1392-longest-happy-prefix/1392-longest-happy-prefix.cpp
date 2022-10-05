@@ -7,22 +7,15 @@ public:
     }
     
     string longestPrefix(string& s) {
-        int shift = 5, mod = 1e7 + 19, n = s.size();
-        int sHash = 0, tHash;
-        vector<int> multipliers(1, 1), tHashes(n);
-        multipliers.reserve(n);
-        
-        for (int i = 1; i < n; ++i) multipliers.emplace_back((multipliers.back() << shift) % mod);
-        for (int i = 0; i < n; ++i) {
-            sHash = ((sHash << shift) + s[i]) % mod;
-            tHashes[i] = sHash;
+        long long l = 0, r = 0, p = 1, mod = 1e9 + 7;
+        int k = 0;
+        int n = s.length();
+        for(int i = 0; i < s.size() - 1; ++i) {
+            l = ((l << 7) + (s[i] - 'a')) % mod;
+            r = (r + p * (s[n - 1 - i] - 'a')) % mod;
+            p = (p << 7) % mod;
+            if (l == r) k = i + 1;
         }
-        
-        for (int i = n - 1; i > 0; --i) {
-            sHash = (sHash + mod - (multipliers[i] * s[n - 1 - i] % mod)) % mod; // remove leftmost element
-            tHash = tHashes[i - 1];
-            if (sHash == tHash) return s.substr(0, i);
-        }
-        return "";
+        return s.substr(0, k);
     }
 };
