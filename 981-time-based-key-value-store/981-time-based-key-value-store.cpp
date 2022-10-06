@@ -12,7 +12,7 @@ public:
     }
     
     string get(string key, int timestamp) {
-        if (store.find(key) == store.end()) return "";
+        if (store.find(key) == store.end() || store[key].front().first > timestamp) return "";
         auto& vec = store[key];
         int left = 0, right = vec.size() - 1;
         while (left < right) {
