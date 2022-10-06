@@ -12,7 +12,10 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
+    
     ListNode* oddEvenList(ListNode* head) {
         int idx = 1;
         ListNode odd, even, *oddPtr = &odd, *evenPtr = &even;
