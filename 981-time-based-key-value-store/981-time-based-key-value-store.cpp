@@ -3,6 +3,8 @@ class TimeMap {
 public:
     TimeMap() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
     void set(string key, string value, int timestamp) {
@@ -10,19 +12,16 @@ public:
     }
     
     string get(string key, int timestamp) {
-        if (store.find(key) == store.end() || timestamp < store[key].front().first) return "";
-        
-        int left = 0, right = store[key].size();
+        if (store.find(key) == store.end()) return "";
+        auto& vec = store[key];
+        int left = 0, right = vec.size() - 1;
         while (left < right) {
-            int mid = (left + right) >> 1;
-            if (store[key][mid].first <= timestamp) {
-                left = mid + 1;
-            } else {
-                right = mid;
-            }
+            int mid = (left + right + 1) >> 1;
+            if (vec[mid].first == timestamp) return vec[mid].second;
+            else if (vec[mid].first > timestamp) right = mid - 1;
+            else left = mid;
         }
-        if (right == 0) return "";
-        return store[key][right - 1].second;
+        return vec[left].first <= timestamp ? vec[left].second : "";
     }
 };
 
