@@ -36,6 +36,10 @@ class Solution {
         return dummy.next;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     ListNode* sortList(ListNode* head) {
         if (!head || !head->next) return head;
         ListNode* mid = getMid(head);
