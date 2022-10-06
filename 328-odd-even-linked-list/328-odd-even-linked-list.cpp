@@ -19,11 +19,9 @@ public:
     ListNode* oddEvenList(ListNode* head) {
         int idx = 1;
         ListNode odd, even, *oddPtr = &odd, *evenPtr = &even;
-        while (head) {
+        for (; head; ++idx, head = head->next) {
             if (idx & 1) oddPtr->next = head, oddPtr = oddPtr->next;
             else evenPtr->next = head, evenPtr = evenPtr->next;
-            head = head->next;
-            ++idx;
         }
         oddPtr->next = even.next;
         evenPtr->next = nullptr;
