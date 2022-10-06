@@ -1,7 +1,7 @@
 class Solution {
     string dupWithLength(string& s, int n) {
         unordered_map<int, int> hashes;
-        int shift = 5, mod = 5e7 + 21, multiplier = 1, sHash = 0;
+        int shift = 5, mod = 5e7 + 17, multiplier = 1, sHash = 0;
         
         for (int i = 1; i < n; ++i) multiplier = (multiplier << shift) % mod;
         for (int i = 0; i < n; ++i) sHash = ((sHash << shift) + s[i] - 'a') % mod;
@@ -19,8 +19,6 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
     }
     
     string longestDupSubstring(string& s) {
