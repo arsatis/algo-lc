@@ -23,7 +23,20 @@ public:
     }
     
     bool repeatedSubstringPattern(string s) {
-        string s2 = (s + s).substr(1, s.size() - 1 << 1);
-        return rabinKarp(s2, s);
+   		for (size_t i = 1; i < s.size(); i++) {
+			if (s[i] != s[0]) continue;
+			if (s.size() % i != 0) continue;
+			if (s[s.size() - 1] != s[i - 1]) continue;
+
+			int j = i, ii = 0;
+			while (j < s.size()) {
+				if (s[j++] != s[ii++]) break;
+				if (ii == i) ii = 0;
+			}
+
+			if (j == s.size()) return true;
+		}
+
+		return false;
     }
 };
