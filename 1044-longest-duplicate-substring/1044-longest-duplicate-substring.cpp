@@ -59,7 +59,7 @@ public:
     }
 };
 
-// Solution 1: Karp-Rabin
+// Solution 1: Rabin-Karp
 // class Solution {
 //     string dupWithLength(string& s, int n) {
 //         unordered_map<int, int> hashes;
