@@ -139,6 +139,12 @@ public:
 
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     string longestDupSubstring(string s) {
         const int n = s.size();
         SuffixArray sa(s, n, 128);
@@ -188,12 +194,6 @@ public:
 //           for (k ? k-- : 0, j = sa[rank[i] - 1]; r[i + k] == r[j + k]; ++k);
 //     }
 // public:
-//     Solution() {
-//         ios_base::sync_with_stdio(0);
-//         cin.tie(0);
-//         cout.tie(0);
-//     }
-    
 //     string longestDupSubstring(string s) {
 //         s = s + '0';
 //         int n = s.size(), r[n];
