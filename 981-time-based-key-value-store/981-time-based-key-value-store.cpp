@@ -12,16 +12,19 @@ public:
     }
     
     string get(string key, int timestamp) {
-        if (store.find(key) == store.end()) return "";
-        auto& vec = store[key];
-        int left = 0, right = vec.size() - 1;
+        if (store.find(key) == store.end() || timestamp < store[key].front().first) return "";
+        
+        int left = 0, right = store[key].size();
         while (left < right) {
-            int mid = (left + right + 1) >> 1;
-            if (vec[mid].first == timestamp) return vec[mid].second;
-            else if (vec[mid].first > timestamp) right = mid - 1;
-            else left = mid;
+            int mid = (left + right) >> 1;
+            if (store[key][mid].first <= timestamp) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
         }
-        return vec[left].first <= timestamp ? vec[left].second : "";
+        if (right == 0) return "";
+        return store[key][right - 1].second;
     }
 };
 
