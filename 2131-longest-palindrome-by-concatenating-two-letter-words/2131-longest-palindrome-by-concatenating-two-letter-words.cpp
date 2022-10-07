@@ -2,6 +2,10 @@
 
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int longestPalindrome(vector<string>& words) {
         int len = 0, arr[n][n] = { 0 };
         for (string& s : words) {
