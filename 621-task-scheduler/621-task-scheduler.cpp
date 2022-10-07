@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int leastInterval(vector<char>& tasks, int n) {
         if (n == 0) return tasks.size();
         
