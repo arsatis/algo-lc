@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int threeSumClosest(vector<int>& nums, int target) {
         int diff = INT_MAX, n = nums.size();
         sort(begin(nums), end(nums));
