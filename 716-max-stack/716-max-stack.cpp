@@ -16,35 +16,26 @@ public:
     }
 
     int pop() {
-        while (removed.count(stk.top().second)) {
-            stk.pop();
-        }
-        const pair<int, int> p = stk.top();
+        while (removed.count(stk.top().second)) stk.pop();
+        auto p = stk.top();
         stk.pop();
         removed.insert(p.second);
         return p.first;
     }
 
     int top() {
-        while (removed.count(stk.top().second)) {
-            stk.pop();
-        }
+        while (removed.count(stk.top().second)) stk.pop();
         return stk.top().first;
     }
 
     int peekMax() {
-        while (removed.count(heap.top().second)) {
-            heap.pop();
-        }
+        while (removed.count(heap.top().second)) heap.pop();
         return heap.top().first;
     }
 
     int popMax() {
-        while (removed.count(heap.top().second)) {
-            heap.pop();
-        }
-        
-        const pair<int, int> p = heap.top();
+        while (removed.count(heap.top().second)) heap.pop();
+        auto p = heap.top();
         heap.pop();
         removed.insert(p.second);
         return p.first;
