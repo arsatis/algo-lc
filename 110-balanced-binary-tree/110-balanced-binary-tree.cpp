@@ -10,14 +10,19 @@
  * };
  */
 class Solution {
-    int check(TreeNode* root) {
-        if (!root) return 0;
-        int lh = check(root->left), rh = check(root->right);
-        if (abs(lh - rh) > 1) return 1e9;
-        return 1 + max(lh ,rh);
+    int height(TreeNode* root) {
+        if (root) return 1 + max(height(root->left), height(root->right));
+        return 0;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     bool isBalanced(TreeNode* root) {
-        return check(root) >= 1e9 ? false : true;
+        if (!root) return true;
+        return abs(height(root->left) - height(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right);
     }
 };
