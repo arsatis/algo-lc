@@ -5,6 +5,7 @@ class MaxStack {
 
 public:
     MaxStack() {
+        ios_base::sync_with_stdio(0);
         cnt = 0;
     }
 
