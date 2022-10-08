@@ -1,50 +1,54 @@
 class MaxStack {
-    map<int, vector<list<int>::iterator>> by_val;
-    list<int> stack;
-    
-    void EraseByIter(map<int, vector<list<int>::iterator>>::iterator it)
-    {
-        it->second.pop_back();
-        if(it->second.empty())
-        {
-            by_val.erase(it);
-        }
-    }
-    
+    stack<pair<int, int>> stk;
+    priority_queue<pair<int, int>> heap;
+    unordered_set<int> removed;
+    int cnt;
+
 public:
     MaxStack() {
         ios_base::sync_with_stdio(0);
+        cnt = 0;
     }
-    
+
     void push(int x) {
-        stack.push_back(x);
-        auto it = prev(stack.end());
-        by_val[x].push_back(it);
+        stk.push({x, cnt});
+        heap.push({x, cnt});
+        cnt++;
     }
-    
+
     int pop() {
-        int x = stack.back();
-        stack.pop_back();
-        EraseByIter(by_val.find(x));
-        return x;
+        while (removed.count(stk.top().second)) {
+            stk.pop();
+        }
+        const pair<int, int> p = stk.top();
+        stk.pop();
+        removed.insert(p.second);
+        return p.first;
     }
-    
+
     int top() {
-       return stack.back();
+        while (removed.count(stk.top().second)) {
+            stk.pop();
+        }
+        return stk.top().first;
     }
-    
+
     int peekMax() {
-        return by_val.rbegin()->first;
+        while (removed.count(heap.top().second)) {
+            heap.pop();
+        }
+        return heap.top().first;
     }
-    
+
     int popMax() {
-        auto it_map = prev(by_val.end());
-        int x = it_map->first;
-        auto it_list = it_map->second.back();
+        while (removed.count(heap.top().second)) {
+            heap.pop();
+        }
         
-        EraseByIter(it_map);
-        stack.erase(it_list);
-        return x;
+        const pair<int, int> p = heap.top();
+        heap.pop();
+        removed.insert(p.second);
+        return p.first;
     }
 };
 
