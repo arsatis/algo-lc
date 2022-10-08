@@ -10,9 +10,9 @@ public:
     }
 
     void push(int x) {
-        stk.push({x, cnt});
-        heap.push({x, cnt});
-        cnt++;
+        stk.emplace(x, cnt);
+        heap.emplace(x, cnt);
+        ++cnt;
     }
 
     int pop() {
