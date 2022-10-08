@@ -17,6 +17,10 @@ class Solution {
         return 1 + max(lh ,rh);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool isBalanced(TreeNode* root) {
         return check(root) >= 1e9 ? false : true;
     }
