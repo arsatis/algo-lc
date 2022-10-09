@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-    int maxLen;
+    int maxLen = 0;
     int f(TreeNode* node) {
         int left = node->left ? 1 + f(node->left) : 0,
             right = node->right ? 1 + f(node->right) : 0;
@@ -25,7 +25,6 @@ public:
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
-        maxLen = 0;
         f(root);
         return maxLen;
     }
