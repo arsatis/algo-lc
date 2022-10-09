@@ -18,6 +18,10 @@ class Solution {
         return max(left, right);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int diameterOfBinaryTree(TreeNode* root) {
         maxLen = 0;
         f(root);
