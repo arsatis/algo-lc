@@ -24,6 +24,6 @@ public:
                }
            }
         }
-        return res;
+        return move(res);
     }
 };
