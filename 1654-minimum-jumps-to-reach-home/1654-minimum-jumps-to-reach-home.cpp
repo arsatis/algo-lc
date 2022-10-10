@@ -2,6 +2,10 @@
 
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
         int g{std::gcd(a, b)};
         
