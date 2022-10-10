@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     vector<vector<int>> threeSum(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int n = nums.size();
@@ -16,10 +12,10 @@ public:
                if (sum < 0) ++l;
                else if (sum > 0) --r;
                else {
-                   res.push_back(vector<int>{nums[i], nums[l], nums[r]});
+                   res.push_back({ nums[i], nums[l], nums[r] });
                    while (l + 1 < r && nums[l] == nums[l+1]) ++l;
                    while (l < r - 1 && nums[r] == nums[r - 1]) --r;
-                   ++l; --r;
+                   ++l, --r;
                }
            }
         }
