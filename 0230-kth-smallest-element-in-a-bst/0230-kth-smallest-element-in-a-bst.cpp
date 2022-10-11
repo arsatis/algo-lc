@@ -11,6 +11,10 @@
  */
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int kthSmallest(TreeNode* root, int k) {
         stack<TreeNode*> st;
         while (1) {
