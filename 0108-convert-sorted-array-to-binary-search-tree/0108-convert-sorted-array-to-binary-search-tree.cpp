@@ -22,10 +22,6 @@ class Solution {
         return node;
     }
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     TreeNode* sortedArrayToBST(vector<int>& nums) {
         this->nums = nums;
         return helper(0, nums.size());
