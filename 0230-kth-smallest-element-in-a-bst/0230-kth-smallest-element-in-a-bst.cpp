@@ -10,15 +10,23 @@
  * };
  */
 class Solution {
-    int ans = 0;
-    void f(TreeNode* root, int& k) {
-        if (root->left) f(root->left, k);
-        if (--k == 0) ans = root->val;
-        if (root->right) f(root->right, k);
-    }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
+    int ans =0;
+    void helper(TreeNode* root, int &k){
+        if(!root) return;
+        helper(root->left, k);
+        k--;
+        if(k==0) ans = root->val;
+        helper(root->right, k);
+    }
     int kthSmallest(TreeNode* root, int k) {
-        f(root, k);
+        helper(root, k);
         return ans;
     }
 };
