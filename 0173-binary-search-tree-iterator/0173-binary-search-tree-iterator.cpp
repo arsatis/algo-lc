@@ -10,31 +10,25 @@
  * };
  */
 class BSTIterator {
-    stack<TreeNode*> s;
-    
-    void partialInorder(TreeNode* root){
-        while (root){
-            s.emplace(root);
-            root = root->left;
-        }
+    vector<int> bst;
+    int f = 0;
+    void inorder(TreeNode* root){
+        if (!root) return;
+        inorder(root->left);
+        bst.push_back(root->val);
+        inorder(root->right);
     }
 public:
     BSTIterator(TreeNode* root) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        partialInorder(root);
-    }
-    
-    bool hasNext() {
-        return !s.empty();
+        inorder(root);
     }
     
     int next() {
-        TreeNode* top = s.top();
-        s.pop();
-        partialInorder(top->right);
-        return top->val;
+        return bst[f++];
+    }
+    
+    bool hasNext() {
+        return f < bst.size();
     }
 };
 
