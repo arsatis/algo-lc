@@ -10,14 +10,13 @@
  * };
  */
 class Solution {
-    vector<int> nums;
-    TreeNode* helper(int left, int right) {
+    TreeNode* helper(vector<int>& nums, int left, int right) {
         if (right <= left) return NULL;
         if (right - left == 1) return new TreeNode(nums[left]);
         
         int mid = (left + right) / 2;
-        TreeNode* l = helper(left, mid);
-        TreeNode* r = helper(mid + 1, right);
+        TreeNode* l = helper(nums, left, mid);
+        TreeNode* r = helper(nums, mid + 1, right);
         TreeNode* node = new TreeNode(nums[mid], l, r);
         return node;
     }
@@ -27,7 +26,6 @@ public:
     }
     
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        this->nums = nums;
-        return helper(0, nums.size());
+        return helper(nums, 0, nums.size());
     }
 };
