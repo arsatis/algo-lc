@@ -13,13 +13,14 @@ class BSTIterator {
     stack<TreeNode*> s;
     
     void partialInorder(TreeNode* root){
-        while(root != NULL){
-            s.push(root);
+        while (root){
+            s.emplace(root);
             root = root->left;
         }
     }
 public:
     BSTIterator(TreeNode* root) {
+        ios_base::sync_with_stdio(0);
         partialInorder(root);
     }
     
