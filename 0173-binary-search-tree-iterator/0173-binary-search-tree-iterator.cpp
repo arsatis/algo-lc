@@ -21,8 +21,6 @@ class BSTIterator {
 public:
     BSTIterator(TreeNode* root) {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
         partialInorder(root);
     }
     
