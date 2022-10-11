@@ -14,7 +14,7 @@ class Solution {
         if (right <= left) return NULL;
         if (right - left == 1) return new TreeNode(nums[left]);
         
-        int mid = (left + right) / 2;
+        int mid = (left + right) >> 1;
         TreeNode* l = helper(nums, left, mid);
         TreeNode* r = helper(nums, mid + 1, right);
         TreeNode* node = new TreeNode(nums[mid], l, r);
