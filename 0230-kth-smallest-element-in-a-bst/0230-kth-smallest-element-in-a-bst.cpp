@@ -17,12 +17,6 @@ class Solution {
         if (root->right) f(root->right, k);
     }
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-    }
-    
     int kthSmallest(TreeNode* root, int k) {
         f(root, k);
         return ans;
