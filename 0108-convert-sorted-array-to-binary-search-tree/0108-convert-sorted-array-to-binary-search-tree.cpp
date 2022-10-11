@@ -11,12 +11,6 @@
  */
 class Solution {
     vector<int> nums;
-public:
-    TreeNode* sortedArrayToBST(vector<int>& nums) {
-        this->nums = nums;
-        return helper(0, nums.size());
-    }
-    
     TreeNode* helper(int left, int right) {
         if (right <= left) return NULL;
         if (right - left == 1) return new TreeNode(nums[left]);
@@ -26,5 +20,14 @@ public:
         TreeNode* r = helper(mid + 1, right);
         TreeNode* node = new TreeNode(nums[mid], l, r);
         return node;
+    }
+public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        this->nums = nums;
+        return helper(0, nums.size());
     }
 };
