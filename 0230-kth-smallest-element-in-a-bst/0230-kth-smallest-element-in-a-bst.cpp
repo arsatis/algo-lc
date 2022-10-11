@@ -17,16 +17,17 @@ public:
         cout.tie(0);
     }
     
-    int ans =0;
-    void helper(TreeNode* root, int &k){
-        if(!root) return;
-        helper(root->left, k);
-        k--;
-        if(k==0) ans = root->val;
-        helper(root->right, k);
-    }
     int kthSmallest(TreeNode* root, int k) {
-        helper(root, k);
-        return ans;
+        stack<TreeNode*> st;
+        while (1) {
+            while (root) {
+                st.emplace(root);
+                root = root->left;
+            }
+            root = st.top();
+            st.pop();
+            if (--k == 0) return root->val;
+            root = root->right;
+        }
     }
 };
