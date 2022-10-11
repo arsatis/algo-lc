@@ -1,6 +1,10 @@
 class Solution {
 public:
-    int openLock(vector<string> &deadends, string target) {
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
+    int openLock(vector<string> &deadends, string& target) {
         if (target == "0000") return 0;
         queue<int> queue;
         queue.push(0);
