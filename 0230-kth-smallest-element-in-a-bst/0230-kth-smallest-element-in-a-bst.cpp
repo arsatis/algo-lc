@@ -11,11 +11,10 @@
  */
 class Solution {
     int ans = 0;
-    void helper(TreeNode* root, int& k) {
-        if (!root) return;
-        helper(root->left, k);
+    void f(TreeNode* root, int& k) {
+        if (root->left) f(root->left, k);
         if (--k == 0) ans = root->val;
-        helper(root->right, k);
+        if (root->right) f(root->right, k);
     }
 public:
     Solution() {
@@ -25,7 +24,7 @@ public:
     }
     
     int kthSmallest(TreeNode* root, int k) {
-        helper(root, k);
+        f(root, k);
         return ans;
     }
 };
