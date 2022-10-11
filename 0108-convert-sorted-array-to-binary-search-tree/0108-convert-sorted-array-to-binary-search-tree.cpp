@@ -13,7 +13,6 @@ class Solution {
     TreeNode* helper(vector<int>& nums, int left, int right) {
         if (right <= left) return nullptr;
         if (right - left == 1) return new TreeNode(nums[left]);
-        
         int mid = (left + right) >> 1;
         TreeNode* l = helper(nums, left, mid);
         TreeNode* r = helper(nums, mid + 1, right);
