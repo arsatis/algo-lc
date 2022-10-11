@@ -10,6 +10,13 @@
  * };
  */
 class Solution {
+    int ans = 0;
+    void helper(TreeNode* root, int& k) {
+        if (!root) return;
+        helper(root->left, k);
+        if (--k == 0) ans = root->val;
+        helper(root->right, k);
+    }
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
@@ -18,16 +25,7 @@ public:
     }
     
     int kthSmallest(TreeNode* root, int k) {
-        stack<TreeNode*> st;
-        while (1) {
-            while (root) {
-                st.emplace(root);
-                root = root->left;
-            }
-            root = st.top();
-            st.pop();
-            if (--k == 0) return root->val;
-            root = root->right;
-        }
+        helper(root, k);
+        return ans;
     }
 };
