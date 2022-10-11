@@ -1,39 +1,31 @@
 class Solution {
 public:
     int openLock(vector<string> &deadends, string target) {
-        unordered_set<string> deadendsSet(deadends.begin(), deadends.end());
-        unordered_set<string> visited;
-        int result = 0;
-        if (deadendsSet.find("0000") != deadendsSet.end()) {
-            return -1;
-        }
-        queue<string> wheelQueue;
-        wheelQueue.push("0000");
-        visited.insert("0000");
-        while (!wheelQueue.empty()) {
-            int levelSize = wheelQueue.size();
-            while (levelSize--) {
-                string up, down, currentWheel = wheelQueue.front();
-                wheelQueue.pop();
-                if (currentWheel == target) {
-                    return result;
-                }
-                for (int i = 0; i < 4; i++) {
-                    down = up = currentWheel;
-                    char upCh = up[i], downCh = down[i];
-                    up[i] = (upCh == '9' ? '0' : upCh + 1);
-                    down[i] = (downCh == '0' ? '9' : downCh - 1);
-                    if (visited.find(up) == visited.end() && deadendsSet.find(up) == deadendsSet.end()) {
-                        wheelQueue.push(up);
-                        visited.insert(up);
-                    }
-                    if (visited.find(down) == visited.end() && deadendsSet.find(down) == deadendsSet.end()) {
-                        wheelQueue.push(down);
-                        visited.insert(down);
+        if (target == "0000") return 0;
+        queue<int> queue;
+        queue.push(0);
+        bool seen[10000]{false};
+        for (auto& d : deadends)
+            seen[stoi(d)] = true;
+        int targ = stoi(target);
+        if (seen[0]) return -1;
+        for (int turns = 1; queue.size(); turns++) {
+            int qlen = queue.size();
+            for (int i = 0; i < qlen; i++) {
+                int curr = queue.front();
+                queue.pop();
+                for (int j = 1; j < 10000; j *= 10) {
+                    int mask = curr % (j * 10) / j,
+                        masked = curr - (mask * j);
+                    for (int k = 1; k < 10; k += 8) {
+                        int next = masked + (mask + k) % 10 * j;
+                        if (seen[next]) continue;
+                        if (next == targ) return turns;
+                        seen[next] = true;
+                        queue.push(next);
                     }
                 }
             }
-            result++;
         }
         return -1;
     }
