@@ -11,7 +11,7 @@
  */
 class Solution {
     TreeNode* helper(vector<int>& nums, int left, int right) {
-        if (right <= left) return NULL;
+        if (right <= left) return nullptr;
         if (right - left == 1) return new TreeNode(nums[left]);
         
         int mid = (left + right) >> 1;
@@ -23,6 +23,8 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
     TreeNode* sortedArrayToBST(vector<int>& nums) {
