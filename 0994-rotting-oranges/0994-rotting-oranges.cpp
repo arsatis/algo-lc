@@ -3,6 +3,10 @@ class Solution {
         return (i << 4) + j;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int orangesRotting(vector<vector<int>>& grid) {
         int m = grid.size(), n = grid[0].size();
         unordered_set<int> fresh;
