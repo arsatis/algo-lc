@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int findJudge(int n, vector<vector<int>>& trust) {
         if (n == 1) return 1;
         vector<int> a(n + 1), b(n + 1);
