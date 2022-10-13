@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
         vector<vector<int>> neighbours(n, vector<int>(n));
         vector<int> numNeighbours(n);
