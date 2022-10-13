@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
         vector<unordered_set<int>> neighbours(n);
         for (auto& road : roads) {
