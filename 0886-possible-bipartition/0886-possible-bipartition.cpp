@@ -8,30 +8,38 @@ public:
     }
     
     bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
-        unordered_map<int, int> color;
-        vector<vector<int>> adjlist(n + 1);
-        for (auto& d : dislikes) {
-            adjlist[d[0]].emplace_back(d[1]);
-            adjlist[d[1]].emplace_back(d[0]);
+        vector<int> graph[n+1];
+        
+        for(auto &d : dislikes){
+            graph[d[0]].push_back(d[1]);
+            graph[d[1]].push_back(d[0]);
         }
         
-        for (int i = 1; i <= n; ++i) {
-            queue<int> q;
-            q.emplace(i);
-            color.insert({i, 0});
-            
-            while (!q.empty()) {
-                int node = q.front();
-                q.pop();
-                for (int j : adjlist[node]) {
-                    int altColor = color[node] ^ 1;
-                    if (color.find(j) == color.end()) color.insert({j, altColor});
-                    else if (color[j] == altColor) continue;
-                    else return false;
-                    q.emplace(j);
-                }
+        vector<int> color(n+1,0);
+        vector<int> visited(n+1,0);
+        
+        for(int i=1;i<=n;i++){
+            if(color[i]==0){
+                color[i] = 1;
+                if(!dfs(graph,visited,color,i))
+                    return false;
             }
         }
+        
+        return true;
+    }
+    
+    bool dfs(vector<int> graph[],vector<int> &visited,vector<int> &color,int node){
+        visited[node] = 1;
+        for(auto &v : graph[node]){
+            if(!visited[v]){
+                color[v] = 3-color[node];
+                if(!dfs(graph,visited,color,v))
+                    return false;
+            }
+            else if(color[v]==color[node])
+                return false;
+        }   
         return true;
     }
 };
