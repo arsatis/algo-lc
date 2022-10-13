@@ -8,6 +8,10 @@
  */
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     void deleteNode(ListNode* node) {
         *node = *(node->next);
     }
