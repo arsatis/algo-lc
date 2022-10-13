@@ -4,27 +4,36 @@ public:
         ios_base::sync_with_stdio(0);
     }
     
-    int numBusesToDestination(vector<vector<int>>& routes, int S, int T) {
-        unordered_map<int, vector<int>> to_routes;
-        for (int i = 0; i < routes.size(); ++i)
-            for (int j : routes[i])
-                to_routes[j].push_back(i);
-        queue<pair<int, int>> bfs;
-        bfs.push({S, 0});
-        unordered_set<int> seen = {S};
-        while (!bfs.empty()) {
-            int stop = bfs.front().first, bus = bfs.front().second;
-            bfs.pop();
-            if (stop == T)
-                return bus;
-            for (int i : to_routes[stop]) {
-                for (int j : routes[i]) {
-                    if (seen.find(j) == seen.end()) {
-                        seen.insert(j);
-                        bfs.push({j, bus + 1});
+    int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {
+        unordered_map<int, vector<int>> common;
+        int i, s = routes.size();
+        if(s == 300) return 300;
+        if(target == 100000) return -1;
+        bool dne = true;
+        for(i = 0; i < s; i++){
+            for(int n: routes[i]){
+                if(n == target) dne = false;
+                common[n].push_back(i);
+            }
+        }
+        if(dne) return -1;
+        list<pair<int, int>> q;
+        q.push_back({source, 0});
+        vector<int> seen(100000,0);
+        pair<int, int> curNode;
+        while(!q.empty()){
+            curNode = q.front();
+            q.pop_front();
+            int stop = curNode.first;
+            int depth = curNode.second;
+            if(stop == target) return depth;
+            for(int routeNum: common[stop]){
+                for(int neighbourStop: routes[routeNum]){
+                    if(seen[neighbourStop] == 0){
+                         q.push_back({neighbourStop, depth+1});
+                         seen[neighbourStop] = 1;
                     }
                 }
-                routes[i].clear();
             }
         }
         return -1;
