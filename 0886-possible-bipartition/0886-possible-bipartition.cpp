@@ -1,7 +1,10 @@
 
 class Solution {
-    
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
         unordered_map<int, int> color;
         vector<vector<int>> adjlist(n + 1);
