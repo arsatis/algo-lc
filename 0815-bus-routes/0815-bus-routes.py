@@ -1,31 +1,18 @@
 class Solution:
-    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
-        if source == target:
-            return 0
-        boards = {}
-        for bus, route in enumerate(routes):
-            for stop in route:
-                if stop not in boards:
-                    boards[stop] = [bus]
-                else:
-                    boards[stop].append(bus)
-        
-        visited = set()
-        queue = deque([source])
-        res = 0
-        while queue:
-            res += 1
-            cur_level = len(queue)
-            for i in range(cur_level):
-                cur = queue.popleft()
-                for bus in boards[cur]:
-                    if bus in visited:
-                        continue
-                    visited.add(bus)
-                    for stop in routes[bus]:
-                        if stop == target:
-                            return res
-                        else:
-                            queue.append(stop)
+    def numBusesToDestination(self, routes: List[List[int]], S: int, T: int) -> int:
+        to_routes = collections.defaultdict(set)
+        for i, route in enumerate(routes):
+            for j in route:
+                to_routes[j].add(i)
+        bfs = [(S, 0)]
+        seen = set([S])
+        for stop, bus in bfs:
+            if stop == T: return bus
+            for i in to_routes[stop]:
+                for j in routes[i]:
+                    if j not in seen:
+                        bfs.append((j, bus + 1))
+                        seen.add(j)
+                routes[i] = []  # seen route
         return -1
         
