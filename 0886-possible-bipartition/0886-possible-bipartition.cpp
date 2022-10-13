@@ -6,39 +6,34 @@ public:
         cin.tie(0);
         cout.tie(0);
     }
-    bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
-        vector<int> graph[n+1];
-        
-        for(auto &d : dislikes){
-            graph[d[0]].push_back(d[1]);
-            graph[d[1]].push_back(d[0]);
-        }
-        
-        vector<int> color(n+1,0);
-        vector<int> visited(n+1,0);
-        
-        for(int i=1;i<=n;i++){
-            if(color[i]==0){
-                color[i] = 1;
-                if(!dfs(graph,visited,color,i))
-                    return false;
-            }
-        }
-        
-        return true;
-    }
     
-    bool dfs(vector<int> graph[],vector<int> &visited,vector<int> &color,int node){
-        visited[node] = 1;
-        for(auto &v : graph[node]){
-            if(!visited[v]){
-                color[v] = 3-color[node];
-                if(!dfs(graph,visited,color,v))
-                    return false;
+    bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
+        vector<vector<int>> adj(n, vector<int>());
+        for (vector<int>& d : dislikes) {
+            adj[d[0]-1].push_back(d[1]-1);
+            adj[d[1]-1].push_back(d[0]-1);
+        }
+        
+        vector<int> group(n);
+        for (int p = 0; p < n; ++p) {
+            if (group[p] == 0) {
+                group[p] = 1;
+                deque<int> q = {p};
+                while (!q.empty()) {
+                    int a = q.back();
+                    q.pop_back();
+                    for (int b : adj[a]) {
+                        if (group[b] == 0) {
+                            group[b] = group[a] % 2 + 1;
+                            q.push_front(b);
+                        }
+                        else if (group[a] == group[b]) {
+                            return false;
+                        }
+                    }
+                }
             }
-            else if(color[v]==color[node])
-                return false;
-        }   
+        }
         return true;
     }
 };
