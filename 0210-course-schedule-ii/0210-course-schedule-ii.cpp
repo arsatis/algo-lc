@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         vector<unordered_set<int>> next(numCourses), prev(numCourses);
         for (auto& prereq : prerequisites) {
