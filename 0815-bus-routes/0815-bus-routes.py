@@ -4,10 +4,8 @@ class Solution:
         boards = {}
         for bus, route in enumerate(routes):
             for stop in route:
-                if stop not in boards:
-                    boards[stop] = [bus]
-                else:
-                    boards[stop].append(bus)
+                if stop not in boards: boards[stop] = [bus]
+                else: boards[stop].append(bus)
         
         visited = set()
         queue = deque([source])
@@ -18,13 +16,10 @@ class Solution:
             for i in range(cur_level):
                 cur = queue.popleft()
                 for bus in boards[cur]:
-                    if bus in visited:
-                        continue
+                    if bus in visited: continue
                     visited.add(bus)
                     for stop in routes[bus]:
-                        if stop == target:
-                            return res
-                        else:
-                            queue.append(stop)
+                        if stop == target: return res
+                        else: queue.append(stop)
         return -1
         
