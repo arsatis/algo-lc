@@ -7,25 +7,23 @@ public:
     }
     
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        vector<unordered_set<int>> next(numCourses), prev(numCourses);
-        for (auto& prereq : prerequisites) {
-            next[prereq.back()].insert(prereq.front());
-            prev[prereq.front()].insert(prereq.back());
-        }
-        
-        vector<int> order, visited(numCourses);
-        order.reserve(numCourses);
+        vector<vector<int>> graph(numCourses);
+        vector<int> numPrere(numCourses), result;
         queue<int> q;
-        for (int i = 0; i < numCourses; ++i) if (prev[i].empty()) q.emplace(i);
-        while (!q.empty()) {
-            int curr = q.front();
-            q.pop();
-            for (auto& s : prev) s.erase(curr);
-            order.emplace_back(curr);
-            for (int x : next[curr])
-                if (!visited[x] && prev[x].empty())
-                    q.emplace(x), ++visited[x];
+        
+        for (auto& pre: prerequisites) {
+            graph[pre[1]].push_back(pre[0]);
+            ++numPrere[pre[0]];
         }
-        return order.size() == numCourses ? move(order) : vector<int>();
+        for (int i = 0; i < numCourses; ++i) if (numPrere[i] == 0) q.push(i);
+        
+        while (!q.empty()) {
+            auto cur = q.front();
+            q.pop();
+            result.push_back(cur);
+            for (int child : graph[cur]) if (--numPrere[child] == 0) q.push(child);
+        }
+        if (result.size() == numCourses) return move(result);
+        else return {};
     }
 };
