@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool isBipartite(vector<vector<int>>& graph) {
         int n = graph.size();
         vector<int> color(n, -1);
