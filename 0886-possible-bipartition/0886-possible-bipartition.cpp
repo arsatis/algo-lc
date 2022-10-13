@@ -10,7 +10,6 @@ public:
     bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
         unordered_map<int, int> color;
         vector<vector<int>> adjlist(n + 1);
-        for (int i = 0; i <= n; ++i) adjlist[i].reserve(n + 1);
         for (auto& d : dislikes) {
             adjlist[d[0]].emplace_back(d[1]);
             adjlist[d[1]].emplace_back(d[0]);
