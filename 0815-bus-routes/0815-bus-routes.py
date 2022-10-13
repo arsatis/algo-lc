@@ -1,7 +1,6 @@
 class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
-        if source == target:
-            return 0
+        if source == target: return 0
         boards = {}
         for bus, route in enumerate(routes):
             for stop in route:
