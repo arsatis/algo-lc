@@ -6,5 +6,5 @@ class Solution:
             for coin in coins:
                 if i - coin >= 0 and dp[i - coin] != -1:
                     val = min(val, 1 + dp[i - coin])
-            dp[i] = val if val != math.inf else -1
+            if val != math.inf: dp[i] = val
         return dp[-1]
