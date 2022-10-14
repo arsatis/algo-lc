@@ -10,6 +10,10 @@
  */
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     ListNode* deleteMiddle(ListNode* head) {
         ListNode *fast = head, *slow = head, *prev = nullptr;
         while (fast && fast->next) {
