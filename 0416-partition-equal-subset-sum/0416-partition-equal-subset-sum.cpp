@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool canPartition(vector<int>& nums) {
         int totalSum = accumulate(nums.begin(), nums.end(), 0);
         
