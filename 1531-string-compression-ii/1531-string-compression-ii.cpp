@@ -14,6 +14,10 @@ class Solution {
         return dp[left][K] = res;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int getLengthOfOptimalCompression(string& s, int k) {
         memset(dp, -1, sizeof(dp));
         return dfs(s, 0, k);
