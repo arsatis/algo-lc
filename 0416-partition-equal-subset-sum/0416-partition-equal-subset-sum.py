@@ -4,7 +4,7 @@ class Solution:
 
         # if total_sum is odd, it cannot be partitioned into equal sum subsets
         if total_sum % 2 != 0: return False
-        subset_sum = total_sum >> 1
+        subset_sum = total_sum // 2
 
         # construct a dp table of size (subset_sum + 1)
         dp = [False] * (subset_sum + 1)
