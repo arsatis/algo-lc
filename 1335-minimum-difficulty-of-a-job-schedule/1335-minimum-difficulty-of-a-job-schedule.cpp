@@ -18,7 +18,7 @@ public:
                     int j = stack.back(); stack.pop_back();
                     dp2[i] = min(dp2[i], dp2[j] - A[j] + A[i]);
                 }
-                if (!stack.empty()) dp2[i] = min(dp2[i], dp2[stack.back()]);
+                if (stack.size()) dp2[i] = min(dp2[i], dp2[stack.back()]);
                 stack.push_back(i);
             }
             swap(dp, dp2);
