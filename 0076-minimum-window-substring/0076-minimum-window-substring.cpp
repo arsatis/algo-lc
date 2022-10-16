@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     string minWindow(string& s, string& t) {
         int left = 0, right = 0, minLeft = 0, minRight = 100001, count = t.size();
         int counter[64] = {};
