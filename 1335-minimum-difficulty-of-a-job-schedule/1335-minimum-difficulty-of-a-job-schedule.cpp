@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minDifficulty(vector<int>& A, int d) {
         int n = A.size();
         if (n < d) return -1;
