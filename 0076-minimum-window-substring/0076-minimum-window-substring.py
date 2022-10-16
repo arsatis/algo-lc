@@ -1,19 +1,22 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        left = right = minLeft = 0
-        minRight = 100001
-        count = len(t)
-        counter = [0] * 64
-        for c in t: counter[ord(c) - ord('A')] += 1
+        if len(s) < len(t): return ""        
+        left = 0
+        right = 0
+        need = Counter(t)
+        missing = len(t)
+        minLeft, minRight = 0, 0
+        
         while right < len(s):
-            if counter[ord(s[right]) - ord('A')] > 0: count -= 1
-            counter[ord(s[right]) - ord('A')] -= 1
+            missing -= (need[s[right]] > 0)
+            need[s[right]] -= 1
             right += 1
-            if count == 0:
-                while counter[ord(s[left]) - ord('A')] < 0:
-                    counter[ord(s[left]) - ord('A')] += 1
+            if not missing:
+                while left < right and need[s[left]] < 0:
+                    need[s[left]] += 1
                     left += 1
-                if minRight - minLeft > right - left:
-                    minRight, minLeft = right, left
-        return s[minLeft : minRight] if minRight != 100001 else ""
+                if not minRight or minRight - minLeft > right - left:
+                    minLeft, minRight = left, right
+            
+        return s[minLeft:minRight]
             
