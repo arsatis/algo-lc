@@ -1,6 +1,6 @@
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        closest, diff = 0, 20001
+        closest, diff = 0, 20000
         nums.sort()
         for i in range(len(nums)):
             left, right = i + 1, len(nums) - 1
