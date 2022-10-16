@@ -9,7 +9,6 @@ public:
     string minWindow(string& s, string& t) {
         int left = 0, right = 0, minLeft = 0, minRight = 100001, count = t.size();
         int counter[64] = {};
-        
         for (char c : t) ++counter[c - 'A'];
         while (right < s.size()) {
             count -= (counter[s[right++] - 'A']-- > 0);
