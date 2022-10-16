@@ -1,20 +1,18 @@
 class Solution {
 public:
-    int minDifficulty(vector<int>& A, int D) {
+    int minDifficulty(vector<int>& A, int d) {
         int n = A.size();
-        if (n < D) return -1;
+        if (n < d) return -1;
         vector<int> dp(n, 1000), dp2(n), stack;
-        for (int d = 0; d < D; ++d) {
+        for (int j = 0; j < d; ++j) {
             stack.clear();
-            for (int i = d; i < n; i++) {
+            for (int i = j; i < n; ++i) {
                 dp2[i] = i ? dp[i - 1] + A[i] : A[i];
                 while (stack.size() && A[stack.back()] <= A[i]) {
                     int j = stack.back(); stack.pop_back();
                     dp2[i] = min(dp2[i], dp2[j] - A[j] + A[i]);
                 }
-                if (stack.size()) {
-                    dp2[i] = min(dp2[i], dp2[stack.back()]);
-                }
+                if (!stack.empty()) dp2[i] = min(dp2[i], dp2[stack.back()]);
                 stack.push_back(i);
             }
             swap(dp, dp2);
