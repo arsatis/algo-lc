@@ -20,7 +20,6 @@ public:
     vector<int> rightSideView(TreeNode* root) {
         if (!root) return {};
         vector<int> view;
-        view.reserve(100);
         queue<TreeNode*> q;
         q.emplace(root);
         while (!q.empty()) {
