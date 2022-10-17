@@ -11,10 +11,6 @@
  */
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     vector<int> rightSideView(TreeNode* root) {
         if (!root) return {};
         vector<int> view;
