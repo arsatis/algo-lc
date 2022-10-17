@@ -11,11 +11,19 @@
  */
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     vector<int> rightSideView(TreeNode* root) {
         if (!root) return {};
         vector<int> view;
+        view.reserve(100);
         queue<TreeNode*> q;
         q.emplace(root);
+        
         while (!q.empty()) {
             int size = q.size();
             while (size--) {
