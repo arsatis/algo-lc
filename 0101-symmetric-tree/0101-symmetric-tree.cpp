@@ -16,6 +16,10 @@ class Solution {
                                        && f(left->right, right->left);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool isSymmetric(TreeNode* root) {
         if (!root) return true;
         return f(root->left, root->right);
