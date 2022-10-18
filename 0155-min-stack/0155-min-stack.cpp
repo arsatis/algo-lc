@@ -3,7 +3,7 @@ class MinStack {
     stack<pair<int, int>> minst;
 public:
     MinStack() {
-        
+        ios_base::sync_with_stdio(0);
     }
     
     void push(int val) {
