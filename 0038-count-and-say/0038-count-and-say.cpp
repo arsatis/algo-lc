@@ -1,16 +1,16 @@
 class Solution {
 public:
     string countAndSay(int n) {
-        regex e("(.)\\1*");
-        string s = "1";
-        for (int i = 2; i <= n; ++i) {
-            string t;
-            for (sregex_iterator it = sregex_iterator(s.begin(), s.end(), e);
-                it != sregex_iterator(); it++) {
-                t += to_string(it->str().size()) + it->str(1);
-            }
-            s = t;
+        if (n == 1) return "1";
+        string str = countAndSay(n - 1), res = "";
+        int s = str.size(), i = 0;
+        while (i < s) {
+            char c = str[i];
+            int count = 0;
+            while (i < s and str[i] == c) ++count, ++i;
+            res += '0' + count;
+            res += c;
         }
-        return s;
+        return res;
     }
 };
