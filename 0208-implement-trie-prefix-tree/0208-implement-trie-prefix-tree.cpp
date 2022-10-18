@@ -1,12 +1,7 @@
 class Trie {
     struct TrieNode {
-        bool isEnd;
-        char val;
-        unordered_map<char, TrieNode*> children;
-        
-        TrieNode() : isEnd(false), val(' ') {}
-        TrieNode(char c) : isEnd(false), val('c') {}
-        void setEnd() { isEnd = true; }
+        bool end = false;
+        TrieNode* children[26] = {};
     };
     TrieNode* root;
 public:
@@ -22,29 +17,26 @@ public:
     void insert(string word) {
         TrieNode* curr = root;
         for (char c : word) {
-            if (curr->children.find(c) == curr->children.end())
-                curr->children[c] = new TrieNode(c);
-            curr = curr->children[c];
+            if (!curr->children[c - 'a']) curr->children[c - 'a'] = new TrieNode();
+            curr = curr->children[c - 'a'];
         }
-        curr->setEnd();
+        curr->end = true;
     }
     
     bool search(string word) {
         TrieNode* curr = root;
         for (char c : word) {
-            if (curr->children.find(c) == curr->children.end())
-                return false;
-            curr = curr->children[c];
+            if (!curr->children[c - 'a']) return false;
+            curr = curr->children[c - 'a'];
         }
-        return curr->isEnd;
+        return curr->end;
     }
     
     bool startsWith(string prefix) {
         TrieNode* curr = root;
         for (char c : prefix) {
-            if (curr->children.find(c) == curr->children.end())
-                return false;
-            curr = curr->children[c];
+            if (!curr->children[c - 'a']) return false;
+            curr = curr->children[c - 'a'];
         }
         return true;
     }
