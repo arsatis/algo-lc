@@ -11,7 +11,7 @@ public:
     
     vector<string> topKFrequent(vector<string>& words, int k) {
         unordered_map<string, int> wordCounts;
-        for (string & word : words) ++wordCounts[word];
+        for (string& word : words) ++wordCounts[word];
         
         priority_queue<pair<string, int>, vector<pair<string, int>>, wordComp> pq;
         for (auto& p : wordCounts) pq.push(p);
@@ -21,7 +21,6 @@ public:
             result.push_back(pq.top().first);
             pq.pop();
         }
-        
         return result;
     }
 };
