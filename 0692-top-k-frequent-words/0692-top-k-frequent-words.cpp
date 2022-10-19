@@ -1,9 +1,4 @@
 class Solution {
-    struct wordComp{
-        bool operator()(pair<string, int>& a, pair<string, int>& b) {
-            return a.second != b.second ? a.second < b.second : a.first > b.first;
-        }
-    };
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
@@ -12,17 +7,34 @@ public:
     }
     
     vector<string> topKFrequent(vector<string>& words, int k) {
-        unordered_map<string, int> wordCounts;
-        for (string& word : words) ++wordCounts[word];
+        std::unordered_map<std::string, int> wordFreqHash;
+        for (int i = 0; i < words.size(); ++i)
+        {
+            ++wordFreqHash[words[i]];
+        }
         
-        priority_queue<pair<string, int>, vector<pair<string, int>>, wordComp> pq;
-        for (auto& p : wordCounts) pq.push(p);
-        
-        vector<string> result;
-        for (int i = 0; i < k; ++i) {
-            result.push_back(pq.top().first);
+        auto comp = [] (auto left, auto right)
+        {
+            return (  left.first > right.first
+                   || (  left.first == right.first
+                      && left.second < right.second));
+        };
+        std::priority_queue<std::pair<int, std::string>, std::vector<std::pair<int, std::string>>, decltype(comp)> pq(comp);
+        for (auto &[word, freq] : wordFreqHash)
+        {
+            pq.push(std::make_pair(freq, word));
+            if (pq.size() > k)
+                pq.pop();
+        }
+
+        std::vector<std::string> result(pq.size());
+        auto it = result.rbegin();
+        while (!pq.empty())
+        {
+            *it++ = pq.top().second;
             pq.pop();
         }
-        return move(result);
+        
+        return result;
     }
 };
