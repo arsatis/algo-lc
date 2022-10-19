@@ -8,8 +8,7 @@ public:
     
     vector<string> topKFrequent(vector<string>& words, int k) {
         unordered_map<string, int> um;
-        for(const auto& w:words)
-            ++um[w];
+        for(const auto& w:words) ++um[w];
 
         int n = words.size();
         vector<set<string>> vecWords(n+1);
