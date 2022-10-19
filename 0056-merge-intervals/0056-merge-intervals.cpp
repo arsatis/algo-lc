@@ -8,13 +8,13 @@ public:
     
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         sort(intervals.begin(), intervals.end(), [](auto& i, auto& j) {
-            return i[1] < j[1];
+            return i.back() < j.back();
         });
         vector<vector<int>> output;
         output.reserve(intervals.size());
         for (int i = intervals.size() - 1; i >= 0; --i) {
-            if (output.size() == 0 || output.back()[0] > intervals[i][1]) output.push_back(intervals[i]);
-            else output.back()[0] = min(output.back()[0], intervals[i][0]);
+            if (output.size() == 0 || output.back().front() > intervals[i].back()) output.emplace_back(intervals[i]);
+            else output.back().front() = min(output.back().front(), intervals[i].front());
         }
         return move(output);
     }
