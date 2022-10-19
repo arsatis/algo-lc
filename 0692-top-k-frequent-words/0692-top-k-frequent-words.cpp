@@ -23,6 +23,6 @@ public:
             result.push_back(pq.top().first);
             pq.pop();
         }
-        return result;
+        return move(result);
     }
 };
