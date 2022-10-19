@@ -5,6 +5,10 @@ class Solution {
         }
     };
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<string> topKFrequent(vector<string>& words, int k) {
         unordered_map<string, int> wordCounts;
         for (string& word : words) ++wordCounts[word];
