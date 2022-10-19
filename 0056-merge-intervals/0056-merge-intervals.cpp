@@ -13,8 +13,10 @@ public:
         vector<vector<int>> output;
         output.reserve(intervals.size());
         for (int i = intervals.size() - 1; i >= 0; --i) {
-            if (output.size() == 0 || output.back().front() > intervals[i].back()) output.emplace_back(intervals[i]);
-            else output.back().front() = min(output.back().front(), intervals[i].front());
+            if (output.size() == 0 || output.back().front() > intervals[i].back())
+                output.emplace_back(intervals[i]);
+            else
+                output.back().front() = min(output.back().front(), intervals[i].front());
         }
         return move(output);
     }
