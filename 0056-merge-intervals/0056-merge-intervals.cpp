@@ -7,17 +7,23 @@ public:
     }
     
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        sort(intervals.begin(), intervals.end(), [](auto& i, auto& j) {
-            return i.back() < j.back();
-        });
-        vector<vector<int>> output;
-        output.reserve(intervals.size());
-        for (int i = intervals.size() - 1; i >= 0; --i) {
-            if (output.size() == 0 || output.back().front() > intervals[i].back())
-                output.emplace_back(intervals[i]);
-            else
-                output.back().front() = min(output.back().front(), intervals[i].front());
-        }
-        return move(output);
+        vector<pair<int, int>> arr;
+        for (int i = 0; i < intervals.size(); ++i) arr.emplace_back(intervals[i][0], intervals[i][1]);
+        sort(arr.begin(),arr.end());
+        stack<pair<int,int>> st;
+        for(int i = 0;i<arr.size();i++) {
+             if (st.empty()) st.push(arr[i]);
+             else {
+                 if (arr[i].first <= st.top().second) st.top().second = max(st.top().second,arr[i].second);
+                 else st.push(arr[i]);
+             }
+         }
+         vector<vector<int>> ans(st.size(), vector<int>(2));
+         int i = 0;
+         while (!st.empty()) {
+            ans[i++] = {st.top().first, st.top().second};
+            st.pop();
+         }
+         return ans;
     }
 };
