@@ -1,4 +1,19 @@
 class Solution {
+    struct wordComp{
+        bool operator()(pair<string, int> & a, pair<string, int> & b){
+            // return a < b
+            if(a.second < b.second){
+                return true;
+            }
+            else if(a.second > b.second){
+                return false;
+            }
+            else{
+                // equal, higher priority goes to lower lexicographic string
+                return b.first < a.first;
+            }
+        }
+    };
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
@@ -7,23 +22,24 @@ public:
     }
     
     vector<string> topKFrequent(vector<string>& words, int k) {
-        unordered_map<string, int> counts;
-        for (string& word : words) ++counts[word];
-        
-        vector<string> buckets[words.size() + 1];
-        for (auto& pair : counts) buckets[pair.second].push_back(pair.first);
-        
-        vector<string> mostFreq(k);
-        int outerIdx = words.size(), innerIdx = 0;
-        for (int i = 0; i < k; ++i) {
-            while (buckets[outerIdx].size() == 0) --outerIdx;
-            sort(buckets[outerIdx].begin(), buckets[outerIdx].end());
-            mostFreq[i] = buckets[outerIdx][innerIdx];
-            if (buckets[outerIdx].size() <= ++innerIdx) {
-                --outerIdx;
-                innerIdx = 0;
-            }
+        unordered_map<string, int> wordCounts;
+        for(string & word : words){
+            wordCounts[word]++;
         }
-        return move(mostFreq);
+        
+        // put everything into a pq using wordComp
+        priority_queue<pair<string, int>, vector<pair<string, int>>, wordComp> pq;
+        for(auto p : wordCounts){
+            pq.push(p);
+        }
+        
+        vector<string> result;
+        // loop k times, grab the top k 
+        for(int i = 0; i < k; i++){
+            result.push_back(pq.top().first);
+            pq.pop();
+        }
+        
+        return result;
     }
 };
