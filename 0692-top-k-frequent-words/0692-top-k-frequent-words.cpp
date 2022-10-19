@@ -1,17 +1,7 @@
 class Solution {
     struct wordComp{
-        bool operator()(pair<string, int> & a, pair<string, int> & b){
-            // return a < b
-            if(a.second < b.second){
-                return true;
-            }
-            else if(a.second > b.second){
-                return false;
-            }
-            else{
-                // equal, higher priority goes to lower lexicographic string
-                return b.first < a.first;
-            }
+        bool operator()(pair<string, int>& a, pair<string, int>& b) {
+            return a.second != b.second ? a.second < b.second : a.first > b.first;
         }
     };
 public:
