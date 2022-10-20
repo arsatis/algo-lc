@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     string intToRoman(int num) {
         if (num <= 0) return "";
         else if (num >= 1000) return "M" + intToRoman(num - 1000);
