@@ -5,20 +5,23 @@ public:
     }
     
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-        vector<vector<int>> res;
-        res.reserve(intervals.size() + 1);
-        for (int i = 0; i < intervals.size(); i++) {
-            if(newInterval[1] < intervals[i][0]){
-                res.push_back(newInterval);
-                newInterval=intervals[i];
-            }else if(newInterval[0] > intervals[i][1]){
-                res.push_back(intervals[i]);
-            }else{
-                newInterval[0]=min(newInterval[0],intervals[i][0]);
-                newInterval[1]=max(newInterval[1],intervals[i][1]);
-            }
+        vector<vector<int>> output;
+        output.reserve(intervals.size() + 1);
+        
+        // place all smaller intervals into output
+        int i = 0;
+        while (i < intervals.size() && intervals[i].back() < newInterval.front()) output.emplace_back(intervals[i++]);
+        
+        // place new interval into output
+        if (i < intervals.size()) output.push_back({min(intervals[i].front(), newInterval.front()), newInterval.back()});
+        else output.emplace_back(newInterval);
+        
+        // extend the end of the new interval if necessary, and place remaining intervals into output
+        if (i != intervals.size()) {
+            while (i < intervals.size() && intervals[i].front() <= output.back().back())
+                output.back().back() = max(output.back().back(), intervals[i++].back());
+            while (i < intervals.size()) output.emplace_back(intervals[i++]);
         }
-        res.push_back(newInterval);
-        return res;
+        return move(output);
     }
 };
