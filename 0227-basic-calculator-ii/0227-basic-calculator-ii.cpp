@@ -1,32 +1,31 @@
 class Solution {
 public:
     int calculate(string& s) {
-        stack<int> st;
-        int currN = 0;
-        char operation = '+';
-        for (int i = 0; i < s.size(); i++) {
-            char currC = s[i];
-            if (isdigit(currC)) currN = (currN * 10) + (currC - '0');
-            if (!isdigit(currC) && !iswspace(currC) || i == s.size() - 1) {
-                if (operation == '-') {
-                    st.push(-currN);
-                } else if (operation == '+') {
-                    st.push(currN);
-                } else if (operation == '*') {
-                    int stackTop = st.top();
-                    st.pop();
-                    st.push(stackTop * currN);
-                } else if (operation == '/') {
-                    int stackTop = st.top();
-                    st.pop();
-                    st.push(stackTop / currN);
+        int len = s.length();
+        if(len == 0) return 0;
+        int currentNumber = 0, lastNumber = 0, result = 0;
+        char sign = '+';
+        for(int i = 0; i < len; i++) {
+            char currentChar = s[i];
+            if(isdigit(currentChar)) {
+                currentNumber = (currentNumber * 10) + (currentChar - '0');
+            }
+            if(!isdigit(currentChar) && !isspace(currentChar) || i == len - 1) {
+                if(sign == '+' || sign == '-') {
+                    result += lastNumber;
+                    lastNumber = (sign == '+') ? currentNumber : -currentNumber;
                 }
-                operation = currC;
-                currN = 0;
+                else if(sign == '*') {
+                    lastNumber = lastNumber * currentNumber;
+                }
+                else if(sign == '/') {
+                    lastNumber = lastNumber / currentNumber;
+                }
+                sign = currentChar;
+                currentNumber = 0;
             }
         }
-        int result = 0;
-        while (!st.empty()) result += st.top(), st.pop();
+        result += lastNumber;
         return result;
     }
 };
