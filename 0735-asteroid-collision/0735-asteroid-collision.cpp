@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> asteroidCollision(vector<int>& asteroids) {
         vector<int> astStack;
         astStack.reserve(asteroids.size());
