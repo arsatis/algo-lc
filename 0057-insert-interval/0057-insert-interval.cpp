@@ -7,7 +7,7 @@ public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         vector<vector<int>> res;
         res.reserve(intervals.size() + 1);
-        for(int i=0;i<intervals.size();i++){
+        for (int i = 0; i < intervals.size(); i++) {
             if(newInterval[1] < intervals[i][0]){
                 res.push_back(newInterval);
                 newInterval=intervals[i];
