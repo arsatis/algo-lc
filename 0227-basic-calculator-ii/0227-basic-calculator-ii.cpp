@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int calculate(string& s) {
         int len = s.length(), currentNumber = 0, lastNumber = 0, result = 0;
         char sign = '+';
