@@ -11,6 +11,10 @@ class Solution {
         }
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int removeStones(vector<vector<int>>& stones) {
         vector<int> adj[2 * K + 1];
         for (int i = 0; i < stones.size(); ++i) {
