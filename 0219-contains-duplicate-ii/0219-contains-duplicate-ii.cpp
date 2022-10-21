@@ -7,11 +7,11 @@ public:
     }
     
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        unordered_set<int> seen;
-        for (int left = 0, right = 0; right < nums.size(); ++right) {
-            if (right > k) seen.erase(nums[left++]);
-            if (seen.find(nums[right]) != seen.end()) return true;
-            seen.insert(nums[right]);
+        uint_least8_t size = nums.size() - 1;
+        for (uint_fast8_t i = 0; i < size; ++i) {
+            for (uint_fast8_t j = i + 1; j - i <= k && j <= size; ++j) {
+                if (nums[i] == nums[j]) return true;
+            }
         }
         return false;
     }
