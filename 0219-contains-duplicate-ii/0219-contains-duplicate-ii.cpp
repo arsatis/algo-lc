@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
         // makes use of locality: O(nk), but faster than O(n) algorithms
         uint_least8_t size = nums.size() - 1;
