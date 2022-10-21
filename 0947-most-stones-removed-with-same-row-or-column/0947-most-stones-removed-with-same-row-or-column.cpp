@@ -19,13 +19,11 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
     }
     
     int removeStones(vector<vector<int>>& stones) {
         for (int i = 0; i < 20002; ++i) parent[i] = i;
-        for (int i = 0; i < stones.size(); ++i) unionset(stones[i][0], stones[i][1] + 10001,parent);
+        for (int i = 0; i < stones.size(); ++i) unionset(stones[i][0], stones[i][1] + 10001, parent);
         
         unordered_set<int> s;
         for (int i = 0; i < stones.size(); ++i) s.insert(findpar(stones[i][0], parent));
