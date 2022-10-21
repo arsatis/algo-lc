@@ -10,7 +10,7 @@ class Solution {
         if (par1 != par2) {
             if (rank[par1] > rank[par2]) parent[par2] = par1;
             else if (rank[par2] > rank[par1]) parent[par1] = par2;
-            else{
+            else {
                 parent[par1] = par2;
                 ++rank[par2];
             }
