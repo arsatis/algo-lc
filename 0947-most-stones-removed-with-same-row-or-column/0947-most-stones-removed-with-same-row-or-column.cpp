@@ -1,12 +1,18 @@
-#define maxLen 10001
-
 class Solution {
-    const int K = 10001;
-    void dfs(vector<vector<int>>& stones, vector<int> adj[], vector<int>& visited, int src) {
-        visited[src] = 1;
-        for (int adjacent : adj[src]) {
-            if (visited[adjacent] == 0) {
-                dfs(stones, adj, visited, adjacent);
+    int rank[20001] = {}, parent[20002];
+    int findpar(int node, int* parent) {
+        if (parent[node] == node) return node;
+        return parent[node] = findpar(parent[node], parent);
+    }
+    
+    void unionset(int n1, int n2, int* parent) {
+        int par1 = findpar(n1,parent), par2 = findpar(n2,parent);
+        if (par1 != par2) {
+            if (rank[par1] > rank[par2]) parent[par2] = par1;
+            else if (rank[par2] > rank[par1]) parent[par1] = par2;
+            else{
+                parent[par1] = par2;
+                ++rank[par2];
             }
         }
     }
@@ -18,22 +24,11 @@ public:
     }
     
     int removeStones(vector<vector<int>>& stones) {
-        vector<int> adj[2 * K + 1];
-        for (int i = 0; i < stones.size(); ++i) {
-            int x = stones[i][0];
-            int y = stones[i][1] + K;
-            adj[x].push_back(y);
-            adj[y].push_back(x);
-        }
+        for (int i = 0; i < 20002; ++i) parent[i] = i;
+        for (int i = 0; i < stones.size(); ++i) unionset(stones[i][0], stones[i][1] + 10001,parent);
         
-        vector<int> visited(2 * K + 1);
-        int componentCount = 0;
-        for (int i = 0; i < 2 * K + 1; i++) {
-            if (visited[i] == 0 && adj[i].size() > 0) {
-                ++componentCount;
-                dfs(stones, adj, visited, i);
-            }
-        }
-        return stones.size() - componentCount;
+        unordered_set<int> s;
+        for (int i = 0; i < stones.size(); ++i) s.insert(findpar(stones[i][0], parent));
+        return stones.size() - s.size(); 
     }
 };
