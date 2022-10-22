@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool isMonotonic(vector<int>& nums) {
         bool inc = true, dec = true;
         for (int i = 1; i < nums.size(); ++i) {
