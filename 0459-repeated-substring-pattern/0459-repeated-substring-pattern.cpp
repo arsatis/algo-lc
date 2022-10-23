@@ -18,10 +18,6 @@ class Solution {
         return false;
     }
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     bool repeatedSubstringPattern(string s) {
         string s2 = (s + s).substr(1, s.size() - 1 << 1);
         return rabinKarp(s2, s);
