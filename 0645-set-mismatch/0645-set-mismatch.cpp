@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     vector<int> findErrorNums(vector<int>& nums) {
         vector<int> output;
         output.reserve(2);
