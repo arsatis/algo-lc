@@ -18,6 +18,10 @@ class Solution {
         return 1 + max(left, right);
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool isBalanced(TreeNode* root) {
         if (!root) return true;
         f(root);
