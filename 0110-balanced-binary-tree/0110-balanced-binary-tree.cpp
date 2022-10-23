@@ -12,8 +12,7 @@
 class Solution {
     bool balanced = true;
     int f(TreeNode* node) {
-        if (!node) return 0;
-        int left = f(node->left), right = f(node->right);
+        int left = node->left ? f(node->left) : 0, right = node->right ? f(node->right) : 0;
         balanced &= abs(left - right) <= 1;
         return 1 + max(left, right);
     }
@@ -23,6 +22,7 @@ public:
     }
     
     bool isBalanced(TreeNode* root) {
+        if (!root) return true;
         f(root);
         return balanced;
     }
