@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int minTotalDistance(vector<vector<int>>& grid) {
         int row = grid.size();
         if (0 == row) return 0;
