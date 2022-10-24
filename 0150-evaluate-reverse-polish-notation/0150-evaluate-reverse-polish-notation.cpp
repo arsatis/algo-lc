@@ -2,21 +2,26 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
     int evalRPN(vector<string>& tokens) {
-        stack<int> s;
-        for (auto& i : tokens)
-            if (i=="+"||i=="-"||i=="*"||i=="/") {
-                long a1 = s.top();s.pop();
-                long a2 = s.top();s.pop();
-                if(i=="+")  a1=a2+a1;
-                if(i=="-")  a1=a2-a1;
-                if(i=="*")  a1=a2*a1;
-                if(i=="/")  a1=a2/a1;
-                s.push(a1);
+        unordered_map<string, function<long(long, long)>> op = {
+            { "+" , [](long a, long b) { return a + b; } },
+            { "-" , [](long a, long b) { return a - b; } },
+            { "*" , [](long a, long b) { return a * b; } },
+            { "/" , [](long a, long b) { return a / b; } }
+        };
+        stack<long> st;
+        for (string& s : tokens) {
+            if (op.find(s) == op.end()) st.push(stoi(s));
+            else {
+                long op1 = st.top(); st.pop();
+                long op2 = st.top(); st.pop();
+                st.push(op[s](op2, op1));
             }
-            else s.push(stoi(i));         
-        return s.top();
+        }
+        return st.top();
     }
 };
