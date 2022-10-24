@@ -1,4 +1,15 @@
 class Solution {
+    int f(int mask, vector<string>& arr, int i = 0) {
+        if (i >= arr.size())
+            return 0;
+        int tmp = mask;
+        for (auto& c : arr[i]) {
+            if ((mask >> (c - 'a') & 1)) 
+                return f(tmp, arr, i + 1);
+            mask |= 1 << (c - 'a');
+        }
+        return max(f(tmp, arr, i + 1), (int) (f(mask, arr, i + 1) + arr[i].size()));
+    }
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
@@ -7,28 +18,6 @@ public:
     }
     
     int maxLength(vector<string>& arr) {
-        size_t maxLen = 0;
-        vector<bitset<26>> unique;
-        unique.reserve(arr.size());
-        
-        // throw away strings with dup characters
-        for (string& s : arr) {
-            bitset<26> tmp;
-            for (char c : s) tmp.set(c - 'a');
-            if (tmp.count() == s.size()) unique.emplace_back(tmp);
-        }
-        
-        // starting with empty concatenation, iteratively increase
-        // its length by trying to add more strings
-        vector<bitset<26>> concat(1);
-        for (auto& bs : unique) {
-            for (int i = concat.size() - 1; i >= 0; --i) {
-                if ((concat[i] & bs).none()) {
-                    concat.emplace_back(concat[i] | bs);
-                    maxLen = max(maxLen, concat[i].count() + bs.count());
-                }
-            }
-        }
-        return maxLen;
+        return f(0, arr);
     }
 };
