@@ -7,29 +7,18 @@ public:
     }
     
     int evalRPN(vector<string>& tokens) {
-        stack<int64_t> stk;
-        
-        for (auto token : tokens) {
-            if (token == "+") {
-                auto b = stk.top(); stk.pop();
-                auto a = stk.top(); stk.pop();
-                stk.push(a + b);
-            } else if (token == "-") {
-                auto b = stk.top(); stk.pop();
-                auto a = stk.top(); stk.pop();
-                stk.push(a - b);
-            } else if (token == "*") {
-                auto b = stk.top(); stk.pop();
-                auto a = stk.top(); stk.pop();
-                stk.push(a * b);
-            } else if (token == "/") {
-                auto b = stk.top(); stk.pop();
-                auto a = stk.top(); stk.pop();
-                stk.push(a / b);
-            } else {
-                stk.push(stoi(token));
+        stack<int> s;
+        for (auto& i : tokens)
+            if (i=="+"||i=="-"||i=="*"||i=="/") {
+                long a1 = s.top();s.pop();
+                long a2 = s.top();s.pop();
+                if(i=="+")  a1=a2+a1;
+                if(i=="-")  a1=a2-a1;
+                if(i=="*")  a1=a2*a1;
+                if(i=="/")  a1=a2/a1;
+                s.push(a1);
             }
-        }
-        return stk.top();
+            else s.push(stoi(i));         
+        return s.top();
     }
 };
