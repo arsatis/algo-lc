@@ -23,6 +23,6 @@ public:
                 }
             }
         }
-        return (int) maxLen;
+        return maxLen;
     }
 };
