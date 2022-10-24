@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int maxLength(vector<string>& arr) {
         size_t maxLen = 0;
         vector<bitset<26>> unique;
