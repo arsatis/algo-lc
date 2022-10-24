@@ -14,7 +14,7 @@ public:
         // throw away strings with dup characters
         for (string& s : arr) {
             bitset<26> tmp;
-            for (char c : s) tmp.set(c - 'a');
+            for (char c : s) tmp |= (1 << c - 'a');
             if (tmp.count() == s.size()) unique.emplace_back(tmp);
         }
         
