@@ -1,5 +1,11 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
+    }
+    
     int evalRPN(vector<string>& tokens) {
         unordered_map<string, function<long(long, long)>> op = {
             { "+" , [](long a, long b) { return a + b; } },
