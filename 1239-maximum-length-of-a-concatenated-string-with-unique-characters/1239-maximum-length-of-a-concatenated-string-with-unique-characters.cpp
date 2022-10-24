@@ -21,6 +21,7 @@ public:
         // starting with empty concatenation, iteratively increase
         // its length by trying to add more strings
         vector<bitset<26>> concat(1);
+        concat.reserve(unique.size());
         for (auto& bs : unique) {
             for (int i = concat.size() - 1; i >= 0; --i) {
                 if ((concat[i] & bs).none()) {
