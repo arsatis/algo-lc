@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
         int out1 = 0, in1 = 0, out2 = 0, in2 = 0;
         while (out1 < word1.size() || out2 < word2.size()) {
