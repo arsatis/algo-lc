@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool checkSubarraySum(vector<int>& nums, int k) {
         unordered_map<int, int> seen{{0, 0}};
         int sum = 0;
