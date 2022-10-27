@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     int largestOverlap(vector<vector<int>>& _img1, vector<vector<int>>& _img2) {
         int rows = _img1.size(), cols = _img1.front().size();
         
