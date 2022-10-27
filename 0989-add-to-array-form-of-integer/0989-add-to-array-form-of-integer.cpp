@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     vector<int> addToArrayForm(vector<int>& num, int k) {
         reverse(num.begin(), num.end());
         int i = 0;
