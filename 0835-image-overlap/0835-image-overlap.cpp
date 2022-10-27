@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int largestOverlap(vector<vector<int>>& A, vector<vector<int>>& B) {
         vector<int> LA, LB;
         int N = A.size();
