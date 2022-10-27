@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     string addBinary(string& a, string& b) {
         string res;
         int i = a.length() - 1, j = b.length() - 1, carry = 0;
