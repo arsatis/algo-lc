@@ -1,9 +1,5 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         vector<pair<int, int>> st;
         vector<int> days(temperatures.size());
