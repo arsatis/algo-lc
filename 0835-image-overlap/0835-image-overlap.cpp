@@ -2,6 +2,8 @@ class Solution {
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     }
     
     int largestOverlap(vector<vector<int>>& _img1, vector<vector<int>>& _img2) {
