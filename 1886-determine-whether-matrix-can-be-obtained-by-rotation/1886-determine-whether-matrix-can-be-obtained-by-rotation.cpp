@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {
         int n = mat.size() - 1, rotations = 4;
         bool clockwise[rotations];
