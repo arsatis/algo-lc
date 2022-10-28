@@ -12,6 +12,6 @@ public:
                 if (mat[i][j] != target[n - j][i]) clockwise[3] = false;
             }
         }
-        return accumulate(clockwise, clockwise + rotations, false, logical_or<bool>());
+        return clockwise[0] || clockwise[1] || clockwise[2] || clockwise[3];
     }
 };
