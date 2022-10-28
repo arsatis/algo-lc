@@ -18,7 +18,6 @@ public:
                 if (mat[i][j] != target[n - j][i]) clockwise[3] = false;
             }
         }
-        for (int i = 0; i < rotations; ++i) if (clockwise[i]) return true;
-        return false;
+        return clockwise[0] || clockwise[1] || clockwise[2] || clockwise[3];
     }
 };
