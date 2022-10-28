@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     void rotate(vector<vector<int>>& matrix) {
         int n = matrix.size(), a = 0, b = n - 1;
         while (a < b) {
