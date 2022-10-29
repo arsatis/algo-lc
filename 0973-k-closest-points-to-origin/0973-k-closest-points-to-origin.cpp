@@ -7,18 +7,9 @@ public:
     }
     
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-        priority_queue<pair<double, vector<int>>> pq;
-        for (auto& point : points) {
-            double dist = sqrt(pow(point.front(), 2) + pow(point.back(), 2));
-            if (pq.size() < k) pq.emplace(dist, point);
-            else if (dist < pq.top().first) pq.pop(), pq.emplace(dist, point);
-        }
-        
-        vector<vector<int>> closest(k);
-        for (int i = 0; i < k; ++i) {
-            closest[i] = pq.top().second;
-            pq.pop();
-        }
-        return move(closest);
+        nth_element(points.begin(), points.begin() + k, points.end(), [](vector<int>& a, vector<int>& b) {
+            return a[0] * a[0] + a[1] * a[1] < b[0] * b[0] + b[1] * b[1];
+        });
+        return vector<vector<int>>(points.begin(), points.begin() + k);
     }
 };
