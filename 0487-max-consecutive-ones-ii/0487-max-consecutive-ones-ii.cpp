@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int findMaxConsecutiveOnes(vector<int>& nums) {
         int maxNum = 0, zero = -1, left = 0;
         for (int right = 0; right < nums.size(); ++right) {
