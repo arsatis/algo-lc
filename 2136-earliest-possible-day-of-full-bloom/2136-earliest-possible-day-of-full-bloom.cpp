@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int earliestFullBloom(vector<int>& plantTime, vector<int>& growTime) {
         vector<int> indices(plantTime.size());
         iota(indices.begin(), indices.end(), 0);
