@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
         priority_queue<pair<double, vector<int>>> pq;
         for (auto& point : points) {
