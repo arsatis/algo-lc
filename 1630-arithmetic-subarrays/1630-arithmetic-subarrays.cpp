@@ -1,13 +1,4 @@
 class Solution {
-    bool f(vector<int>& nums, int start, int end) {
-        if (end - start <= 2) return true;
-        vector<int> seq(nums.begin() + start, nums.begin() + end);
-        sort(seq.begin(), seq.end());
-        
-        int diff = seq[1] - seq[0];
-        for (int i = 2; i < seq.size(); ++i) if (seq[i] - seq[i - 1] != diff) return false;
-        return true;
-    }
 public:
     Solution() {
         ios_base::sync_with_stdio(0);
@@ -16,8 +7,24 @@ public:
     }
     
     vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
-        vector<bool> output(l.size());
-        for (int i = 0; i < l.size(); ++i) output[i] = f(nums, l[i], r[i] + 1);
-        return move(output);
+    vector<bool> res;
+    for (auto i = 0, j = 0; i < l.size(); ++i) {
+        auto [p_min, p_max] = minmax_element(begin(nums) + l[i], begin(nums) + r[i] + 1);
+        int len = r[i] - l[i] + 1, d = (*p_max - *p_min) / (len - 1);
+        if (*p_max == *p_min)
+             res.push_back(true);
+        else if ((*p_max - *p_min) % (len - 1))
+             res.push_back(false);
+        else {
+            vector<bool> n(len);
+            for (j = l[i]; j <= r[i]; ++j) {
+                if ((nums[j] - *p_min) % d || n[(nums[j] - *p_min) / d])
+                    break;
+                n[(nums[j] - *p_min) / d] = true;
+            }
+            res.push_back(j > r[i]);
+        }
+    }
+    return res;
     }
 };
