@@ -17,13 +17,11 @@ public:
             q.pop();
             if (row == n - 1 && col == m - 1) return towns;
             coins -= grid[row][col];
-            
             for (auto [dx, dy] : dir) {
-                int x = row + dx;
-                int y = col + dy;
+                int x = row + dx, y = col + dy;
                 if (check(x, y) && (vis[x][y] < coins)) {
                     vis[x][y] = coins;
-                    q.push({x, y, towns + 1, coins});
+                    q.emplace(x, y, towns + 1, coins);
                 }
             }
         }
