@@ -11,8 +11,8 @@ public:
         for (auto i = 0, j = 0; i < l.size(); ++i) {
             auto [p_min, p_max] = minmax_element(begin(nums) + l[i], begin(nums) + r[i] + 1);
             int len = r[i] - l[i] + 1, d = (*p_max - *p_min) / (len - 1);
-            if (*p_max == *p_min) res.push_back(true);
-            else if ((*p_max - *p_min) % (len - 1)) res.push_back(false);
+            if (*p_max == *p_min) res.emplace_back(true);
+            else if ((*p_max - *p_min) % (len - 1)) res.emplace_back(false);
             else {
                 vector<bool> n(len);
                 for (j = l[i]; j <= r[i]; ++j) {
