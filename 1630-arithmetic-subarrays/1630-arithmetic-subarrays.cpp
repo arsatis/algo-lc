@@ -9,6 +9,10 @@ class Solution {
         return true;
     }
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
         vector<bool> output(l.size());
         for (int i = 0; i < l.size(); ++i) output[i] = f(nums, l[i], r[i] + 1);
