@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int shortestPath(vector<vector<int>>& grid, int k) {
         int steps = 1, m = grid.size(), n = grid[0].size();
         if (m == 1 && n == 1) return 0;
