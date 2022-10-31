@@ -5,14 +5,9 @@ public:
     }
     
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
-        int m = matrix.size(), n = matrix[0].size();
-        for (int i = 1 - m; i < n; ++i) {
-            int tmp = -1;
-            for (int j = max(0, -i); j < m && i + j < n; ++j) {
-                if (tmp == -1) tmp = matrix[j][i + j];
-                else if (tmp != matrix[j][i + j]) return false;
-            }
-        }
+        for (int i = 1; i < matrix.size(); ++i)
+            for (int j = 1; j < matrix[0].size(); ++j)
+                if (matrix[i][j] != matrix[i - 1][j - 1]) return false;
         return true;
     }
 };
