@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
         int m = matrix.size(), n = matrix[0].size();
         for (int i = 1 - m; i < n; ++i) {
