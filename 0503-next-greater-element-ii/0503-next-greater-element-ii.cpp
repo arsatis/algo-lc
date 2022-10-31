@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> nextGreaterElements(vector<int>& nums) {
         vector<int> nge(nums.size(), -1);
         stack<int> st;
