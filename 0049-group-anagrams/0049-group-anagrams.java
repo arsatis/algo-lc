@@ -5,8 +5,8 @@ class Solution {
             char[] c = s.toCharArray();
             Arrays.sort(c);
             String sNew = new String(c);
-            if (anagrams.containsKey(sNew)) anagrams.get(sNew).add(s);
-            else anagrams.put(sNew, new ArrayList<>(Arrays.asList(s)));
+            if (!anagrams.containsKey(sNew)) anagrams.put(sNew, new ArrayList<>());
+            anagrams.get(sNew).add(s);
         }
         
         List<List<String>> list = new ArrayList<>();
