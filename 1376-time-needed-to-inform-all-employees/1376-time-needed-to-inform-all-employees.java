@@ -9,8 +9,7 @@ class Solution {
     
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
         int res = 0;
-        for (int i = 0; i < n; ++i)
-            res = Math.max(res, dfs(i, manager, informTime));
+        for (int i = 0; i < n; ++i) res = Math.max(res, dfs(i, manager, informTime));
         return res;
     }
 }
