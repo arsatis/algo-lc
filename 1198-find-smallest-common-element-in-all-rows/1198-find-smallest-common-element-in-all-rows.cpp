@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int smallestCommonElement(vector<vector<int>>& mat) {
         int arr[10001] = {};
         for (int i = 0; i < mat.size(); ++i)
