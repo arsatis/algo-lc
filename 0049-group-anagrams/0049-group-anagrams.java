@@ -8,9 +8,6 @@ class Solution {
             if (!anagrams.containsKey(sNew)) anagrams.put(sNew, new ArrayList<>());
             anagrams.get(sNew).add(s);
         }
-        
-        List<List<String>> list = new ArrayList<>();
-        for (List<String> a : anagrams.values()) list.add(a);
-        return list;
+        return new ArrayList(anagrams.values());
     }
 }
