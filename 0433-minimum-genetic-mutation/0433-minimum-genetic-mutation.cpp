@@ -11,7 +11,8 @@ public:
         while (!q.empty()) {
             int size = q.size();
             while (size--) {
-                string& gene = q.front();
+                string gene = q.front();
+                q.pop();
                 if (gene == end) return num;
                 for (char& c : gene) {
                     char tmp = c;
@@ -24,7 +25,6 @@ public:
                     }
                     c = tmp;
                 }
-                q.pop();
             }
             ++num;
         }
