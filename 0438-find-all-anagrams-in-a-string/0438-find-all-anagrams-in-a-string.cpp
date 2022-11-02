@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     vector<int> findAnagrams(string& s, string& p) {
         if (p.size() > s.size()) return {};
         int missing = p.size(), counter[26] = {};
