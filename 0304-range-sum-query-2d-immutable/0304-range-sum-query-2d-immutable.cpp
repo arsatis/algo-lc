@@ -2,10 +2,6 @@ class NumMatrix {
     vector<vector<int>> vvi;
 public:
     NumMatrix(vector<vector<int>>& matrix) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-        
         int row = 1 + matrix.size(), col = 1 + matrix[0].size();
         vvi.reserve(row);
         vvi.push_back(vector<int>(col, 0));
