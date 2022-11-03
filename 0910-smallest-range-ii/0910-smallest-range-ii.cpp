@@ -1,5 +1,9 @@
 class Solution {
 public:
+    Solution() {
+        ios_base::sync_with_stdio(0);
+    }
+    
     int smallestRangeII(vector<int>& nums, int k) {
         sort(nums.begin(), nums.end());
         int mx = nums[nums.size() - 1], mn = nums[0], res = mx - mn;
