@@ -1,21 +1,11 @@
 class Solution {
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-        cin.tie(0);
-        cout.tie(0);
-    }
-    
     int coinChange(vector<int>& coins, int amount) {
-        vector<int> dp(amount + 1, -1);
-        dp[0] = 0;
-        for (int i = 1; i <= amount; ++i) {
-            int val = INT_MAX;
-            for (int c : coins)
-                if (c <= i && dp[i - c] != -1)
-                    val = min(val, 1 + dp[i - c]);
-            if (val != INT_MAX) dp[i] = val;
-        }
-        return dp[amount];
+        int dp[10001] = {};
+        fill(dp + 1, dp + 10001, 10001);
+        for (int i = 1; i <= amount; ++i)
+            for (int x : coins)
+                if (x <= i) dp[i] = min(dp[i], 1 + dp[i - x]);
+        return dp[amount] == 10001 ? -1 : dp[amount];
     }
 };
