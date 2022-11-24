@@ -9,10 +9,6 @@ class Solution {
         combi.pop_back();
     }
 public:
-    Solution() {
-        ios_base::sync_with_stdio(0);
-    }
-    
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         combi.reserve(candidates.size());
         for (int i = 0; i < candidates.size(); ++i) f(candidates, target - candidates[i], i);
